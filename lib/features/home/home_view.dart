@@ -115,7 +115,7 @@ class HomePage extends StatelessWidget {
                     height: 30.h,
                   ),
                   SizedBox(
-                    height: 260.h,
+                    height: 300.h,
                     child: ListView.separated(
                       itemBuilder: (context, index) => CustomProduct(
                         productName: 'keratin serum',

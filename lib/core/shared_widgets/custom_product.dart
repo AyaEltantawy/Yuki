@@ -51,8 +51,6 @@ final   String offerState;
                 height: 10.h,
               ),
               Container(
-                width: 177.w,
-                height: 121.3.h,
                 decoration: const BoxDecoration(
                     color: ColorsManager.grey,
                     borderRadius: BorderRadius.only(
@@ -115,13 +113,11 @@ final   String offerState;
                             ]),
                       ),
                       SizedBox(
-                        height: 10.h,
+                        height: 5.h,
                       ),
                       Row(
                         children: [
                           Container(
-                            width: 109.w,
-                            height: 32.h,
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(4)),
@@ -157,6 +153,7 @@ final   String offerState;
                                           increament();
                                         });
                                       },
+                                      padding: EdgeInsets.zero,
                                     ),
                                     //SizedBox(width: 5,),
                                   ],
@@ -165,7 +162,7 @@ final   String offerState;
                             ),
                           ),
                           SizedBox(
-                            width: 8.w,
+                            width: 2.w,
                           ),
                           Image.asset("assets/images/market_icon.png",
                               width: 47.w, height: 32.h)
