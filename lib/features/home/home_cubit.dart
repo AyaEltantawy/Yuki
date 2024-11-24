@@ -11,23 +11,23 @@ class HomeCubit extends Cubit<HomeState> {
   List<Widget> items = [
     Image.asset(
       "assets/images/image_home.png",
-      fit: BoxFit.fill,
+      fit: BoxFit.cover,
     ),
     Image.asset(
       "assets/images/image_home.png",
-      fit: BoxFit.fill,
+      fit: BoxFit.cover,
     ),
     Image.asset(
       "assets/images/image_home.png",
-      fit: BoxFit.fill,
+      fit: BoxFit.cover,
     ),
     Image.asset(
       "assets/images/image_home.png",
-      fit: BoxFit.fill,
+      fit: BoxFit.cover,
     ),
     Image.asset(
       "assets/images/image_home.png",
-      fit: BoxFit.fill,
+      fit: BoxFit.cover,
     ),
   ];
 
@@ -59,4 +59,20 @@ class HomeCubit extends Cubit<HomeState> {
     currentPage = value;
     emit(BuildCarouselIndicator());
   }
+  bool isArrival = true;
+void updateArrivalsAndFeatured(){
+
+    isArrival =! isArrival;
+
+    emit(UpdateArrivalsAndFeatured());
+
+
+
+
+
+
+}
+
+
+
 }

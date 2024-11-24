@@ -13,4 +13,5 @@ class ColorsManager {
   static const Color secondblack = Color(0xff202020);
   static const Color textgrey = Color(0xffA2A2A3);
   static const Color secondred = Color(0xffD4424C);
+  static const Color thirdgrey =Color(0xffACACAC);
 }
