@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:yuki/core/shared_widgets/custom_category.dart';
+import 'package:yuki/core/routing/page_router.dart';
+import 'package:yuki/core/shared_widgets/custom_category_in_horizontal.dart';
+import 'package:yuki/core/shared_widgets/custom_category_in_vertical.dart';
 import 'package:yuki/core/shared_widgets/custom_product.dart';
 import 'package:yuki/core/shared_widgets/custom_text_form_feild.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:yuki/features/home/widgets/custom_carousal_slider.dart';
+import 'package:yuki/features/yuki_store/yukistore_view.dart';
 import 'home_cubit.dart';
 import 'home_state.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -115,7 +118,7 @@ class HomePage extends StatelessWidget {
                     height: 30.h,
                   ),
                   SizedBox(
-                    height: 300.h,
+                    height: 278.5.h,
                     child: ListView.separated(
                       itemBuilder: (context, index) => CustomProduct(
                         productName: 'keratin serum',
@@ -161,7 +164,7 @@ class HomePage extends StatelessWidget {
                       ),
                       Container(
                           width: 45.w,
-                          height: 45.h,
+                          height: 45.w,
                           decoration: BoxDecoration(
                               color: ColorsManager.grey,
                               borderRadius: BorderRadius.circular(40)),
@@ -175,10 +178,12 @@ class HomePage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CustomCategory(
-                        categoryName: "Hair Care",
-                        categoryCount: "489 Product",
-                        imageUrl: 'assets/images/hair_care.png',
+                      GestureDetector(onTap: (){MagicRouter.navigateTo(YukistorePage());},
+                        child: CustomCategory(
+                          categoryName: "Hair Care",
+                          categoryCount: "489 Product",
+                          imageUrl: 'assets/images/hair_care.png',
+                        ),
                       ),
                       CustomCategory(
                         categoryName: "Body Care",
@@ -268,7 +273,7 @@ class HomePage extends StatelessWidget {
                     height: 20.h,
                   ),
                   SizedBox(
-                    height: 260.h,
+                    height: 278.5.h,
                     child: ListView.separated(
                         scrollDirection: Axis.horizontal,
                         //physics: const NeverScrollableScrollPhysics(),
@@ -283,9 +288,7 @@ class HomePage extends StatelessWidget {
                             ),
                         itemCount: 5),
                   ),
-                  SizedBox(
-                    height: 30.h,
-                  )
+
                 ],
               );
             },

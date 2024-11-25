@@ -33,7 +33,7 @@ final   String offerState;
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 178.w,
+      //width: 178.w,
       // height: 260.h,
       decoration: BoxDecoration(
           border: Border.all(width: 1, color: ColorsManager.grey),
@@ -112,62 +112,63 @@ final   String offerState;
                                   style: TextStyles.font13Mainblue700Weight)
                             ]),
                       ),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(4)),
-                            child: StatefulBuilder(
-                              builder: (BuildContext context,
-                                  void Function(void Function()) setState) {
-                                return Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    IconButton(
-                                      icon: const Icon(
-                                        Icons.remove,
-                                        size: 17,
+
+                      Padding(
+                        padding:  EdgeInsets.symmetric(vertical: 10.h),
+                        child: Row(
+                          children: [
+                            Container(
+
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(4)),
+                              child: StatefulBuilder(
+                                builder: (BuildContext context,
+                                    void Function(void Function()) setState) {
+                                  return Row(
+                                    children: [
+                                      IconButton(
+                                        icon: const Icon(
+                                          Icons.remove,
+                                          size: 17,
+                                        ),
+                                        color: ColorsManager.textgrey,
+                                        onPressed: () {
+                                          setState(() {
+                                            decreament();
+                                          });
+                                        },
                                       ),
-                                      color: ColorsManager.textgrey,
-                                      onPressed: () {
-                                        setState(() {
-                                          decreament();
-                                        });
-                                      },
-                                    ),
-                                    //SizedBox(width: 5,),
-                                    Text("$count"),
-                                    IconButton(
-                                      icon: const Icon(
-                                        Icons.add,
-                                        size: 17,
+                                      //SizedBox(width: 5,),
+                                      Text("$count"),
+                                      IconButton(
+                                        icon: const Icon(
+                                          Icons.add,
+                                          size: 17,
+                                        ),
+                                        color: ColorsManager.mainblue,
+                                        onPressed: () {
+                                          setState(() {
+                                            increament();
+                                          });
+                                        },
+
                                       ),
-                                      color: ColorsManager.mainblue,
-                                      onPressed: () {
-                                        setState(() {
-                                          increament();
-                                        });
-                                      },
-                                      padding: EdgeInsets.zero,
-                                    ),
-                                    //SizedBox(width: 5,),
-                                  ],
-                                );
-                              },
+                                      //SizedBox(width: 5,),
+                                    ],
+                                  );
+                                },
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 2.w,
-                          ),
-                          Image.asset("assets/images/market_icon.png",
-                              width: 47.w, height: 32.h)
-                        ],
+                            SizedBox(
+                              width: 2.w,
+                            ),
+                            Image.asset("assets/images/market_icon.png",
+                                width: 47.w, height: 32.h)
+                          ],
+                        ),
                       )
+
                     ],
                   ),
                 ),
@@ -176,15 +177,15 @@ final   String offerState;
           ),
           Positioned(
             right: 10.w,
-            bottom: 125.h,
+            bottom: 170.h,
+
             child: Container(
-              width: 52.w,
-              height: 25.h,
+
               decoration: BoxDecoration(
                   color: ColorsManager.secondred,
                   borderRadius: BorderRadius.circular(3)),
               child: Padding(
-                padding: EdgeInsets.only(top: 4.h),
+                padding: EdgeInsets.symmetric(horizontal: 5.w,vertical: 5.w),
                 child: Text(
                   textAlign: TextAlign.center,
                   offerState,

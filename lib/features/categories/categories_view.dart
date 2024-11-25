@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:yuki/core/shared_widgets/custom_category_in_horizontal.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
 
@@ -52,26 +53,67 @@ class CategoriesPage extends StatelessWidget {
                 SizedBox(
                   height: 20.h,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Categories",
-                      style: TextStyles.font20black700Weight,
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    Text(
-                      "Shop By Category",
-                      style: TextStyles.font15Thirdgrey300Weight,
-                    ),
-                    Divider(
-                      thickness: 1,
-                      color: ColorsManager.mainblue,
-                    )
-                  ],
-                )
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(
+                    "Categories",
+                    style: TextStyles.font20black700Weight,
+                  ),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  Text(
+                    "Shop By Category",
+                    style: TextStyles.font15Thirdgrey300Weight,
+                  ),
+                  const Divider(
+                    thickness: 1,
+                    color: ColorsManager.mainblue,
+                  ),
+                ]),
+                SizedBox(
+                  height: 20.h,
+                ),
+                const CustomCategoryInHorizontal(
+                  imageUrl: "assets/images/hair_care.png",
+                  categoryName: 'Hair Care',
+                  categoryCount: '489 Product',
+                ),
+                SizedBox(
+                  height: 5.h,
+                ),
+                const Divider(
+                  thickness: 1,
+                  color: ColorsManager.bordergrey,
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                const CustomCategoryInHorizontal(
+                  categoryCount: '489 Product',
+                  imageUrl: 'assets/images/body_care.png',
+                  categoryName: 'Body Care',
+                ),
+                SizedBox(
+                  height: 5.h,
+                ),
+                const Divider(
+                  thickness: 1,
+                  color: ColorsManager.bordergrey,
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                const CustomCategoryInHorizontal(
+                    imageUrl: "assets/images/skin_care.png",
+                    categoryName: "Skin Care",
+                    categoryCount: '489 Product'),
+                SizedBox(
+                  height: 5.h,
+                ),
+                const Divider(
+                  thickness: 1,
+                  color: ColorsManager.bordergrey,
+                ),
               ],
             ),
           ),
