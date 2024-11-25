@@ -6,15 +6,7 @@ class YukistoreCubit extends Cubit<YukistoreState> {
   YukistoreCubit() : super(YukistoreStateInit());
 
   bool change = true;
-  List<bool> isSelected = [false, true, false]; // Track each category selection
-
-  void toggleCategorySelection(int index) {
-    for (int i = 0; i < isSelected.length; i++) {
-      isSelected[i] = (i == index); // Select only the clicked category
-    }
-    change = !change; // Example of changing another state variable
-    emit(ClickOnCategoryContainer());
-  }
+ // List<int> isSelected = [0, 1, 2]; // Track each category selection
 
   int activeIndex = 0;
 

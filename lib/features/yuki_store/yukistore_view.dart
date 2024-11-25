@@ -112,7 +112,7 @@ class YukistorePage extends StatelessWidget {
                       return Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            cubit.toggleCategorySelection(index);
+                            cubit.updateActiveIndex(index);
                           },
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 5.0),
