@@ -19,7 +19,7 @@ final String title;
         SizedBox(width: 20.w),
         Expanded(child: Text(title,style: TextStyles.font15Black400Weight,)),
 
-        IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_forward,color: ColorsManager.mainblue,))
+        IconButton(onPressed: onPressed, icon: const Icon(Icons.arrow_forward,color: ColorsManager.mainblue,))
       ],
     );
 

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yuki/core/theming/colors.dart';
+import 'package:yuki/core/theming/styles.dart';
 
 class CategoryContainer extends StatelessWidget {
-  CategoryContainer({super.key,  required this.title, required this.textStyle,required this.isSelected,required this .change}) {}
+  CategoryContainer({super.key,  required this.title,required this.isSelected,}) {}
 // final VoidCallback onTap;
   final String title;
-  final TextStyle textStyle;
- final bool change;
+
+ //final bool change;
 final bool  isSelected;
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ final bool  isSelected;
 
     child: Padding(
       padding: EdgeInsets.symmetric(vertical: 10.h),
-      child: Text(title,style: textStyle,textAlign: TextAlign.center,),
+      child: Text(title,style:isSelected? TextStyles.font13Textgrey700Weight:TextStyles.font13Black400Weight,textAlign: TextAlign.center,),
     ),
     );
   }

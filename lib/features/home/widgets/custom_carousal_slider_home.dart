@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class CustomCarousalSlider extends StatelessWidget {
-  const CustomCarousalSlider(
+class CustomCarousalSliderHome extends StatelessWidget {
+  const CustomCarousalSliderHome(
       {super.key,
       required this.onPageChanged,
       required this.items,
-      this.currentPage});
+      this.currentPage, required this.autoPlay});
 
   final Function(int, CarouselPageChangedReason) onPageChanged;
   final List<Widget> items;
   final int? currentPage;
+  final bool autoPlay;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class CustomCarousalSlider extends StatelessWidget {
       children: [
         CarouselSlider(
           options: CarouselOptions(
+            autoPlay: autoPlay,
               height: 163.h,
               viewportFraction: 1,
               initialPage: 0,

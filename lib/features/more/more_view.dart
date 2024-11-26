@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:yuki/core/routing/page_router.dart';
 import 'package:yuki/core/shared_widgets/custom_more.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
+import 'package:yuki/features/favorite_products/favoriteproducts_view.dart';
 
 import 'more_cubit.dart';
 import 'more_state.dart';
@@ -93,7 +95,7 @@ class MorePage extends StatelessWidget {
             CustomMore(
               imageUrl: "assets/svgs/favorite_products_icon.svg",
               title: "Favorite Products",
-              onPressed: () {},
+              onPressed: () {MagicRouter.navigateTo(FavoriteProductsPage());},
             ),
             SizedBox(
               height: 5.h,

@@ -86,4 +86,8 @@ class TextStyles {
       fontSize: 15.sp,
       fontWeight: FontWeight.w300,
       color: ColorsManager.textgrey);
+  static TextStyle font13Textgrey700Weight = TextStyle(
+      fontSize: 13.sp,
+      fontWeight: FontWeight.w700,
+      color: Colors.white);
 }

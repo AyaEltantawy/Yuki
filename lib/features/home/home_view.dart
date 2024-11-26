@@ -9,7 +9,9 @@ import 'package:yuki/core/shared_widgets/custom_product.dart';
 import 'package:yuki/core/shared_widgets/custom_text_form_feild.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:badges/badges.dart' as badges;
-import 'package:yuki/features/home/widgets/custom_carousal_slider.dart';
+
+import 'package:yuki/features/home/widgets/custom_carousal_slider_home.dart';
+import 'package:yuki/features/product_details/product_details_view.dart';
 import 'package:yuki/features/yuki_store/yukistore_view.dart';
 import 'home_cubit.dart';
 import 'home_state.dart';
@@ -74,7 +76,7 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     height: 20.h,
                   ),
-                  CustomCarousalSlider(
+                  CustomCarousalSliderHome(
                     items: controller.items
                         .map((e) => Container(
                             width: MediaQuery.of(context).size.width,
@@ -84,7 +86,7 @@ class HomePage extends StatelessWidget {
                         .toList(),
                     onPageChanged: (value, _) =>
                         controller.updateIndicator(value),
-                    currentPage: controller.currentPage,
+                    currentPage: controller.currentPage, autoPlay: true,
                   ),
                   SizedBox(
                     height: 20.h,
@@ -118,9 +120,10 @@ class HomePage extends StatelessWidget {
                     height: 30.h,
                   ),
                   SizedBox(
-                    height: 278.5.h,
+                    height: 267.5.h,
                     child: ListView.separated(
                       itemBuilder: (context, index) => CustomProduct(
+                        onTap:(){},
                         productName: 'keratin serum',
                         imageUrl: 'assets/images/spray.png',
                         currentPrice: 150,
@@ -273,11 +276,12 @@ class HomePage extends StatelessWidget {
                     height: 20.h,
                   ),
                   SizedBox(
-                    height: 278.5.h,
+                    height: 267.5.h,
                     child: ListView.separated(
                         scrollDirection: Axis.horizontal,
                         //physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, builder) => CustomProduct(
+                          onTap: (){MagicRouter.navigateTo(ProductdetailsPage());},
                               productName: "deodorant whit...",
                               imageUrl: "assets/images/Group 3.png",
                               currentPrice: 150.00,
