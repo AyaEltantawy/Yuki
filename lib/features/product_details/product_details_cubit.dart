@@ -75,4 +75,17 @@ updatContainerOnStack(value){
 // currentPage=value;
     emit(UpdateArrowRight());
   }
+  int count = 1;
+
+  void increament() {
+    count++;
+    emit(UpdateIncrement());
+  }
+
+  void decreament() {
+    if (count > 1) {
+      count--;
+      emit(UpdateDecrement());
+    }
+  }
      }

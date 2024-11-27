@@ -156,7 +156,7 @@ class RegisterPage extends StatelessWidget {
                                 onPressed: () {
                                   showDialog(
                                       context: context,
-                                      builder: (context) => ResetPasswordDialog(
+                                      builder: (context) => const ResetPasswordDialog(
                                             mainText:
                                                 'Your account has been successfully activated! You will now be automatically redirected to the homepage.',
                                             defaultText: 'Congratulations',

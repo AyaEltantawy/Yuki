@@ -14,5 +14,7 @@ class ColorsManager {
   static const Color textgrey = Color(0xffA2A2A3);
   static const Color secondred = Color(0xffD4424C);
   static const Color thirdgrey =Color(0xffACACAC);
-
+  static const Color fourthgrey=  Color(0xffA0A1A1);
+  static const Color whitegrey=Color(0xffF7F7F9);
+static const Color fivegrey= Color(0xffD8D8D8);
 }
