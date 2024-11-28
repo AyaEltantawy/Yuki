@@ -1,9 +1,3 @@
-class CartState {
-  CartState init() {
-    return CartState();
-  }
-
-  CartState clone() {
-    return CartState();
-  }
-}
+abstract class CartState {}
+class CartStateInit extends CartState{}
+class ToggleCheck extends CartState{}

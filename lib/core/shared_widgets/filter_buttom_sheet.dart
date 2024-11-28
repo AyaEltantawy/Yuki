@@ -15,8 +15,8 @@ class FilterButtomSheet extends StatelessWidget {
     return Container(
 
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
+      child: ListView(
+        //mainAxisSize: MainAxisSize.min,
         children: [
           Container(
             decoration: const BoxDecoration(

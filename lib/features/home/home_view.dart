@@ -281,7 +281,7 @@ class HomePage extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         //physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, builder) => CustomProduct(
-                          onTap: (){MagicRouter.navigateTo(ProductdetailsPage());},
+                          onTap: (){MagicRouter.navigateTo(ProductdetailsPage(rateAmount: 0, reviewText: '',));},
                               productName: "deodorant whit...",
                               imageUrl: "assets/images/Group 3.png",
                               currentPrice: 150.00,

@@ -7,6 +7,7 @@ import 'package:yuki/core/shared_widgets/custom_more.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
 import 'package:yuki/features/favorite_products/favoriteproducts_view.dart';
+import 'package:yuki/features/selectdeliveryaddress/select_delivery_address_view.dart';
 
 import 'more_cubit.dart';
 import 'more_state.dart';
@@ -87,7 +88,7 @@ class MorePage extends StatelessWidget {
             CustomMore(
               imageUrl: "assets/svgs/delivery_icon.svg",
               title: "Delivery Addresses",
-              onPressed: () {},
+              onPressed: () {MagicRouter.navigateTo(SelectdeliveryaddressPage());},
             ),
             SizedBox(
               height: 5.h,

@@ -111,7 +111,7 @@ class YukistorePage extends StatelessWidget {
                         ),
                         GestureDetector(onTap: () {
                           showModalBottomSheet(context: context,
-                              builder: (context) => FilterButtomSheet(), );
+                              builder: (context) => FilterButtomSheet(),);
                         },
                           child: Image.asset(
                             "assets/images/filter_icon.png",

@@ -12,7 +12,7 @@ class CustomTextFormFeild extends StatefulWidget {
   final Function(String?)? onSave;
   final int maxLines;
   final bool autoFocus;
-
+  final double? height;
   final Widget? suffixIcon;
   final Widget? prefix, prefixIcon;
   final Function(String)? onChanged;
@@ -87,7 +87,7 @@ class CustomTextFormFeild extends StatefulWidget {
       this.prefixSvgAsset,
       this.prefixWidth,
       this.inputFormatters,
-      this.autoFocus = false});
+      this.autoFocus = false, this.height,});
 
   @override
   _CustomTextFormFeildState createState() => _CustomTextFormFeildState();
@@ -138,18 +138,19 @@ class _CustomTextFormFeildState extends State<CustomTextFormFeild> {
               //     ? TextDirection.rtl
               //     : TextDirection.ltr,
               child: Container(
-                decoration: widget.applyShadow
-                    ? BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: ColorsManager.lightgrey.withOpacity(0.1),
-                            blurRadius: 6,
-                            spreadRadius: 4,
-                            offset: const Offset(1, 1),
-                          ),
-                        ],
-                      )
-                    : null,
+                height:widget.height,
+                // decoration: widget.applyShadow
+                //     ? BoxDecoration(
+                //         boxShadow: [
+                //           BoxShadow(
+                //             color: ColorsManager.lightgrey.withOpacity(0.1),
+                //             blurRadius: 6,
+                //             spreadRadius: 4,
+                //             offset: const Offset(1, 1),
+                //           ),
+                //         ],
+                //       )
+                //     : null,
                 child: Focus(
                   onFocusChange: (hasFocus) {
                     setState(() {
@@ -158,6 +159,7 @@ class _CustomTextFormFeildState extends State<CustomTextFormFeild> {
                   },
                   child: Builder(builder: (context) {
                     return TextFormField(
+
                       autofocus: widget.autoFocus,
                       focusNode: widget.focusNode,
                       controller: widget.controller ??

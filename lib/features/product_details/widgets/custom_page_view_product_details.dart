@@ -4,22 +4,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yuki/core/theming/colors.dart';
 
-class CustomCarousalSliderProduct extends StatelessWidget {
-  CustomCarousalSliderProduct({
+class CustomPageViewProductDetails extends StatelessWidget {
+  CustomPageViewProductDetails({
     super.key,
     required this.onPageChanged,
     required this.items,
-    this.currentPage,
-    required this.autoPlay, required this.onTapRight, required this.onTapLeft,
+   required this. currentPage,
+    required this.onTapRight, required this.onTapLeft, required this.pageController,
   });
 
-  final Function(int, CarouselPageChangedReason) onPageChanged;
+  final void Function(int)? onPageChanged;
   final List<Widget> items;
-  final int? currentPage;
-  final bool autoPlay;
+  final int currentPage;
+final PageController pageController;
 final VoidCallback onTapRight;
 final VoidCallback onTapLeft;
-  int i = 0;
+
   List<Widget> item = [
     Image.network(
       "https://s3-alpha-sig.figma.com/img/04a4/c2e3/0012e3b75ed7e59393eba31e16846530?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Vi6vVNhyp0ntOvArdii11tqMvlb~fvoMDszkqUSsR2Le~1tqIW-xLg9seIZIYIZtxf3dEBBoTJYKUE2KCRhVbgYB9fCXLbF3QxN5Xinjc13cIIGgChkncIIjpnEt9hXM3A~uDrzg6HyTPbcJ~2PmDb0N2pK5Fi-yXh6J4rQkNWh3JHRstodFdPaQAZ43xW1fwfPTC~J3G7u~f5RKDqI6n3IMm3fP9YMM9BEpn9mNOx2gT0k3qbFIsCS00aRz3g-hDQL8TflWkb-7GM5wMHM7dkqA1OnSoD0YM5WC~DWIua1S1IURJtFw78Ygjs~A4YFNVqZxpRNyOMQ~LQldRCqaCQ__",
@@ -43,15 +43,29 @@ final VoidCallback onTapLeft;
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        CarouselSlider(key: key,
+        SizedBox(
+          height: 260.h,
+          child: PageView.builder(
+            reverse: true,
+            scrollDirection: Axis.horizontal,
+            itemCount:items.length,
+            controller: pageController,
 
-          options: CarouselOptions(
-              autoPlay: autoPlay,
-              height: 260.h,
-              viewportFraction: 1,
-              initialPage: 0,
-              onPageChanged: onPageChanged),
-          items: items,
+            onPageChanged: onPageChanged,
+            itemBuilder: (context, index) {
+              var item = items[index];
+              return Container(
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                    border: const Border.symmetric(
+                        horizontal: BorderSide(width: 1, color: Color(0xff031780))
+                    ),
+                    borderRadius: BorderRadius.circular(30)
+                ),
+                child: item,
+              );
+            },
+          ),
         ),
         buildCarouselIndicator(),
         Positioned(

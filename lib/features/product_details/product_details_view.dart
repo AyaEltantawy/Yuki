@@ -1,20 +1,28 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:yuki/core/routing/page_router.dart';
 import 'package:yuki/core/shared_widgets/category_container.dart';
 import 'package:yuki/core/shared_widgets/custom_customer_reviews.dart';
-import 'package:yuki/core/shared_widgets/review_bottom_sheet.dart';
+import 'package:yuki/core/shared_widgets/get_review_bottom_sheet.dart';
+import 'package:yuki/core/shared_widgets/set_review_bottom_sheet.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
-import 'package:yuki/features/product_details/widgets/custom_carousel_slider_product_details.dart';
+import 'package:yuki/features/product_details/widgets/custom_page_view_product_details.dart';
 
 import 'product_details_cubit.dart';
 import 'product_details_state.dart';
 
 class ProductdetailsPage extends StatelessWidget {
-  const ProductdetailsPage({super.key});
+  ProductdetailsPage(
+      {super.key, required this.rateAmount, required this.reviewText});
+
+  PageController controller = PageController();
+  final double rateAmount;
+  final String reviewText;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +31,8 @@ class ProductdetailsPage extends StatelessWidget {
         child: Scaffold(body: SafeArea(
           child: BlocBuilder<ProductdetailsCubit, ProductdetailsState>(
               builder: (context, state) {
-            final controller = BlocProvider.of<ProductdetailsCubit>(context);
+            final cubitController =
+                BlocProvider.of<ProductdetailsCubit>(context);
             return ListView(
 //padding:EdgeInsets.symmetric(vertical: 10.h,horizontal: 20.w),
               children: [
@@ -42,7 +51,29 @@ class ProductdetailsPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                CustomCarousalSliderProduct(
+                CustomPageViewProductDetails(
+                  items: cubitController.items,
+                  onPageChanged: (value) {
+                    cubitController.updateIndicator(value);
+                    cubitController.updatContainerOnStack(value);
+                  },
+                  onTapRight: () {
+                    if (cubitController.currentPage >= 0 &&
+                        cubitController.currentPage <
+                            cubitController.items.length) ;
+                    controller.jumpToPage(cubitController.currentPage + 1);
+                  },
+                  onTapLeft: () {
+                    if (cubitController.currentPage <=
+                            cubitController.items.length &&
+                        cubitController.currentPage > 0) ;
+                    controller.jumpToPage(cubitController.currentPage - 1);
+                  },
+                  currentPage: cubitController.currentPage,
+                  pageController: controller,
+                )
+
+                /*  CustomCarousalSliderProduct(
                   items: controller.items
                       .map((e) => Container(
                           width: MediaQuery.of(context).size.width,
@@ -65,7 +96,8 @@ class ProductdetailsPage extends StatelessWidget {
                   onTapRight: () {
                     controller.updateArrowRight(controller.value + 1);
                   },
-                ),
+                ),*/
+                ,
                 SizedBox(
                   height: 20.h,
                 ),
@@ -109,10 +141,10 @@ class ProductdetailsPage extends StatelessWidget {
                                   ),
                                   color: ColorsManager.textgrey,
                                   onPressed: () {
-                                    controller.decreament();
+                                    cubitController.decreament();
                                   },
                                 ),
-                                Text("${controller.count}"),
+                                Text("${cubitController.count}"),
                                 IconButton(
                                     icon: const Icon(
                                       Icons.add,
@@ -120,7 +152,7 @@ class ProductdetailsPage extends StatelessWidget {
                                     ),
                                     color: ColorsManager.mainblue,
                                     onPressed: () {
-                                      controller.increament();
+                                      cubitController.increament();
                                     }),
                               ],
                             ),
@@ -234,13 +266,21 @@ class ProductdetailsPage extends StatelessWidget {
                       style: TextStyles.font15Black700Weight,
                     ),
                     SizedBox(
-                      width: 85.w,
+                      width: 65.w,
                     ),
                     SvgPicture.asset("assets/svgs/Medal Star Square.svg"),
-                    Text(
-                      "Write Your Review ",
-                      style: TextStyles.font11Mainblue700Weight,
-                    )
+                    TextButton(
+                        onPressed: () {
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (context) => SetReviewBottomSheet(
+                                    rateAmount: rateAmount, reviewText: reviewText,
+                                  ));
+                        },
+                        child: Text(
+                          "Write Your Review ",
+                          style: TextStyles.font11Mainblue700Weight,
+                        ))
                   ]),
                 ),
                 SizedBox(
@@ -255,7 +295,9 @@ class ProductdetailsPage extends StatelessWidget {
                       return Padding(
                         padding: EdgeInsets.symmetric(
                             horizontal: 20.w, vertical: 10.h),
-                        child: CustomCustomerReviews(),
+                        child: CustomCustomerReviews(
+                          rateAmount: rateAmount, reviewText: reviewText,
+                        ),
                       );
                     },
                   ),
@@ -303,7 +345,8 @@ class ProductdetailsPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                GestureDetector(onTap: (){},
+                GestureDetector(
+                  onTap: () {},
                   child: Container(
                     decoration: const BoxDecoration(
                         gradient: LinearGradient(

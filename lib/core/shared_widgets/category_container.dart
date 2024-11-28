@@ -31,7 +31,7 @@ height: height,
       //   ],
 
 
-      borderRadius: BorderRadius.circular(radius), color:isSelected? ColorsManager.mainblue :ColorsManager.grey),
+      borderRadius: BorderRadius.circular(radius), color:isSelected? ColorsManager.mainblue :ColorsManager.grey ),
 
     child: Padding(
       padding: EdgeInsets.symmetric(vertical:vertical,horizontal: horizontal),

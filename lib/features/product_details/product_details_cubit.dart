@@ -12,6 +12,7 @@ import 'package:yuki/features/product_details/product_details_state.dart';
 class ProductdetailsCubit extends Cubit<ProductdetailsState> {
 
   ProductdetailsCubit() : super(ProductdetailsStateInit());
+double  rateAmount =0;
 bool onPress = false;
   int currentPage = 0;
   List<Widget> items = [
@@ -35,7 +36,7 @@ bool onPress = false;
 
   ];
 
-  buildCarouselIndicator() {
+  /*buildCarouselIndicator() {
     return Positioned(
       bottom: 7.h,
       right: 10.w,
@@ -57,7 +58,7 @@ bool onPress = false;
         ],
       ),
     );
-  }
+  }*/
   void updateIndicator(value) {
     currentPage = value;
 
@@ -71,7 +72,8 @@ updatContainerOnStack(value){
 
 }int value =0;
   updateArrowRight(value) {
-    onPress = !onPress;
+     if (currentPage == value)
+
 // currentPage=value;
     emit(UpdateArrowRight());
   }
@@ -87,5 +89,10 @@ updatContainerOnStack(value){
       count--;
       emit(UpdateDecrement());
     }
+  }
+  updateRating(rating){
+    rateAmount=rating;
+    emit(UpdateRating());
+
   }
      }
