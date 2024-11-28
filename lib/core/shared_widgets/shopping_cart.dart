@@ -72,55 +72,62 @@ class ShoppingCart extends StatelessWidget {
         SizedBox(
           width: 10.w,
         ),
-        Container(
-          decoration: BoxDecoration(
-              color: ColorsManager.grey,
-              borderRadius: BorderRadius.circular(5),
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 48,
-                  spreadRadius: 0,
-                  color: Color(0x0000000D),
-                  offset: Offset(0, 2),
-                  blurStyle: BlurStyle.outer,
-                )
-              ]),
-          child: Padding(
-            padding: EdgeInsets.only(left:7, top: 5.h,bottom: 5.h),
-            child: Row(mainAxisSize: MainAxisSize.min,
-
-              children: [
-                Image.asset("assets/images/spray_card.png"),
-                SizedBox(
-                  width: 10.w,
-                ),
-                Flexible(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("rosemairy sha...",
-                          style: TextStyles.font16Black700Weight),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      RichText(
-                          text: TextSpan(
-                              text: "Price :",
-                              style: TextStyles.font13Black400Weight,
-                              children: [
-                            TextSpan(
-                                text: " 360.00",
-                                style: TextStyles.font13Mainblue700Weight),
-                          ])),
-                    ],
+        Expanded(
+          child: Container(
+            decoration: BoxDecoration(
+                color: ColorsManager.grey,
+                borderRadius: BorderRadius.circular(5),
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 48,
+                    spreadRadius: 0,
+                    color: Color(0x0000000D),
+                    offset: Offset(0, 2),
+                    blurStyle: BlurStyle.outer,
+                  )
+                ]),
+            child: Padding(
+              padding: EdgeInsets.only(left: 7, top: 5.h, bottom: 5.h),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset("assets/images/spray_card.png"),
+                  SizedBox(
+                    width: 10.w,
                   ),
-                ),
-               Padding(
-                 padding:  EdgeInsets.only(bottom: 53.h),
-                 child: IconButton(onPressed: (){}, icon: Icon(Icons.delete,color: ColorsManager.red,)),
-               )
-              ],
+                  Flexible(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("rosemairy shaghgsh",
+                            style: TextStyles.font16Black700Weight),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        RichText(
+                            text: TextSpan(
+                                text: "Price :",
+                                style: TextStyles.font13Black400Weight,
+                                children: [
+                              TextSpan(
+                                  text: " 360.00",
+                                  style: TextStyles.font13Mainblue700Weight),
+                            ])),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 53.h),
+                    child: IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.delete,
+                          color: ColorsManager.red,
+                        )),
+                  )
+                ],
+              ),
             ),
           ),
         )

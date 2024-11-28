@@ -35,7 +35,7 @@ class CustomCustomerReviews extends StatelessWidget {
             SizedBox(width: 10.w),
             Flexible(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

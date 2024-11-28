@@ -13,6 +13,8 @@ import 'cart_state.dart';
 import 'package:badges/badges.dart' as badges;
 
 class CartPage extends StatelessWidget {
+  const CartPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -164,7 +166,9 @@ class CartPage extends StatelessWidget {
                           )
                         ],
                       ),
-                      SizedBox(height: 20.h,),
+                      SizedBox(
+                        height: 20.h,
+                      ),
                       CustomButton(text: "Continue to checkout")
                     ]);
               },
