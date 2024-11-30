@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:yuki/core/shared_widgets/address_card.dart';
+import 'package:yuki/core/shared_widgets/custom_button.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
 
@@ -9,6 +11,8 @@ import 'select_delivery_address_cubit.dart';
 import 'select_delivery_address_state.dart';
 
 class SelectdeliveryaddressPage extends StatelessWidget {
+  const SelectdeliveryaddressPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -43,36 +47,70 @@ class SelectdeliveryaddressPage extends StatelessWidget {
                 "Choose the address you want your order to be delivered to.",
                 style: TextStyles.font15Thirdgrey300Weight,
               ),
-              Divider(thickness: 1,color: ColorsManager.mainblue,),
-                SizedBox(height: 20.h,),
-
-
-                Row
-                  (mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                  Column(children: [
-                    Image.asset("assets/images/icon_address_blue.png"),
-                    SizedBox(height: 5.h,),
-                    Text("Select Delivery Address",style: TextStyles.font10Secondblack700Weight,),
-                    
-
-                  ],),
+              Divider(
+                thickness: 1,
+                color: ColorsManager.mainblue,
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      SvgPicture.asset("assets/svgs/address_icon.svg"),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      Text(
+                        "Select Delivery Address",
+                        style: TextStyles.font10Secondblack700Weight,
+                      ),
+                    ],
+                  ),
                   SvgPicture.asset("assets/svgs/cutted_line.svg"),
                   Column(
                     children: [
                       SvgPicture.asset("assets/svgs/pallet.svg"),
-                      SizedBox(height: 5.h,),
-                      Text("Complete Payment",style: TextStyles.font10Black400Weight,)
-                      
-                      
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      Text(
+                        "Complete Payment",
+                        style: TextStyles.font10Black400Weight,
+                      ),
                     ],
-                    
-                    
                   )
+                ],
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
 
-
-
-                ],)
+              AddressCard(border: Border.all(width: 1,color: ColorsManager.mainblue)),
+              SizedBox(
+                height: 20.h,
+              ),
+              AddressCard(),
+              SizedBox(
+                height: 20.h,
+              ),
+              AddressCard(),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 30.h),
+                child: Row(
+                  children: [
+                    SvgPicture.asset("assets/svgs/add_blue_icon.svg"),
+                    SizedBox(width: 10.h),
+                    Text(
+                      "Add New Address",
+                      style: TextStyles.font14Mainblue700Weight,
+                    )
+                  ],
+                ),
+              ),
+              CustomButton(text: "Continue to checkout")
             ],
           )),
         ));

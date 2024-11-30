@@ -6,13 +6,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:yuki/core/routing/page_router.dart';
 import 'package:yuki/core/shared_widgets/category_container.dart';
-import 'package:yuki/core/shared_widgets/custom_customer_reviews.dart';
+import 'package:yuki/features/product_details/widgets/custom_customer_reviews.dart';
 import 'package:yuki/core/shared_widgets/get_review_bottom_sheet.dart';
 import 'package:yuki/core/shared_widgets/set_review_bottom_sheet.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
 import 'package:yuki/features/product_details/widgets/custom_page_view_product_details.dart';
-
 import 'product_details_cubit.dart';
 import 'product_details_state.dart';
 
@@ -78,7 +77,7 @@ class ProductdetailsPage extends StatelessWidget {
                       .map((e) => Container(
                           width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
-                              border: Border.symmetric(
+                              border: const Border.symmetric(
                                   horizontal: BorderSide(
                                       width: 1, color: Color(0xff031780))),
                               borderRadius: BorderRadius.circular(30)),

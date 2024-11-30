@@ -141,6 +141,17 @@ class TextStyles {
       fontSize: 10.sp,
       fontWeight: FontWeight.w400,
       color: ColorsManager.black);
-
+  static TextStyle font12Icongrey300Weight = TextStyle(
+      fontSize: 12.sp,
+      fontWeight: FontWeight.w300,
+      color: ColorsManager.icongrey);
+  static TextStyle font12Black400Weight = TextStyle(
+      fontSize: 12.sp,
+      fontWeight: FontWeight.w400,
+      color: ColorsManager.black);
+  static TextStyle font11Black300Weight = TextStyle(
+      fontSize: 11.sp,
+      fontWeight: FontWeight.w300,
+      color: ColorsManager.black);
 
 }

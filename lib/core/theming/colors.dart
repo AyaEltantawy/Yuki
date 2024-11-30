@@ -18,4 +18,5 @@ class ColorsManager {
   static const Color whitegrey=Color(0xffF7F7F9);
 static const Color fivegrey= Color(0xffD8D8D8);
 static const Color greyblack=Color(0XFF464547);
+
 }

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:yuki/core/routing/page_router.dart';
-import 'package:yuki/core/shared_widgets/custom_more.dart';
+import 'package:yuki/features/more/widgets/custom_more.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
 import 'package:yuki/features/favorite_products/favoriteproducts_view.dart';
