@@ -28,9 +28,8 @@ class LoginPage extends StatelessWidget {
       child: Scaffold(
         body: SafeArea(
           child: ListView(
-            padding:  EdgeInsets.only(
-              right: 20.w,left: 20.h ,top: 20.h,bottom: 20.h
-            ),
+            padding: EdgeInsets.only(
+                right: 20.w, left: 20.h, top: 20.h, bottom: 20.h),
             children: [
               SvgPicture.asset("assets/svgs/signin_Logo.svg"),
               SizedBox(height: 10.h),
@@ -43,7 +42,6 @@ class LoginPage extends StatelessWidget {
                   "Don’t Have an account?",
                   style: TextStyles.font16Black300Weight,
                 ),
-
                 CustomTextButton(
                   text: "Create New Account",
                   onpressed: () {
@@ -52,9 +50,7 @@ class LoginPage extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                   fontsize: 14,
                   color: ColorsManager.mainblue,
-                  textDecoration:TextDecoration. none,
-
-
+                  textDecoration: TextDecoration.none,
                 ),
               ]),
               SizedBox(
@@ -76,11 +72,15 @@ class LoginPage extends StatelessWidget {
               CustomTextButton(
                 text: "Forget Password ?",
                 alignment: Alignment.centerRight,
-                onpressed: () {MagicRouter.navigateTo(ResetPasswordPage());},
+                onpressed: () {
+                  MagicRouter.navigateTo(ResetPasswordPage());
+                },
               ),
               CustomButton(
-                onPressed: () {MagicRouter.navigateTo(CustomCurvedNavigationBar());},
-                text: 'Login',
+                onPressed: () {
+                  MagicRouter.navigateTo(CustomCurvedNavigationBar());
+                },
+                child: Text('Login', style: TextStyles.font16White700Weight),
               ),
               SizedBox(
                 height: 20.h,

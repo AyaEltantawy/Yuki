@@ -5,8 +5,10 @@ import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
 
 class AddressCard extends StatefulWidget {
-  const AddressCard({super.key,  this.border});
+  const AddressCard({super.key,  this.border, required this.addressName, required this.choose});
 final BoxBorder? border;
+final String addressName;
+final bool choose ;
   @override
   State<AddressCard> createState() => _AddressCardState();
 }
@@ -46,7 +48,7 @@ class _AddressCardState extends State<AddressCard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Home",
+                    widget.addressName  ,
                         style: TextStyles.font13black700Weight,
                       ),
                       RichText(
@@ -67,26 +69,32 @@ class _AddressCardState extends State<AddressCard> {
                     ],
                   ),
                 ),
-                SizedBox(
-                  width: 22.w,
-                  height: 22.w,
+     widget.choose == true?           Row(
+                  children: [
+                    SizedBox(
+                      width: 22.w,
+                      height: 22.w,
 
-                  child: Checkbox(
-                    value: isChecked,
-                    onChanged: (value) {
-                      isChecked = !isChecked;
-                      setState(() {});
-                    },
-                    side: BorderSide(width: 1,color: ColorsManager.mainblue),
-                    activeColor: ColorsManager.mainblue,
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    visualDensity: VisualDensity.compact,
-                  ),
-                ),
+                      child: Checkbox(
+                        value: isChecked,
+                        onChanged: (value) {
+                          isChecked = !isChecked;
+                          setState(() {});
+                        },
+                        side: BorderSide(width: 1,color: ColorsManager.mainblue),
+                        activeColor: ColorsManager.mainblue,
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        visualDensity: VisualDensity.compact,
+                      ),
+                    ),
+
+
                 SizedBox(
                   width: 2.w,
                 ),
                 Text("Choose Address", style: TextStyles.font12Black400Weight)
+              ],
+            ) :Row(),
               ],
             ),
             SizedBox(
@@ -122,7 +130,7 @@ fillColor: WidgetStateProperty.all(ColorsManager.mainblue),
 
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap ,
                     ),
-                    Text("Default Address",style:TextStyles.font11Black300Weight)
+                    Text(isDefault == true? "Default Address":"Set As A Default Address ",style:TextStyles.font11Black300Weight)
                   ],
                 )
               ],

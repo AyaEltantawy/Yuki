@@ -105,7 +105,7 @@ class FilterButtomSheet extends StatelessWidget {
                 CustomSortInFilter(
                   filterName: 'Oldest to newest',
                 ),
-                CustomButton(text: "Apply")
+                CustomButton(child: Text("Apply",style: TextStyles.font16White700Weight,),)
               ],
             ),
           )

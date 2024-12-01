@@ -3,10 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:yuki/core/routing/page_router.dart';
+import 'package:yuki/features/account_settings/account_settings_view.dart';
+import 'package:yuki/features/delivery_addresses/delivery_addresses_view.dart';
 import 'package:yuki/features/more/widgets/custom_more.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
 import 'package:yuki/features/favorite_products/favoriteproducts_view.dart';
+import 'package:yuki/features/more/widgets/language_bottom_sheet.dart';
 import 'package:yuki/features/selectdeliveryaddress/select_delivery_address_view.dart';
 
 import 'more_cubit.dart';
@@ -64,7 +67,9 @@ class MorePage extends StatelessWidget {
             CustomMore(
               imageUrl: "assets/svgs/settings.svg",
               title: "Account Settings",
-              onPressed: () {},
+              onPressed: () {
+                MagicRouter.navigateTo(AccountSettingsPage());
+              },
             ),
             SizedBox(
               height: 5.h,
@@ -88,7 +93,9 @@ class MorePage extends StatelessWidget {
             CustomMore(
               imageUrl: "assets/svgs/delivery_icon.svg",
               title: "Delivery Addresses",
-              onPressed: () {MagicRouter.navigateTo(SelectdeliveryaddressPage());},
+              onPressed: () {
+                MagicRouter.navigateTo(DeliveryAddressesPage());
+              },
             ),
             SizedBox(
               height: 5.h,
@@ -96,7 +103,9 @@ class MorePage extends StatelessWidget {
             CustomMore(
               imageUrl: "assets/svgs/favorite_products_icon.svg",
               title: "Favorite Products",
-              onPressed: () {MagicRouter.navigateTo(FavoriteProductsPage());},
+              onPressed: () {
+                MagicRouter.navigateTo(FavoriteProductsPage());
+              },
             ),
             SizedBox(
               height: 5.h,
@@ -136,7 +145,14 @@ class MorePage extends StatelessWidget {
             CustomMore(
               imageUrl: "assets/svgs/app_language.svg",
               title: "App Language",
-              onPressed: () {},
+              onPressed: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return LanguageBottomSheet();
+                    },
+                );
+              },
             ),
             SizedBox(
               height: 5.h,

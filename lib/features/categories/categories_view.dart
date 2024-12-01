@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:yuki/core/shared_widgets/custom_category_in_horizontal.dart';
+import 'package:yuki/features/categories/widgets/custom_category_in_horizontal.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
 

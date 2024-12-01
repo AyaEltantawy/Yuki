@@ -96,7 +96,7 @@ class _SetReviewBottomSheetState extends State<SetReviewBottomSheet> {
                 children: [
                   Expanded(
                     child: CustomButton(
-                      text: "Rate",
+                      child: Text( "Rate",style: TextStyles.font16White700Weight,),
                       onPressed: () {
                         setState(() {
                           MagicRouter.navigateTo(ProductdetailsPage(

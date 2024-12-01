@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:yuki/core/routing/page_router.dart';
 import 'package:yuki/core/shared_widgets/custom_button.dart';
 import 'package:yuki/core/shared_widgets/custom_text_form_feild.dart';
 import 'package:yuki/core/shared_widgets/shopping_cart.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
+import 'package:yuki/features/selectdeliveryaddress/select_delivery_address_view.dart';
 
 import 'cart_cubit.dart';
 import 'cart_state.dart';
@@ -169,7 +171,12 @@ class CartPage extends StatelessWidget {
                       SizedBox(
                         height: 20.h,
                       ),
-                      CustomButton(text: "Continue to checkout")
+                      CustomButton(
+                        child:Text("Continue to checkout",style:TextStyles.font16White700Weight),
+                        onPressed: () {
+                          MagicRouter.navigateTo(SelectdeliveryaddressPage());
+                        },
+                      )
                     ]);
               },
             ),

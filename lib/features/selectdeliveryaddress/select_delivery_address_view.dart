@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:yuki/core/routing/page_router.dart';
 import 'package:yuki/core/shared_widgets/address_card.dart';
 import 'package:yuki/core/shared_widgets/custom_button.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
+import 'package:yuki/features/payment/payment_view.dart';
 
 import 'select_delivery_address_cubit.dart';
 import 'select_delivery_address_state.dart';
@@ -87,16 +89,25 @@ class SelectdeliveryaddressPage extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-
-              AddressCard(border: Border.all(width: 1,color: ColorsManager.mainblue)),
+              AddressCard(
+                border: Border.all(width: 1, color: ColorsManager.mainblue),
+                addressName: "Home",
+                choose: true,
+              ),
               SizedBox(
                 height: 20.h,
               ),
-              AddressCard(),
+              AddressCard(
+                addressName: "Work",
+                choose: true,
+              ),
               SizedBox(
                 height: 20.h,
               ),
-              AddressCard(),
+              AddressCard(
+                addressName: "Office",
+                choose: true,
+              ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 30.h),
                 child: Row(
@@ -110,7 +121,16 @@ class SelectdeliveryaddressPage extends StatelessWidget {
                   ],
                 ),
               ),
-              CustomButton(text: "Continue to checkout")
+
+              CustomButton(
+                child: Text(
+                  "Continue to checkout",
+                  style: TextStyles.font16White700Weight,
+                ),
+                onPressed: () {
+                  MagicRouter.navigateTo(PaymentPage());
+                },
+              )
             ],
           )),
         ));

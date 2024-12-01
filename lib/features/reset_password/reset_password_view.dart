@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yuki/core/routing/page_router.dart';
 import 'package:yuki/core/shared_widgets/custom_button.dart';
 import 'package:yuki/core/shared_widgets/custom_text_form_feild.dart';
-import 'package:yuki/core/shared_widgets/reset_password_dialog.dart';
+import 'package:yuki/core/shared_widgets/show_dialog.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
 import 'package:yuki/features/confirmpassword/confirmpassword_view.dart';
@@ -89,7 +89,7 @@ class ResetPasswordPage extends StatelessWidget {
                   final controller =
                       BlocProvider.of<ResetPasswordCubit>(context);
                   return CustomButton(
-                    text: "Confirm",
+                   child:Text ("Confirm",style: TextStyles.font16White700Weight,),
                     onPressed: () {
                       if (controller.isValidEmail) {
                         MagicRouter.navigateTo(OtpPage(

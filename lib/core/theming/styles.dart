@@ -153,5 +153,23 @@ class TextStyles {
       fontSize: 11.sp,
       fontWeight: FontWeight.w300,
       color: ColorsManager.black);
+  static TextStyle font11Green400Weight = TextStyle(
+      fontSize: 11.sp,
+      fontWeight: FontWeight.w400,
+      color: ColorsManager.green);
+  static TextStyle font13Icongrey400Weight = TextStyle(
+      fontSize: 13.sp,
+      fontWeight: FontWeight.w400,
+      color: ColorsManager.icongrey);
+  static TextStyle font11red400Weight = TextStyle(
+      fontSize: 11.sp,
+      fontWeight: FontWeight.w400,
+      color: ColorsManager.red);
+  static TextStyle font16Seconderyblue700Weight = TextStyle(
+      fontSize: 16.sp,
+      fontWeight: FontWeight.w700,
+      color: ColorsManager.seconderyblue);
+
+
 
 }

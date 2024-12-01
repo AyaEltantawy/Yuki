@@ -11,7 +11,7 @@ import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
 import 'package:yuki/features/otp/otp_view.dart';
 
-import '../../core/shared_widgets/reset_password_dialog.dart';
+import '../../core/shared_widgets/show_dialog.dart';
 import 'register_cubit.dart';
 import 'register_state.dart';
 
@@ -148,7 +148,7 @@ class RegisterPage extends StatelessWidget {
                           final controller =
                               BlocProvider.of<RegisterCubit>(context);
                           return CustomButton(
-                            text: "Confirm",
+                           child: Text("Confirm",style: TextStyles.font16White700Weight,),
                             onPressed: () {
                               MagicRouter.navigateTo(OtpPage(
                                 email: controller.emailController.text,

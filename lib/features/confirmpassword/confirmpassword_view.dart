@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yuki/core/routing/page_router.dart';
 import 'package:yuki/core/shared_widgets/custom_text_form_feild.dart';
-import 'package:yuki/core/shared_widgets/reset_password_dialog.dart';
+import 'package:yuki/core/shared_widgets/show_dialog.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
 import 'package:yuki/features/login/login_view.dart';
@@ -84,7 +84,7 @@ class ConfirmpasswordPage extends StatelessWidget {
               ),
               SizedBox(height: 20.h),
               CustomButton(
-                text: "Confirm",
+               child: Text("Confirm",style: TextStyles.font16White700Weight,),
                 onPressed: () {
                   showDialog(
                     context: context,

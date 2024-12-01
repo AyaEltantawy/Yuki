@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:yuki/core/routing/page_router.dart';
 import 'package:yuki/core/shared_widgets/custom_button.dart';
-import 'package:yuki/core/shared_widgets/reset_password_dialog.dart';
+import 'package:yuki/core/shared_widgets/show_dialog.dart';
 import 'package:yuki/core/shared_widgets/text_button.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
@@ -106,7 +106,7 @@ class OtpPage extends StatelessWidget {
                 height: 30.h,
               ),
               CustomButton(
-                text: "Confirm",
+                child:Text( "Confirm",style: TextStyles.font16White700Weight,),
                 // onPressed: () {
                 //   MagicRouter.navigateTo(const ConfirmpasswordPage());
                 // },

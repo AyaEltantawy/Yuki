@@ -4,10 +4,11 @@ import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.text, this.onPressed});
+  const CustomButton({super.key,  this.onPressed, required this.child});
 
-  final String text;
+
   final VoidCallback? onPressed;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +28,7 @@ class CustomButton extends StatelessWidget {
           backgroundColor: WidgetStateProperty.all(Colors.transparent),
         ),
         onPressed: onPressed,
-        child: Text(
-          text,
-          style: TextStyles.font16White700Weight,
-        ),
+        child:child,
       ),
     );
   }
