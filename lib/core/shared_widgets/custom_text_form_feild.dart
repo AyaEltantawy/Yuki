@@ -219,6 +219,7 @@ class _CustomTextFormFeildState extends State<CustomTextFormFeild> {
                             fontSize: 12,
                             fontFamily: 'DIN'),
                         labelStyle: const TextStyle(color: Color(0xFF9c9c9c)),
+
                         fillColor: widget.fillColor ?? ColorsManager.lightgrey,
                         counterStyle: const TextStyle(
                             fontSize: 0, color: Colors.transparent),

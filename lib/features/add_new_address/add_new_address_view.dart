@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:yuki/core/shared_widgets/custom_text_form_feild.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
@@ -10,6 +11,10 @@ import 'add_new_address_cubit.dart';
 import 'add_new_address_state.dart';
 
 class AddNewAddressPage extends StatelessWidget {
+  LatLng myCurrentLocation = const LatLng(31.037933, 31.381523);
+
+  AddNewAddressPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -30,21 +35,44 @@ class AddNewAddressPage extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(height: 10.h,),
+              SizedBox(
+                height: 10.h,
+              ),
               Text(
                 "Add new address",
                 style: TextStyles.font20black700Weight,
               ),
-              SizedBox(height: 10.h,),
+              SizedBox(
+                height: 10.h,
+              ),
               const CustomTextFormFeild(
                 hint: "Search for address",
                 hintColor: ColorsManager.icongrey,
-                prefixIcon:
-                Icon(Icons.search, color: ColorsManager.mainblue),
+                prefixIcon: Icon(Icons.search, color: ColorsManager.mainblue),
                 fillColor: ColorsManager.grey,
               ),
-              SizedBox(height: 20.h,),
-
+              SizedBox(
+                height: 20.h,
+              ),
+              Container(
+                height: 500,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    boxShadow: const [
+                      BoxShadow(
+                          offset: Offset(0, -4),
+                          blurRadius: 4,
+                          spreadRadius: 0,
+                          color: Color(0xff2020200A))
+                    ]),
+                child: GoogleMap(
+                  compassEnabled: true,
+                  initialCameraPosition: CameraPosition(
+                    target: myCurrentLocation,
+                    zoom: 14,
+                  ),
+                ),
+              )
             ],
           ),
         ),

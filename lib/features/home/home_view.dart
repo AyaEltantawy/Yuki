@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
                       badges.Badge(
                         position: badges.BadgePosition.topEnd(top: -4, end: 1),
                         child: SvgPicture.asset(
-                          "assets/svgs/notification.svg",
+                          "assets/svgs/notify.svg",
                           width: 45.w,
                           height: 45.h,
                         ),
