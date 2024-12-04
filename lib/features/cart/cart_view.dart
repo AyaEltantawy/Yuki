@@ -86,11 +86,11 @@ class CartPage extends StatelessWidget {
                       SizedBox(
                         height: 10.h,
                       ),
-                      ShoppingCart(),
+                      ShoppingCart(isDelete: true,),
                       SizedBox(
                         height: 20.h,
                       ),
-                      ShoppingCart(),
+                      ShoppingCart(isDelete: true,),
                       SizedBox(
                         height: 10.h,
                       ),

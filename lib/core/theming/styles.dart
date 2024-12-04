@@ -116,7 +116,7 @@ class TextStyles {
       fontSize: 13.sp,
       fontWeight: FontWeight.w300,
       color: ColorsManager.greyblack);
-  static TextStyle font13Secondary400Weight = TextStyle(
+  static TextStyle font13Secondaryblue400Weight = TextStyle(
       fontSize: 13.sp,
       fontWeight: FontWeight.w400,
       color: ColorsManager.seconderyblue);
@@ -164,9 +164,7 @@ class TextStyles {
       fontWeight: FontWeight.w700,
       color: ColorsManager.secondblack);
   static TextStyle font13White700Weight = TextStyle(
-      fontSize: 13.sp,
-      fontWeight: FontWeight.w700,
-      color: Colors.white);
+      fontSize: 13.sp, fontWeight: FontWeight.w700, color: Colors.white);
   static TextStyle font14Secondblack400Weight = TextStyle(
       fontSize: 14.sp,
       fontWeight: FontWeight.w400,
@@ -179,4 +177,26 @@ class TextStyles {
       fontSize: 16.sp,
       fontWeight: FontWeight.w700,
       color: ColorsManager.icongrey);
+  static TextStyle font13Icongrey300Weight = TextStyle(
+      fontSize: 13.sp,
+      fontWeight: FontWeight.w300,
+      color: ColorsManager.icongrey);
+  static TextStyle font13Secondblack700Weight = TextStyle(
+      fontSize: 13.sp,
+      fontWeight: FontWeight.w700,
+      color: ColorsManager.secondblack);
+  static TextStyle Font13Stronggreen700Weight = TextStyle(
+      fontSize: 13.sp,
+      fontWeight: FontWeight.w700,
+      color: ColorsManager.stronggreen);
+  static TextStyle Font13Thirdred700Weight = TextStyle(
+      fontSize: 13.sp,
+      fontWeight: FontWeight.w700,
+      color: ColorsManager.thirdred);
+  static TextStyle Font20White500Weight = TextStyle(
+      fontSize: 20.sp, fontWeight: FontWeight.w500, color: Colors.white);
+  static TextStyle Font12Secondblack400Weight = TextStyle(
+      fontSize: 12.sp, fontWeight: FontWeight.w400, color: ColorsManager.secondblack);
+  static TextStyle Font13Yellow700Weight = TextStyle(
+      fontSize: 13.sp, fontWeight: FontWeight.w700, color: ColorsManager.yellow);
 }

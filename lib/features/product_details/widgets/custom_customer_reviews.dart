@@ -64,14 +64,15 @@ class CustomCustomerReviews extends StatelessWidget {
                                   "assets/svgs/stare_of_rate.svg")),
                         ],
                       ),
-                    ],
-                  ),
+
                   Text(
                     "$reviewText",
                     style: TextStyles.font12Fourthgrey300Weight,textAlign: TextAlign.start,
                   )
                 ],
               ),
+            ]
+              )
             )
           ],
         ),

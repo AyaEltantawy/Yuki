@@ -141,7 +141,7 @@ class YukistorePage extends StatelessWidget {
                               },
                               child: Padding(
                                 padding:
-                                const EdgeInsets.symmetric(horizontal: 5.0),
+                                 EdgeInsets.symmetric(horizontal: 5.0.w),
                                 child: CategoryContainer(
                                   title: titles[index],
                                   vertical: 10.h,

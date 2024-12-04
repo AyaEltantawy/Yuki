@@ -18,6 +18,7 @@ import 'package:yuki/features/more/widgets/logout_bottom_sheet.dart';
 import 'package:yuki/features/more/widgets/share_app_bottom_sheet.dart';
 import 'package:yuki/features/notifications/notifications_view.dart';
 import 'package:yuki/features/orders/orders_view.dart';
+import 'package:yuki/features/return_orders/return_orders_view.dart';
 import 'package:yuki/features/selectdeliveryaddress/select_delivery_address_view.dart';
 import 'package:yuki/features/terms_and_conditions/terms_and_conditions_view.dart';
 import 'package:yuki/features/wallet/wallet_view.dart';
@@ -102,7 +103,7 @@ class MorePage extends StatelessWidget {
               CustomMore(
                 imageUrl: "assets/svgs/return_order_icon.svg",
                 title: "Return Orders",
-                onPressed: () {},
+                onPressed: () {MagicRouter.navigateTo(ReturnOrdersPage());},
               ),
               SizedBox(
                 height: 5.h,

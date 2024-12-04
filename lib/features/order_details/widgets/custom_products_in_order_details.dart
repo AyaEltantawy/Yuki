@@ -3,21 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
 
-class ShoppingCart extends StatelessWidget {
- final bool isDelete ;
-  ShoppingCart({super.key,required this.isDelete});
+class CustomProductsInOrderDetails extends StatelessWidget {
+  CustomProductsInOrderDetails({super.key, this.count});
 
-  int count = 1;
-
-  void increament() {
-    count++;
-  }
-
-  void decreament() {
-    if (count > 1) {
-      count--;
-    }
-  }
+  final int? count;
 
   @override
   Widget build(BuildContext context) {
@@ -31,44 +20,10 @@ class ShoppingCart extends StatelessWidget {
                 BoxShadow(
                     spreadRadius: 0, blurRadius: 48, color: Color(0x0000000D))
               ]),
-          child: StatefulBuilder(builder:
-              (BuildContext context, void Function(void Function()) setState) {
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.remove,
-                    size: 17,
-                  ),
-                  color: Colors.white,
-                  onPressed: () {
-                    setState(() {
-                      decreament();
-                    });
-                  },
-                ),
-
-                Text(
-                  "$count",
-                  style: TextStyle(color: Colors.white),
-                ),
-               IconButton(
-                  icon: const Icon(
-                    Icons.add,
-                    size: 17,
-                  ),
-                  color: Colors.white,
-                  onPressed: () {
-                    setState(() {
-                      increament();
-                    });
-                  },
-                ),
-                //SizedBox(width: 5,),
-              ],
-            );
-          }),
+          child: Padding(
+            padding:  EdgeInsets.symmetric(horizontal: 15.w,vertical: 35.h),
+            child: Text("${count}x",style:TextStyles.Font20White500Weight),
+          ),
         ),
         SizedBox(
           width: 10.w,
@@ -118,15 +73,7 @@ class ShoppingCart extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 53.h),
-                    child: isDelete ?IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.delete,
-                          color: ColorsManager.red,
-                        )):null,
-                  )
+
                 ],
               ),
             ),

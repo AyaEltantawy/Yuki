@@ -13,12 +13,12 @@ import 'package:yuki/features/product_details/product_details_view.dart';
 class SetReviewBottomSheet extends StatefulWidget {
   SetReviewBottomSheet({
     super.key,
-    required this.rateAmount,
-    required this.reviewText,
+   required  this.rateAmount,
+    this.reviewText,
   });
 
   double rateAmount;
-  final String reviewText;
+  final String? reviewText;
 
   @override
   State<SetReviewBottomSheet> createState() => _SetReviewBottomSheetState();
@@ -30,9 +30,9 @@ class _SetReviewBottomSheetState extends State<SetReviewBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+      decoration: BoxDecoration(color:Colors.white,borderRadius: BorderRadius.circular(20)),
       child: SafeArea(
-        child: ListView(
+        child: ListView(shrinkWrap:true ,
           padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
           scrollDirection: Axis.vertical,
           children: [
@@ -76,9 +76,12 @@ class _SetReviewBottomSheetState extends State<SetReviewBottomSheet> {
                 },
               ),
             ),
-            CustomTextFormFeild(
+            CustomTextFormFeild(maxLines: 2,
               upperText: "Share Your Experience",
-              prefixIcon: Image.asset("assets/images/Pen 2.png"),
+              prefixIcon: Padding(
+                padding: EdgeInsets.only(bottom:25.h),
+                child: Image.asset("assets/images/Pen 2.png"),
+              ),
               hint: "Share your experince with us",
               fillColor: ColorsManager.grey,
               controller: reviewController,
@@ -128,7 +131,7 @@ class _SetReviewBottomSheetState extends State<SetReviewBottomSheet> {
                         child: Text(
                           "Back",
                           textAlign: TextAlign.center,
-                          style: TextStyles.font13Secondary400Weight,
+                          style: TextStyles.font13Secondaryblue400Weight,
                         ),
                       ),
                     ),

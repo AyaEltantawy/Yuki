@@ -70,7 +70,7 @@ class DeliveryAddressesPage extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-              AddressCard(
+              const AddressCard(
                 addressName: "Office",
                 choose: false,
               ),

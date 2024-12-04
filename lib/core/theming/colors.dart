@@ -20,8 +20,11 @@ class ColorsManager {
   static const Color greyblack = Color(0XFF464547);
   static const Color sixgrey = Color(0xffEEEEEE);
   static const Color green = Color(0xff20CA38);
-
+static const Color stronggreen=Color(0xff50CD89);
 
   static const Color sevengrey = Color(0xffBEBEBE);
   static const Color thirdblue = Color(0xff031780);
+  static const Color thirdred = Color(0xffCA0000);
+  static const Color yellow = Color(0xffF6C000);
 }
+

@@ -10,7 +10,7 @@ import 'package:yuki/core/shared_widgets/show_dialog.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
 import 'package:yuki/features/payment/widgets/custom_checkbox_and_text.dart';
-import 'package:yuki/features/payment/widgets/custom_row.dart';
+import 'package:yuki/core/shared_widgets/custom_row.dart';
 
 import 'payment_cubit.dart';
 import 'payment_state.dart';
