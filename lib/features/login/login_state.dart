@@ -1,9 +1,3 @@
-class LoginState {
-  LoginState init() {
-    return LoginState();
-  }
-
-  LoginState clone() {
-    return LoginState();
-  }
-}
+abstract class LoginState {}
+  class LoginStateInit extends LoginState{}
+class Update extends LoginState{}

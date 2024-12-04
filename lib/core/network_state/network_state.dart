@@ -1,0 +1,8 @@
+enum NetworkState {
+  LOADING,
+  LOADINGPAGINATION,
+  SUCCESS,
+  ERROR,
+  INITIAL,
+  OTHERLOADING,
+}

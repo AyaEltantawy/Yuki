@@ -16,6 +16,9 @@ import 'register_cubit.dart';
 import 'register_state.dart';
 
 class RegisterPage extends StatelessWidget {
+  List<String> _dropDownItems = ["Male","Female"];
+  String? _selectedItem;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -56,8 +59,41 @@ class RegisterPage extends StatelessWidget {
                       CustomTextFormFeild(
                         prefixIcon:
                             SvgPicture.asset("assets/svgs/user_icon.svg"),
-                        hint: "name",
+                        hint: "Name",
                         upperText: "Name",
+                        controller: controller.nameController,
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Text(
+                        "Gender",
+                        style: TextStyles.font14Secondblack400Weight,
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            color: ColorsManager.grey,
+                            borderRadius: BorderRadius.circular(10.sp)),
+                        child: DropdownButton<String>(
+                          value: _selectedItem,
+                          underline: SizedBox(),
+                          hint: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10.w),
+                            child: Text("gender"),
+                          ),
+                          items: _dropDownItems.map((String item) {
+                            return DropdownMenuItem(
+                                value: item, child: Text(item));
+                          }).toList(),
+                          onChanged: (String? value) {
+                            controller.gender = value ?? '';
+                            _selectedItem = value;
+                            controller.selectDropDownItem();
+                          },
+                        ),
                       ),
                       CustomTextFormFeild(
                         controller: controller.emailController,
@@ -71,6 +107,7 @@ class RegisterPage extends StatelessWidget {
                         style: TextStyles.font14blackWei400ght,
                       ),
                       IntlPhoneField(
+                        controller: controller.phoneController,
                         decoration: InputDecoration(
                           fillColor: ColorsManager.lightgrey,
                           filled: true,
@@ -103,11 +140,17 @@ class RegisterPage extends StatelessWidget {
                           ),
                         ),
                         initialCountryCode: 'EG',
+                        onChanged: (phone) {
+                          controller.phoneCode = phone.countryCode;
+                          print("Country Code: ${phone.countryCode}");
+                          print("Phone Number: ${phone.number}");
+                        },
                       ),
                       CustomTextFormFeild(
                         prefixIcon:
                             SvgPicture.asset("assets/svgs/password_icon.svg"),
                         hint: "Password",
+                        controller: controller.passwordController,
                         secure: true,
                         suffixIcon: const Icon(Icons.remove_red_eye_outlined,
                             color: ColorsManager.icongrey),
@@ -120,7 +163,8 @@ class RegisterPage extends StatelessWidget {
                         secure: true,
                         suffixIcon: const Icon(Icons.remove_red_eye_outlined,
                             color: ColorsManager.icongrey),
-                        upperText: "Password",
+                        upperText: "Password Confirmation",
+                        controller: controller.passwordConfirmationController,
                       ),
                       Row(
                         children: [
@@ -148,29 +192,35 @@ class RegisterPage extends StatelessWidget {
                           final controller =
                               BlocProvider.of<RegisterCubit>(context);
                           return CustomButton(
-                           child: Text("Confirm",style: TextStyles.font16White700Weight,),
+                            child: Text(
+                              "Confirm",
+                              style: TextStyles.font16White700Weight,
+                            ),
                             onPressed: () {
-                              MagicRouter.navigateTo(OtpPage(
-                                email: controller.emailController.text,
-                                title: "",
-                                onPressed: () {
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) => const ResetPasswordDialog(
-                                            mainText:
-                                                'Your account has been successfully activated! You will now be automatically redirected to the homepage.',
-                                            defaultText: 'Congratulations',
-                                          ));
-                                },
-                              ));
-                              showDialog(
-                                context: context,
-                                builder: (context) => ResetPasswordDialog(
-                                  mainText:
-                                      'Activation Code has been sent to your Email at ',
-                                  email: controller.emailController.text,
-                                ),
-                              );
+                              controller.Register();
+
+                              // MagicRouter.navigateTo(OtpPage(
+                              //   email: controller.emailController.text,
+                              //   title: "",
+                              //   onPressed: () {
+                              //     showDialog(
+                              //         context: context,
+                              //         builder: (context) =>
+                              //             const ResetPasswordDialog(
+                              //               mainText:
+                              //                   'Your account has been successfully activated! You will now be automatically redirected to the homepage.',
+                              //               defaultText: 'Congratulations',
+                              //             ));
+                              // },
+                              //));
+                              // showDialog(
+                              //   context: context,
+                              //   builder: (context) => ResetPasswordDialog(
+                              //     mainText:
+                              //         'Activation Code has been sent to your Email at ',
+                              //     email: controller.emailController.text,
+                              //   ),
+                              // );
                             },
                           );
                         },
