@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:yuki/core/routing/page_router.dart';
@@ -16,7 +17,7 @@ import 'register_cubit.dart';
 import 'register_state.dart';
 
 class RegisterPage extends StatelessWidget {
-  List<String> _dropDownItems = ["Male","Female"];
+  List<String> _dropDownItems = ["Male", "Female"];
   String? _selectedItem;
 
   @override
@@ -62,6 +63,12 @@ class RegisterPage extends StatelessWidget {
                         hint: "Name",
                         upperText: "Name",
                         controller: controller.nameController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your name';
+                          }
+                          return null;
+                        },
                       ),
                       SizedBox(
                         height: 10.h,
@@ -78,7 +85,15 @@ class RegisterPage extends StatelessWidget {
                             color: ColorsManager.grey,
                             borderRadius: BorderRadius.circular(10.sp)),
                         child: DropdownButton<String>(
-                          value: _selectedItem,
+                          // validator: (value) {
+                          //   if (controller.gender.isEmpty) {
+                          //     return 'Please select a gender';
+                          //   }
+                          //   return null;
+                          // },
+                          value: controller.gender.isNotEmpty
+                              ? controller.gender
+                              : null,
                           underline: SizedBox(),
                           hint: Padding(
                             padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -88,6 +103,7 @@ class RegisterPage extends StatelessWidget {
                             return DropdownMenuItem(
                                 value: item, child: Text(item));
                           }).toList(),
+
                           onChanged: (String? value) {
                             controller.gender = value ?? '';
                             _selectedItem = value;
@@ -96,6 +112,17 @@ class RegisterPage extends StatelessWidget {
                         ),
                       ),
                       CustomTextFormFeild(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your email';
+                          }
+
+                          final emailRegExp = RegExp(r'^[^@]+@[^@]+\.[^@]+$');
+                          if (!emailRegExp.hasMatch(value)) {
+                            return 'Please enter a valid email address';
+                          }
+                          return null;
+                        },
                         controller: controller.emailController,
                         upperText: "Email Address",
                         prefixIcon:
@@ -139,6 +166,11 @@ class RegisterPage extends StatelessWidget {
                                 const BorderSide(color: Colors.transparent),
                           ),
                         ),
+                        validator: (value) {
+                          if (value == null) {
+                            return 'Please enter your phone number';
+                          }
+                        },
                         initialCountryCode: 'EG',
                         onChanged: (phone) {
                           controller.phoneCode = phone.countryCode;
@@ -147,6 +179,20 @@ class RegisterPage extends StatelessWidget {
                         },
                       ),
                       CustomTextFormFeild(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter a password';
+                          }
+                          if (value.length < 9) {
+                            return 'Password must be at least 9 characters long';
+                          }
+
+                          // final passwordRegExp = RegExp(r'^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])');
+                          // if (!passwordRegExp.hasMatch(value)) {
+                          //   return 'Password must contain at least one uppercase letter, one digit, and one special character';
+                          // }
+                          return null;
+                        },
                         prefixIcon:
                             SvgPicture.asset("assets/svgs/password_icon.svg"),
                         hint: "Password",
@@ -157,6 +203,15 @@ class RegisterPage extends StatelessWidget {
                         upperText: "Password",
                       ),
                       CustomTextFormFeild(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please confirm your password';
+                          }
+                          if (value != controller.passwordController.text) {
+                            return 'Passwords do not match';
+                          }
+                          return null;
+                        },
                         prefixIcon:
                             SvgPicture.asset("assets/svgs/password_icon.svg"),
                         hint: "Password Confirmation",
@@ -187,44 +242,49 @@ class RegisterPage extends StatelessWidget {
                           )
                         ],
                       ),
-                      BlocBuilder<RegisterCubit, RegisterState>(
-                        builder: (context, state) {
-                          final controller =
-                              BlocProvider.of<RegisterCubit>(context);
-                          return CustomButton(
-                            child: Text(
-                              "Confirm",
-                              style: TextStyles.font16White700Weight,
-                            ),
-                            onPressed: () {
-                              controller.Register();
+                      state is LoadingRegister?
+                          ? const SpinKitThreeBounce(
+                              color: ColorsManager.mainblue,
+                              size: 26.0,
+                            )
+                          : BlocBuilder<RegisterCubit, RegisterState>(
+                              builder: (context, state) {
+                                final controller =
+                                    BlocProvider.of<RegisterCubit>(context);
+                                return CustomButton(
+                                  child: Text(
+                                    "Confirm",
+                                    style: TextStyles.font16White700Weight,
+                                  ),
+                                  onPressed: () {
+                                    controller.Register();
 
-                              // MagicRouter.navigateTo(OtpPage(
-                              //   email: controller.emailController.text,
-                              //   title: "",
-                              //   onPressed: () {
-                              //     showDialog(
-                              //         context: context,
-                              //         builder: (context) =>
-                              //             const ResetPasswordDialog(
-                              //               mainText:
-                              //                   'Your account has been successfully activated! You will now be automatically redirected to the homepage.',
-                              //               defaultText: 'Congratulations',
-                              //             ));
-                              // },
-                              //));
-                              // showDialog(
-                              //   context: context,
-                              //   builder: (context) => ResetPasswordDialog(
-                              //     mainText:
-                              //         'Activation Code has been sent to your Email at ',
-                              //     email: controller.emailController.text,
-                              //   ),
-                              // );
-                            },
-                          );
-                        },
-                      ),
+                                    // MagicRouter.navigateTo(OtpPage(
+                                    //   email: controller.emailController.text,
+                                    //   title: "",
+                                    //   onPressed: () {
+                                    //     showDialog(
+                                    //         context: context,
+                                    //         builder: (context) =>
+                                    //             const ResetPasswordDialog(
+                                    //               mainText:
+                                    //                   'Your account has been successfully activated! You will now be automatically redirected to the homepage.',
+                                    //               defaultText: 'Congratulations',
+                                    //             ));
+                                    // },
+                                    //));
+                                    // showDialog(
+                                    //   context: context,
+                                    //   builder: (context) => ResetPasswordDialog(
+                                    //     mainText:
+                                    //         'Activation Code has been sent to your Email at ',
+                                    //     email: controller.emailController.text,
+                                    //   ),
+                                    // );
+                                  },
+                                );
+                              },
+                            ),
                     ],
                   ),
                 );

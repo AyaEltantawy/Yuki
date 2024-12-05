@@ -5,6 +5,7 @@ import 'package:yuki/core/app_storage/app_storage.dart';
 import 'package:yuki/core/dio_helper/dio_helper.dart';
 import 'package:yuki/core/models/user_model.dart';
 import 'package:yuki/core/routing/page_router.dart';
+import 'package:yuki/core/shared_widgets/curved_navigation_bar.dart';
 import 'package:yuki/core/shared_widgets/show_dialog.dart';
 import 'package:yuki/core/utils/utils.dart';
 import 'package:yuki/features/otp/otp_view.dart';
@@ -13,9 +14,10 @@ import 'otp_state.dart';
 
 class OtpCubit extends Cubit<OtpState> {
   OtpCubit() : super(OtpState().init());
+
   TextEditingController emailController = TextEditingController();
   String otpCode = "";
-
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   Verification() async {
     final body = {'verification_code': otpCode};
     print('body ${body}');
@@ -25,8 +27,8 @@ class OtpCubit extends Cubit<OtpState> {
       if (data['status'] == true) {
         AppStorage.cacheUserInfo(UserModel.fromJson(data));
 
-        //MagicRouter.navigateTo(CustomCurvedNavigationBar());
-        // Utils.showSnackBar(data['message'],);
+
+        Utils.showSnackBar(data['message'],);
 
         showDialog(
             context: MagicRouter.currentContext,
@@ -35,6 +37,7 @@ class OtpCubit extends Cubit<OtpState> {
                       'Your account has been successfully activated! You will now be automatically redirected to the homepage.',
                   defaultText: 'Congratulations',
                 ));
+        MagicRouter.navigateTo(CustomCurvedNavigationBar());
       } else {
         Utils.showSnackBar(data['message'], isError: true);
       }

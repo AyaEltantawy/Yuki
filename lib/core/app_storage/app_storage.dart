@@ -23,6 +23,12 @@ static bool get isLogged => getUserInfo != null;
 
   // static int? get getUserId => getUserInfo?.data?.id;
   //
+  set saveToken(String? value) {
+
+   value= getUserInfo?.data?.token;
+
+  }
+
   static String? get getToken => getUserInfo?.data?.token??'';
 
    static User? get getUserData => getUserInfo?.data?.user;

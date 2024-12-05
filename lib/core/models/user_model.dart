@@ -61,8 +61,7 @@ class User {
   int? notificationCount;
   String? email;
   int? wallet;
-  Null? googleId;
-  Null? branchId;
+
   String? tax;
   int? notifications;
 
@@ -81,8 +80,7 @@ class User {
       this.notificationCount,
       this.email,
       this.wallet,
-      this.googleId,
-      this.branchId,
+
       this.tax,
       this.notifications});
 
@@ -101,8 +99,7 @@ class User {
     notificationCount = json['notification_count'];
     email = json['email'];
     wallet = json['wallet'];
-    googleId = json['google_id'];
-    branchId = json['branch_id'];
+
     tax = json['tax'];
     notifications = json['notifications'];
   }
@@ -123,8 +120,7 @@ class User {
     data['notification_count'] = this.notificationCount;
     data['email'] = this.email;
     data['wallet'] = this.wallet;
-    data['google_id'] = this.googleId;
-    data['branch_id'] = this.branchId;
+
     data['tax'] = this.tax;
     data['notifications'] = this.notifications;
     return data;

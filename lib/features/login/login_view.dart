@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yuki/core/network_state/network_state.dart';
 import 'package:yuki/core/routing/page_router.dart';
@@ -90,13 +91,12 @@ class LoginPage extends StatelessWidget {
                       suffixIcon: const Icon(Icons.remove_red_eye_outlined,
                           color: ColorsManager.icongrey),
                       upperText: "Password",
-
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your password';
                         }
-                        if (value.length < 6) {
-                          return 'Password must be at least 6 characters';
+                        if (value.length < 8) {
+                          return 'Password must be at least 9 characters';
                         }
                         return null;
                       },
@@ -108,13 +108,18 @@ class LoginPage extends StatelessWidget {
                         MagicRouter.navigateTo(ResetPasswordPage());
                       },
                     ),
-                    CustomButton(
-                      onPressed: () {
-                        controller.Login();
-                      },
-                      child:
-                          Text('Login', style: TextStyles.font16White700Weight),
-                    ),
+                    state is LoadingLogin
+                        ? const SpinKitThreeBounce(
+                            color: ColorsManager.mainblue,
+                            size: 26.0,
+                          )
+                        : CustomButton(
+                            onPressed: () {
+                              controller.Login();
+                            },
+                            child: Text('Login',
+                                style: TextStyles.font16White700Weight),
+                          ),
                     SizedBox(
                       height: 20.h,
                     ),

@@ -24,94 +24,101 @@ class ResetPasswordPage extends StatelessWidget {
       create: (BuildContext context) => ResetPasswordCubit(),
       child: Scaffold(
         body: SafeArea(
-          child: ListView(
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 60.w,
-                    height: 35.h,
-                    decoration: BoxDecoration(
-                        color: const Color(0xffF2F2F2),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: IconButton(
-                      alignment: Alignment.center,
-                      onPressed: () {
-                        MagicRouter.navigateTo(const LoginPage());
-                      },
-                      icon: const Icon(Icons.arrow_back,
-                          color: ColorsManager.mainblue),
+          child: BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
+            builder: (context, state) {
+              final controller = BlocProvider.of<ResetPasswordCubit>(context);
+              return Form(
+                key: controller.formKey,
+                child: ListView(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: 60.w,
+                          height: 35.h,
+                          decoration: BoxDecoration(
+                              color: const Color(0xffF2F2F2),
+                              borderRadius: BorderRadius.circular(5)),
+                          child: IconButton(
+                            alignment: Alignment.center,
+                            onPressed: () {
+                              MagicRouter.navigateTo(const LoginPage());
+                            },
+                            icon: const Icon(Icons.arrow_back,
+                                color: ColorsManager.mainblue),
+                          ),
+                        ),
+                        SvgPicture.asset(
+                          "assets/svgs/logo.svg",
+                          width: 49.33.w,
+                          height: 50.h,
+                        )
+                      ],
                     ),
-                  ),
-                  SvgPicture.asset(
-                    "assets/svgs/logo.svg",
-                    width: 49.33.w,
-                    height: 50.h,
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 30.h,
-              ),
-              Text(
-                "Reset Your Password",
-                style: TextStyles.font30Black700Weight,
-              ),
-              Text(
-                "Kindly enter the email address linked to your account. We'll immediately send you an email with a code to reset your password",
-                style: TextStyles.font16Black300Weight,
-              ),
-              Image.asset(
-                "assets/images/reset_password_image.png",
-                width: 140.45,
-                height: 265,
-              ),
-              BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
-                builder: (context, state) {
-                  final controller =
-                      BlocProvider.of<ResetPasswordCubit>(context);
-                  String? errorMessage;
+                    SizedBox(
+                      height: 30.h,
+                    ),
+                    Text(
+                      "Reset Your Password",
+                      style: TextStyles.font30Black700Weight,
+                    ),
+                    Text(
+                      "Kindly enter the email address linked to your account. We'll immediately send you an email with a code to reset your password",
+                      style: TextStyles.font16Black300Weight,
+                    ),
+                    Image.asset(
+                      "assets/images/reset_password_image.png",
+                      width: 140.45,
+                      height: 265,
+                    ),
+                    BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
+                      builder: (context, state) {
+                        final controller =
+                            BlocProvider.of<ResetPasswordCubit>(context);
+                        String? errorMessage;
 
-                  return CustomTextFormFeild(
-                    controller: controller.emailController,
-                    prefixIcon: SvgPicture.asset("assets/svgs/email_icon.svg"),
-                    hint: "Email Address",
-                    upperText: "Email Address",
-                    errorText: errorMessage,
-                  );
-                },
-              ),
-              const SizedBox(height: 20),
-              BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
-                builder: (context, state) {
-                  final controller =
-                      BlocProvider.of<ResetPasswordCubit>(context);
-                  return CustomButton(
-                   child:Text ("Confirm",style: TextStyles.font16White700Weight,),
-                    onPressed: () {
-                      if (controller.isValidEmail) {
-                        MagicRouter.navigateTo(OtpPage(
-                          email: controller.emailController.text,
-                          title: 'Reset Your Password',
-                          onPressed: () {
-                            MagicRouter.navigateTo(const ConfirmpasswordPage());
-                          },
-                        ));
-                        showDialog(
-                            context: context,
-                            builder: (context) => ResetPasswordDialog(
-                                  email: controller.emailController.text,
-                                  mainText:
-                                      "Reset Code has been sent to your Email at ",
-                                ));
-                      }
-                    },
-                  ); // Disable button when email is invalid
-                },
-              ),
-            ],
+                        return CustomTextFormFeild(
+                          controller: controller.emailController,
+                          prefixIcon:
+                              SvgPicture.asset("assets/svgs/email_icon.svg"),
+                          hint: "Email Address",
+                          upperText: "Email Address",
+                          errorText: errorMessage,
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
+                      builder: (context, state) {
+                        final controller =
+                            BlocProvider.of<ResetPasswordCubit>(context);
+                        return CustomButton(
+                            child: Text(
+                              "Confirm",
+                              style: TextStyles.font16White700Weight,
+                            ),
+                            onPressed: () {
+                              controller.ResetPassword();
+                              // if (controller.isValidEmail) {
+                              //   MagicRouter.navigateTo(OtpPage(
+                              //     email: controller.emailController.text,
+                              //     title: 'Reset Your Password',
+                              //     onPressed: () {
+                              //       MagicRouter.navigateTo(const ConfirmpasswordPage());
+                              // },
+                              //    ));
+                            }
+                            //},
+                            );
+                      },
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
         ),
       ),

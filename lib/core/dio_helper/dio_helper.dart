@@ -35,7 +35,7 @@ class DioHelper {
             headers: {
               'Authorization': 'Bearer ${AppStorage.getToken}',
               'Accept': 'application/json',
-              //'Accept-Language': isEn(MagicRouter.currentContext) ? 'en' : 'ar',
+              'Accept-Language':'en',
             },
             followRedirects: false,
             contentType: Headers.formUrlEncodedContentType,

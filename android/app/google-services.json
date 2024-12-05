@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "543066386284",
+    "project_id": "yuki-f9dc5",
+    "storage_bucket": "yuki-f9dc5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:543066386284:android:1ecec681e0a7ee49ab8d49",
+        "android_client_info": {
+          "package_name": "com.technoraft.yuki"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCve039kFDb8Yyr75BLs0mokb2GXt_U8M0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

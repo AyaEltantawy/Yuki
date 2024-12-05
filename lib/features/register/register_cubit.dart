@@ -11,6 +11,7 @@ import 'package:yuki/core/routing/page_router.dart';
 import 'package:yuki/core/shared_widgets/curved_navigation_bar.dart';
 import 'package:yuki/core/shared_widgets/show_dialog.dart';
 import 'package:yuki/core/utils/utils.dart';
+import 'package:yuki/features/otp/otp_cubit.dart';
 import 'package:yuki/features/otp/otp_view.dart';
 
 import 'register_state.dart';
@@ -25,7 +26,7 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool isChecked = false;
-  NetworkState networkState = NetworkState.INITIAL;
+  // NetworkState networkState = NetworkState.INITIAL;
   String gender = '';
   String phoneCode = 'eg';
 
@@ -36,7 +37,7 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   Register() async {
     if (!formKey.currentState!.validate()) return;
-    networkState = NetworkState.LOADING;
+    // networkState = NetworkState.LOADING;
 
 
     final body = {
@@ -53,38 +54,35 @@ class RegisterCubit extends Cubit<RegisterState> {
       'agree_terms':isChecked
     };
     print('body ${body}');
-    DioHelper.post("auth/register", false, body: body).then((response) {
+    emit( LoadingRegister());
+    DioHelper.post("auth/register", false, body: body).then(
+
+            await (response) {
       final data = response.data as Map<String, dynamic>;
       print("dataaa $data");
       if (data['status'] == true) {
         AppStorage.cacheUserInfo(UserModel.fromJson(data));
-        isLoading();
+emit(LoadingSuccess());
         //MagicRouter.navigateTo(CustomCurvedNavigationBar());
-        Utils.showSnackBar(data['message'],);
+        Utils.showSnackBar(data['message'],isError: false);
         MagicRouter.navigateTo(OtpPage(
-              email:emailController.text,
-              title: "Otp Page", onPressed: () {  },));
-            //    onPressed: () {
-            //     showDialog(
-            //         context: context,
-            //         builder: (context) =>
-            //             const ResetPasswordDialog(
-            //              mainText:
-            //                   'Your account has been successfully activated! You will now be automatically redirected to the homepage.',
-            //                defaultText: 'Congratulations',
-            //            ));},
-            // ));
-            //  showDialog(
-            //    context: context,
-            //    builder: (context) => ResetPasswordDialog(
-            //     mainText:
-            //         'Activation Code has been sent to your Email at ',
-            //     email: emailController.text,
-            //   ),
+              email:emailController.text,isForget: false,
+              title: "Otp Page", ));
+
+
+              showDialog(
+               context: MagicRouter.currentContext,
+                builder: (context) => ResetPasswordDialog(
+                 mainText:
+                     'Activation Code has been sent to your Email at ',
+               email: emailController.text,
+               ));
             // );
+
       } else {
+        emit(LoadingFailed());
         Utils.showSnackBar(data['message'], isError: true);
-        networkState = NetworkState.ERROR;
+        // networkState = NetworkState.ERROR;
       }
     });
   }
