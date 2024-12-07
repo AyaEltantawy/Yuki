@@ -1,6 +1,7 @@
 // import 'package:banhawy/core/router/router.dart';
 // import 'package:banhawy/public/constant.dart';
 
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:dio/dio.dart';
@@ -24,7 +25,7 @@ class DioHelper {
     if (result == true) {
       print('YAY! Free cute dog pics!');
     } else {
-      Utils.showSnackBar('You are disconnected from the internet');
+      Utils.showSnackBar(MagicRouter.currentContext,'You are disconnected from the internet');
     }
     dioSingleton.options.headers =
         isAuh ? {'Authorization': 'Bearer ${AppStorage.getToken}'} : null;
@@ -59,7 +60,7 @@ class DioHelper {
     if (result == true) {
       print('YAY! Free cute dog pics!');
     } else {
-      Utils.showSnackBar('You are disconnected from the internet');
+      Utils.showSnackBar(MagicRouter.currentContext,'You are disconnected from the internet');
     }
     dioSingleton.options.headers =
         isAuh ? {'Authorization': 'Bearer ${AppStorage.getToken}'} : null;
@@ -121,7 +122,7 @@ class DioHelper {
       if (result == true) {
         print('YAY! Free cute dog pics!');
       } else {
-        Utils.showSnackBar('You are disconnected from the internet');
+        Utils.showSnackBar(  MagicRouter.currentContext, 'You are disconnected from the internet',);
       }
       dioSingleton.options.headers = {
         'Authorization': 'Bearer ${AppStorage.getToken}',

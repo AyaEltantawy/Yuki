@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:yuki/core/routing/page_router.dart';
@@ -18,13 +19,13 @@ import 'otp_cubit.dart';
 import 'otp_state.dart';
 
 class OtpPage extends StatelessWidget {
-  const OtpPage({super.key,
-    this.email,
+  OtpPage({super.key,
+    required this.email,
     required this.title,
 
     this.isForget});
 
-  final String? email;
+   String email='';
   final String title;
   final bool? isForget;
 
@@ -32,7 +33,8 @@ class OtpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => OtpCubit(),
+      create: (BuildContext context) => OtpCubit()..email=email
+      ,
       child: Scaffold(
         body: SafeArea(
           child: BlocBuilder<OtpCubit, OtpState>(
@@ -129,6 +131,13 @@ class OtpPage extends StatelessWidget {
                     SizedBox(
                       height: 30.h,
                     ),
+                    state is LoadingVerification ||
+                        state is LoadingCheckCode?
+                    const SpinKitThreeBounce(
+                      color: ColorsManager.mainblue,
+                      size: 26.0,
+                    )
+                        :
                     CustomButton(
                       child: Text(
                         "Confirm", style: TextStyles.font16White700Weight,),
@@ -136,9 +145,10 @@ class OtpPage extends StatelessWidget {
                       //   MagicRouter.navigateTo(const ConfirmpasswordPage());
                       // },
                       onPressed: (){
-
-                            controller.Verification();
-
+                        if (isForget == false)
+                            controller.Verification(false);
+                        else
+                                controller.checkCode( true);
 
 
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yuki/core/routing/page_router.dart';
 import 'package:yuki/core/shared_widgets/custom_button.dart';
@@ -16,6 +17,7 @@ import 'reset_password_cubit.dart';
 import 'reset_password_state.dart';
 
 class ResetPasswordPage extends StatelessWidget {
+
   const ResetPasswordPage({super.key});
 
   @override
@@ -91,30 +93,35 @@ class ResetPasswordPage extends StatelessWidget {
                       },
                     ),
                     const SizedBox(height: 20),
-                    BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
-                      builder: (context, state) {
-                        final controller =
-                            BlocProvider.of<ResetPasswordCubit>(context);
-                        return CustomButton(
-                            child: Text(
-                              "Confirm",
-                              style: TextStyles.font16White700Weight,
-                            ),
-                            onPressed: () {
-                              controller.ResetPassword();
-                              // if (controller.isValidEmail) {
-                              //   MagicRouter.navigateTo(OtpPage(
-                              //     email: controller.emailController.text,
-                              //     title: 'Reset Your Password',
-                              //     onPressed: () {
-                              //       MagicRouter.navigateTo(const ConfirmpasswordPage());
-                              // },
-                              //    ));
-                            }
-                            //},
-                            );
-                      },
-                    ),
+                    state is LoadingReset
+                        ? const SpinKitThreeBounce(
+                            color: ColorsManager.mainblue,
+                            size: 26.0,
+                          )
+                        : BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
+                            builder: (context, state) {
+                              final controller =
+                                  BlocProvider.of<ResetPasswordCubit>(context);
+                              return CustomButton(
+                                  child: Text(
+                                    "Confirm",
+                                    style: TextStyles.font16White700Weight,
+                                  ),
+                                  onPressed: () {
+                                    controller.ResetPassword();
+                                    // if (controller.isValidEmail) {
+                                    //   MagicRouter.navigateTo(OtpPage(
+                                    //     email: controller.emailController.text,
+                                    //     title: 'Reset Your Password',
+                                    //     onPressed: () {
+                                    //       MagicRouter.navigateTo(const ConfirmpasswordPage());
+                                    // },
+                                    //    ));
+                                  }
+                                  //},
+                                  );
+                            },
+                          )
                   ],
                 ),
               );

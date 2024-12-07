@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:yuki/core/network_state/network_state.dart';
+
 import 'package:yuki/core/routing/page_router.dart';
 import 'package:yuki/core/shared_widgets/curved_navigation_bar.dart';
 import 'package:yuki/core/shared_widgets/custom_button.dart';

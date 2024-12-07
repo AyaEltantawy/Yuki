@@ -8,7 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:yuki/core/app_storage/app_storage.dart';
 import 'package:yuki/core/dio_helper/dio_helper.dart';
 import 'package:yuki/core/models/user_model.dart';
-import 'package:yuki/core/network_state/network_state.dart';
+
 import 'package:yuki/core/routing/page_router.dart';
 import 'package:yuki/core/shared_widgets/curved_navigation_bar.dart';
 import 'package:yuki/core/utils/utils.dart';
@@ -44,11 +44,15 @@ emit(LoadingLogin());
       print(' jdshjhfdsjbdsj${data['message']}');
 
       if (data['status'] == true) {
+        Utils.showSnackBar(MagicRouter.currentContext, data['message'],);
         AppStorage.cacheUserInfo(UserModel.fromJson(data));
+
         emit(LoadingSuccess());
+
         MagicRouter.navigateTo(CustomCurvedNavigationBar());
+
       } else {
-        Utils.showSnackBar('snm amn asm sa', isError: true);
+        Utils.showSnackBar(MagicRouter.currentContext, data['message'], );
        emit(LoadingError());
       }
     });

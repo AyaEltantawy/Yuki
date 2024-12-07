@@ -103,7 +103,7 @@ class AccountSettingsPage extends StatelessWidget {
                       filled: true,
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Colors.transparent),
+                        borderSide: const BorderSide(color: Colors.transparent),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -199,7 +199,7 @@ class AccountSettingsPage extends StatelessWidget {
                     onTap: () {
                       showModalBottomSheet(context: context, builder: (context)
                       {
-                        return ChangePasswordBottomSheet();
+                        return const ChangePasswordBottomSheet();
                       },
                       );
                     },

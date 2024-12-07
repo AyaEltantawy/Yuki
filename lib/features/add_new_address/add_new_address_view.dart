@@ -115,7 +115,7 @@ class AddNewAddressPage extends StatelessWidget {
                           },
                           markers: myMarker,
                           onTap: (latling) {
-                            myMarker.remove(Marker(markerId: MarkerId("1")));
+                            myMarker.remove(const Marker(markerId: MarkerId("1")));
                             myMarker.add(Marker(
                                 markerId: MarkerId("1"), position: latling));
                             controller.changeMarkerPosition();
@@ -125,7 +125,7 @@ class AddNewAddressPage extends StatelessWidget {
                           bottom: 320.h,
                           left: 30.w,
                           right: 30.w,
-                          child:CustomAddressDetails()
+                          child:const CustomAddressDetails()
                         ),
                         Positioned(
                             bottom: 260.h,

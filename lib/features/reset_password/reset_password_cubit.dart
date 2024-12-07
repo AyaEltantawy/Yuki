@@ -6,7 +6,7 @@ import 'package:yuki/core/models/user_model.dart';
 import 'package:yuki/core/routing/page_router.dart';
 import 'package:yuki/core/shared_widgets/show_dialog.dart';
 import 'package:yuki/core/utils/utils.dart';
-import 'package:yuki/features/login/login_state.dart';
+
 import 'package:yuki/features/otp/otp_view.dart';
 
 import 'reset_password_state.dart';
@@ -30,13 +30,24 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
       'email': emailController.text.toString(),
     };
     print('body ${body}');
-    DioHelper.post("auth/forget", false, body: body).then((response) {
+    emit(LoadingReset());
+    await DioHelper.post("auth/forget", false, body: body).then((response) {
       final data = response.data as Map<String, dynamic>;
       print("dataaa $data");
+      print(data['data']);
       if (data['status'] == true) {
+        emit(LoadingSuccess());
+        Utils.showSnackBar(
+          MagicRouter.currentContext,
+          data['data'],
+        );
+
         if (isValidEmail) {
-          MagicRouter.navigateTo(
-              OtpPage(title: '',isForget: true,email:emailController.text.toString() ,));
+          MagicRouter.navigateTo(OtpPage(
+            title: '',
+            isForget: true,
+            email: emailController.text.toString(),
+          ));
         }
         showDialog(
             context: MagicRouter.currentContext,
@@ -45,7 +56,11 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
                   mainText: "Reset Code has been sent to your Email at ",
                 ));
       } else {
-        Utils.showSnackBar(data['message'], isError: true);
+        emit(LoadingError());
+        Utils.showSnackBar(
+          MagicRouter.currentContext,
+          data['message'],
+        );
       }
     });
   }

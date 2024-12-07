@@ -1,12 +1,13 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:yuki/core/app_storage/app_storage.dart';
 import 'package:yuki/core/dio_helper/dio_helper.dart';
 import 'package:yuki/core/models/user_model.dart';
-import 'package:yuki/core/network_state/network_state.dart';
+
 import 'package:yuki/core/routing/page_router.dart';
 import 'package:yuki/core/shared_widgets/curved_navigation_bar.dart';
 import 'package:yuki/core/shared_widgets/show_dialog.dart';
@@ -39,14 +40,14 @@ class RegisterCubit extends Cubit<RegisterState> {
     if (!formKey.currentState!.validate()) return;
     // networkState = NetworkState.LOADING;
 
-
+    final token = await FirebaseMessaging.instance.getToken();
     final body = {
       'name': nameController.text.toString(),
       'phone':phoneController.text.toString(),
       'email':emailController.text.toString(),
       'password':passwordController.text.toString(),
       'type': Platform.isAndroid ? "web" : "iphone",
-      'token':"production",
+      'token':token,
       'gender':gender,
       'phonecode':phoneCode,
 
@@ -61,10 +62,11 @@ class RegisterCubit extends Cubit<RegisterState> {
       final data = response.data as Map<String, dynamic>;
       print("dataaa $data");
       if (data['status'] == true) {
+        Utils.showSnackBar(MagicRouter.currentContext, data['message'],);
         AppStorage.cacheUserInfo(UserModel.fromJson(data));
 emit(LoadingSuccess());
         //MagicRouter.navigateTo(CustomCurvedNavigationBar());
-        Utils.showSnackBar(data['message'],isError: false);
+        Utils.showSnackBar(MagicRouter.currentContext,data['message'],);
         MagicRouter.navigateTo(OtpPage(
               email:emailController.text,isForget: false,
               title: "Otp Page", ));
@@ -81,7 +83,7 @@ emit(LoadingSuccess());
 
       } else {
         emit(LoadingFailed());
-        Utils.showSnackBar(data['message'], isError: true);
+        Utils.showSnackBar(MagicRouter.currentContext,data['message'],);
         // networkState = NetworkState.ERROR;
       }
     });

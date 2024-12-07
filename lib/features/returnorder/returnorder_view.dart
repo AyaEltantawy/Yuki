@@ -173,7 +173,7 @@ class ReturnorderPage extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                             blurRadius: 48,
                             spreadRadius: 0,
@@ -186,7 +186,7 @@ class ReturnorderPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SvgPicture.asset("assets/svgs/Path.svg"),
-                        VerticalDivider(
+                        const VerticalDivider(
                           thickness: 1,
                           color: ColorsManager.bordergrey,
                         ),
@@ -204,7 +204,7 @@ class ReturnorderPage extends StatelessWidget {
                 CustomButton(
                     onPressed:(){  showDialog(
                         context: context,
-                        builder: (context) => ResetPasswordDialog(
+                        builder: (context) => const ResetPasswordDialog(
                       mainText: 'تم ارسال طلب الارجاع بنجاح',
                     ));},
 
