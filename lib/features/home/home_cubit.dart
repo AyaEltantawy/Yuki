@@ -2,11 +2,17 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:yuki/core/app_storage/app_storage.dart';
+import 'package:yuki/core/dio_helper/dio_helper.dart';
+import 'package:yuki/core/models/home_model.dart';
 
 import 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit() : super(HomeStateInit());
+  HomeCubit() : super(HomeStateInit()) {
+    fetchHome();
+  }
+
   int currentPage = 0;
   List<Widget> items = [
     Image.asset(
@@ -59,20 +65,29 @@ class HomeCubit extends Cubit<HomeState> {
     currentPage = value;
     emit(BuildCarouselIndicator());
   }
-  bool isArrival = true;
-void updateArrivalsAndFeatured(){
 
-    isArrival =! isArrival;
+  bool isArrival = true;
+
+  void updateArrivalsAndFeatured() {
+    isArrival = !isArrival;
 
     emit(UpdateArrivalsAndFeatured());
+  }
 
+  HomeModel? homeModel;
+  List<Banners>? banners;
 
-
-
-
-
-}
-
-
-
+  void fetchHome() async {
+    emit(HomeLoadingState());
+    final response = await DioHelper.get("home");
+    final data = response!.data as Map<String, dynamic>;
+    if (data['status'] == true) {
+      homeModel = HomeModel.fromJson(data);
+      banners = homeModel?.data?.banners;
+      emit(HomeSuccessState());
+    } else {
+      debugPrint("errorr ${data['message']}");
+      emit(HomeErrorState());
+    }
+  }
 }
