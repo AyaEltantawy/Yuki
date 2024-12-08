@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+
 import 'package:yuki/core/shared_widgets/get_review_bottom_sheet.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
@@ -55,7 +55,7 @@ class CustomCustomerReviews extends StatelessWidget {
                           ),
                           GestureDetector(
                               onTap: () {
-                                showMaterialModalBottomSheet(
+                                showModalBottomSheet(
                                     context: context,
                                     builder: (context) =>
                                         const ReviewBottomSheet());

@@ -132,7 +132,7 @@ class _AddressCardState extends State<AddressCard> {
                         setState(() {});
                       },
                       fillColor:
-                          WidgetStateProperty.all(ColorsManager.mainblue),
+                          MaterialStateProperty.all(ColorsManager.mainblue),
                       activeColor: ColorsManager.mainblue,
                       visualDensity: VisualDensity.compact,
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,

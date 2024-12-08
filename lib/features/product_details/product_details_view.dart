@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+
 import 'package:yuki/core/routing/page_router.dart';
 import 'package:yuki/core/shared_widgets/category_container.dart';
 import 'package:yuki/features/product_details/widgets/custom_customer_reviews.dart';

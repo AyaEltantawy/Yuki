@@ -5,10 +5,13 @@ import 'package:yuki/core/shared_widgets/custom_button.dart';
 import 'package:yuki/core/shared_widgets/custom_text_form_feild.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
+import 'package:yuki/features/account_settings/account_settings_state.dart';
 
 class ChangePasswordBottomSheet extends StatelessWidget {
-  const ChangePasswordBottomSheet({super.key});
+  final TextEditingController? passwordController ;
+   ChangePasswordBottomSheet({super.key, this.passwordController, required this.changePassword});
 
+  final void Function() changePassword;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -57,6 +60,7 @@ class ChangePasswordBottomSheet extends StatelessWidget {
               child: Column(
                 children: [
                   CustomTextFormFeild(
+
                     prefixIcon:
                         SvgPicture.asset("assets/svgs/password_icon.svg"),
                     hint: "Password",
@@ -64,6 +68,7 @@ class ChangePasswordBottomSheet extends StatelessWidget {
                     suffixIcon: const Icon(Icons.remove_red_eye_outlined,
                         color: ColorsManager.icongrey),
                     upperText: "New Password",
+                    controller: passwordController,
                   ),
                   CustomTextFormFeild(
                     prefixIcon:
@@ -76,7 +81,11 @@ class ChangePasswordBottomSheet extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 20.h),
-                    child: CustomButton(child: Text( "Confirm",style: TextStyles.font16White700Weight),),
+
+                    child: CustomButton(
+                      onPressed: (){changePassword();},
+
+                      child: Text( "Confirm",style: TextStyles.font16White700Weight),),
                   )
                 ],
               ),

@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+
 import 'package:yuki/core/routing/page_router.dart';
 import 'package:yuki/core/shared_widgets/category_container.dart';
 import 'package:yuki/core/shared_widgets/custom_product.dart';

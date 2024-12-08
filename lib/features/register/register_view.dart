@@ -13,6 +13,7 @@ import 'package:yuki/core/theming/styles.dart';
 import 'package:yuki/features/otp/otp_view.dart';
 
 import '../../core/shared_widgets/show_dialog.dart';
+import '../login/login_view.dart';
 import 'register_cubit.dart';
 import 'register_state.dart';
 
@@ -49,7 +50,7 @@ class RegisterPage extends StatelessWidget {
                         CustomTextButton(
                           text: "Login",
                           onpressed: () {
-                            MagicRouter.navigateTo(RegisterPage());
+                            MagicRouter.navigateTo(LoginPage());
                           },
                           fontWeight: FontWeight.w700,
                           fontsize: 17,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yuki/core/routing/page_router.dart';
 import 'package:yuki/core/shared_widgets/custom_text_form_feild.dart';
@@ -93,7 +94,13 @@ class ConfirmpasswordPage extends StatelessWidget {
                   upperText: "New Password Confirmation",
                 ),
                 SizedBox(height: 20.h),
-                CustomButton(
+                 state is LoadingConfirm?
+                 const SpinKitThreeBounce(
+                   color: ColorsManager.mainblue,
+                   size: 26.0,
+                 )
+                     :
+                 CustomButton(
                  child: Text("Confirm",style: TextStyles.font16White700Weight,),
                   onPressed: () {
                     showDialog(

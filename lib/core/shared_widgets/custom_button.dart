@@ -25,7 +25,7 @@ class CustomButton extends StatelessWidget {
       ),
       child: ElevatedButton(
         style: ButtonStyle(
-          backgroundColor: WidgetStateProperty.all(Colors.transparent),
+          backgroundColor: MaterialStateProperty.all(Colors.transparent),
         ),
         onPressed: onPressed,
         child:child,
