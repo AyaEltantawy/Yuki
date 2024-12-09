@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -5,13 +6,14 @@ import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
 
 class CustomProduct extends StatelessWidget {
-    CustomProduct(
+  CustomProduct(
       {super.key,
       required this.productName,
       required this.imageUrl,
       this.previosPrice,
       required this.currentPrice,
-      required this.offerState, required this.onTap});
+      required this.offerState,
+      required this.onTap});
 
   bool isFavourite = false;
   int count = 1;
@@ -28,14 +30,15 @@ class CustomProduct extends StatelessWidget {
 
   final String productName;
   final String imageUrl;
-  late final double? previosPrice;
-  final double currentPrice;
+  late final num? previosPrice;
+  final num currentPrice;
   final String offerState;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(onTap: onTap,
+    return GestureDetector(
+      onTap: onTap,
       child: Container(
         //width: 178.w,
         // height: 260.h,
@@ -47,11 +50,8 @@ class CustomProduct extends StatelessWidget {
           children: [
             Column(
               children: [
-                Image.asset(
-                  imageUrl,
-                  width: 122.w,
-                  height: 122.w,
-                ),
+                CachedNetworkImage(
+                    width: 122.w, height: 122.w, imageUrl: imageUrl),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -111,7 +111,8 @@ class CustomProduct extends StatelessWidget {
                                                     TextDecoration.lineThrough)
                                         : TextStyles.font13Icongrey700Weight
                                             .copyWith(
-                                                decoration: TextDecoration.none)),
+                                                decoration:
+                                                    TextDecoration.none)),
                                 TextSpan(
                                     text: "$currentPrice",
                                     style: TextStyles.font13Mainblue700Weight)
@@ -122,48 +123,51 @@ class CustomProduct extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                    Container( height: 32,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(4)),
-                      child: StatefulBuilder(
-                        builder: (BuildContext context,
-                            void Function(void Function()) setState) {
-                          return Row(
-                            children: [
-                              IconButton(
-                                icon: const Icon(
-                                  Icons.remove,
-                                  size: 17,
-                                ),
-                                color: ColorsManager.textgrey,
-                                onPressed: () {
-                                  setState(() {
-                                    decreament();
-                                  });
-                                },
-                              ),
+                            Container(
+                              height: 32,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(4)),
+                              child: StatefulBuilder(
+                                builder: (BuildContext context,
+                                    void Function(void Function()) setState) {
+                                  return Row(
+                                    children: [
+                                      IconButton(
+                                        icon: const Icon(
+                                          Icons.remove,
+                                          size: 17,
+                                        ),
+                                        color: ColorsManager.textgrey,
+                                        onPressed: () {
+                                          setState(() {
+                                            decreament();
+                                          });
+                                        },
+                                      ),
 
-                              Text("$count"),
-                              IconButton(
-                                icon: const Icon(
-                                  Icons.add,
-                                  size: 17,
-                                ),
-                                color: ColorsManager.mainblue,
-                                onPressed: () {
-                                  setState(() {
-                                    increament();
-                                  });
+                                      Text("$count"),
+                                      IconButton(
+                                        icon: const Icon(
+                                          Icons.add,
+                                          size: 17,
+                                        ),
+                                        color: ColorsManager.mainblue,
+                                        onPressed: () {
+                                          setState(() {
+                                            increament();
+                                          });
+                                        },
+                                      ),
+                                      //SizedBox(width: 5,),
+                                    ],
+                                  );
                                 },
                               ),
-                              //SizedBox(width: 5,),
-                            ],
-                          );
-                        },
-                      ),
-                    ),
-                            SizedBox(width: 2.w,),
+                            ),
+                            SizedBox(
+                              width: 2.w,
+                            ),
                             Image.asset("assets/images/market_icon.png",
                                 width: 35.w, height: 32.h)
                           ],
@@ -186,6 +190,7 @@ class CustomProduct extends StatelessWidget {
                   child: Text(
                     textAlign: TextAlign.center,
                     offerState,
+                    maxLines: 2,
                     style: TextStyles.font11white400Weight,
                   ),
                 ),

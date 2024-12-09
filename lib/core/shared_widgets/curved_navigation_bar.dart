@@ -52,7 +52,7 @@ class _CustomCurvedNavigationBarState extends State<CustomCurvedNavigationBar> {
       ];
 
   final List screens = [
-    HomePage(),
+    HomePage(index: 1),
     CategoriesPage(),
     CartPage(),
     MorePage(),

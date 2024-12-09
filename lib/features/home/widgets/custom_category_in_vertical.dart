@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yuki/core/theming/colors.dart';
@@ -5,12 +6,16 @@ import 'package:yuki/core/theming/styles.dart';
 import '';
 
 class CustomCategory extends StatelessWidget {
-  CustomCategory(
-      {super.key, required this.categoryName, required this.categoryCount,required this.imageUrl,});
+  CustomCategory({
+    super.key,
+    required this.categoryName,
+    required this.categoryCount,
+    required this.imageUrl,
+  });
 
   final String categoryName;
 
-  final String categoryCount;
+  final int categoryCount;
   final String imageUrl;
 
   @override
@@ -18,22 +23,22 @@ class CustomCategory extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Container(
-          width: 80.w,
-          height: 80.w,
-          decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: ColorsManager
-                  .mainblue),  child: Image.asset(imageUrl)
+        CircleAvatar(
+          radius: 40,
+          backgroundImage: CachedNetworkImageProvider(imageUrl),
         ),
-        SizedBox(height: 5.h,),
+        SizedBox(
+          height: 5.h,
+        ),
         Text(
           categoryName,
           style: TextStyles.font15Black700Weight,
         ),
-        SizedBox(height: 5.h,),
+        SizedBox(
+          height: 5.h,
+        ),
         Text(
-          categoryCount,
+          " $categoryCount",
           style: TextStyles.font13Textgrey400Weight,
         )
       ],

@@ -15,48 +15,56 @@ class AboutTheAppPage extends StatelessWidget {
       create: (BuildContext context) => AboutTheAppCubit(),
       child: Scaffold(
         body: SafeArea(
-          child: ListView(
-            padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Image.asset("assets/images/back_arow.png"),
-                  SvgPicture.asset(
-                    "assets/svgs/logo.svg",
-                    width: 50.w,
-                    height: 50.w,
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Text(
-                "About the application",
-                style: TextStyles.font20black700Weight,
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Text(
-                "Information about the application",
-                style: TextStyles.font15Thirdgrey300Weight,
-              ),
-              const Divider(
-                thickness: 1,
-                color: ColorsManager.mainblue,
-              ),
-              SizedBox(
-                height: 15.h,
-              ),
-              Text(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
-            ],
+          child: BlocBuilder<AboutTheAppCubit, AboutTheAppState>(
+            builder: (context, state) {
+              final controller = BlocProvider.of<AboutTheAppCubit>(context);
+
+              return state is AboutUsLoadingState
+                  ? Center(child: const CircularProgressIndicator())
+                  : state is AboutUsErrorState
+                      ? const Text("error")
+                      : ListView(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 20.h, horizontal: 20.w),
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Image.asset("assets/images/back_arow.png"),
+                                SvgPicture.asset(
+                                  "assets/svgs/logo.svg",
+                                  width: 50.w,
+                                  height: 50.w,
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            Text(
+                              "About the application",
+                              style: TextStyles.font20black700Weight,
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Text(
+                              "Information about the application",
+                              style: TextStyles.font15Thirdgrey300Weight,
+                            ),
+                            const Divider(
+                              thickness: 1,
+                              color: ColorsManager.mainblue,
+                            ),
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                            Text(controller
+                                    .aboutUsModel?.section1?.description ??
+                                '')
+                          ],
+                        );
+            },
           ),
         ),
       ),
