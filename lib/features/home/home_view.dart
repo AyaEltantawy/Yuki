@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
             builder: (context, state) {
               final controller = BlocProvider.of<HomeCubit>(context);
               return state is HomeLoadingState
-                  ? Center(child: const CircularProgressIndicator())
+                  ? const Center(child: CircularProgressIndicator())
                   : state is HomeErrorState
                       ? const Text("error")
                       : ListView(
@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
                               horizontal: 20.w, vertical: 10.h),
                           shrinkWrap: true,
                           children: [
-                              ImageAndLogoAndNotification(),
+                              const ImageAndLogoAndNotification(),
                               SizedBox(
                                 height: 20.h,
                               ),
