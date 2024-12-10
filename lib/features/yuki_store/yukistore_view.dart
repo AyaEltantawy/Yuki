@@ -159,21 +159,24 @@ class YukistorePage extends StatelessWidget {
                     SizedBox(
                       height: 10.h,
                     ),
+                    
                     StaggeredGrid.count(
                         axisDirection: AxisDirection.down,
-                        crossAxisCount: 2,
+                        crossAxisCount:2 ,
                         mainAxisSpacing: 10,
                         crossAxisSpacing: 10,
                         children: [
                           for (int i = 0; i < 5; i++)
                             if (cubit.activeIndex == 1)
-                              CustomProduct(
-                                  onTap: () {},
-                                  previosPrice: 180.00,
-                                  productName: "keratin serum",
-                                  imageUrl: ("assets/images/spray.png"),
-                                  currentPrice: 150.00,
-                                  offerState: "10% 0ff"),
+                              Flexible(
+                                child: CustomProduct(
+                                    onTap: () {},
+                                    previosPrice: 180.00,
+                                    productName: "keratin serum",
+                                    imageUrl: ("assets/images/spray.png"),
+                                    currentPrice: 150.00,
+                                    offerState: "10% 0ff"),
+                              ),
                           for (int i = 0; i < 5; i++)
                             if (cubit.activeIndex == 0)
                               CustomProduct(

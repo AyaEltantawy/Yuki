@@ -92,29 +92,6 @@ class HomePage extends StatelessWidget {
                               SizedBox(
                                 height: 30.h,
                               ),
-                              // SizedBox(
-                              //   height: 267.5.h,
-                              //   child: ListView.separated(
-                              //     itemBuilder: (context, index) =>
-                              //         CustomProduct(
-                              //       onTap: () {},
-                              //       productName: 'keratin serum',
-                              //       imageUrl: 'assets/images/spray.png',
-                              //       currentPrice: 150,
-                              //       previosPrice: 180,
-                              //       offerState: '10% Off',
-                              //     ),
-                              //     itemCount: 2,
-                              //     scrollDirection: Axis.horizontal,
-                              //     physics: const NeverScrollableScrollPhysics(),
-                              //     separatorBuilder:
-                              //         (BuildContext context, int index) {
-                              //       return SizedBox(
-                              //         width: 10.w,
-                              //       );
-                              //     },
-                              //   ),
-                              // ),
                               SizedBox(
                                 height: 10.h,
                               ),
@@ -231,44 +208,44 @@ class HomePage extends StatelessWidget {
                                           controller.featured?.items?.length ??
                                               3),
                                 ),
-                            if(controller.index==0)
-                              SizedBox(
-                                height: 267.5.h,
-                                child: ListView.separated(
-                                    scrollDirection: Axis.horizontal,
-                                    shrinkWrap: true,
-                                    itemBuilder: (context, index) =>
-                                        CustomProduct(
-                                          onTap: () {
-                                            MagicRouter.navigateTo(
-                                                ProductdetailsPage(
-                                                  rateAmount: 0,
-                                                  reviewText: '',
-                                                ));
-                                          },
-                                          productName: controller.products
-                                              ?.items?[index].name ??
-                                              '',
-                                          imageUrl: controller.products
-                                              ?.items?[index].image ??
-                                              '',
-                                          currentPrice: controller
-                                              .products
-                                              ?.items?[index]
-                                              .priceAfterDiscount ??
-                                              0.0,
-                                          offerState: controller.products
-                                              ?.items?[index].statusKey ??
-                                              '',
-                                        ),
-                                    separatorBuilder: (context, index) =>
-                                        SizedBox(
-                                          width: 5.w,
-                                        ),
-                                    itemCount:
-                                    controller.products?.items?.length ??
-                                        3),
-                              ),
+                              if (controller.index == 0)
+                                SizedBox(
+                                  height: 267.5.h,
+                                  child: ListView.separated(
+                                      scrollDirection: Axis.horizontal,
+                                      shrinkWrap: true,
+                                      itemBuilder: (context, index) =>
+                                          CustomProduct(
+                                            onTap: () {
+                                              MagicRouter.navigateTo(
+                                                  ProductdetailsPage(
+                                                rateAmount: 0,
+                                                reviewText: '',
+                                              ));
+                                            },
+                                            productName: controller.products
+                                                    ?.items?[index].name ??
+                                                '',
+                                            imageUrl: controller.products
+                                                    ?.items?[index].image ??
+                                                '',
+                                            currentPrice: controller
+                                                    .products
+                                                    ?.items?[index]
+                                                    .priceAfterDiscount ??
+                                                0.0,
+                                            offerState: controller.products
+                                                    ?.items?[index].statusKey ??
+                                                '',
+                                          ),
+                                      separatorBuilder: (context, index) =>
+                                          SizedBox(
+                                            width: 5.w,
+                                          ),
+                                      itemCount:
+                                          controller.products?.items?.length ??
+                                              3),
+                                ),
                             ]);
             },
           ),

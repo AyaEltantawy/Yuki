@@ -1,9 +1,6 @@
-class TermsAndConditionsState {
-  TermsAndConditionsState init() {
-    return TermsAndConditionsState();
-  }
+abstract class TermsAndConditionsState {}
 
-  TermsAndConditionsState clone() {
-    return TermsAndConditionsState();
-  }
-}
+class TermsAndConditionsInit extends TermsAndConditionsState {}
+class PolicyLoadingState extends TermsAndConditionsState{}
+class PolicySuccessState extends TermsAndConditionsState{}
+class PolicyErrorState extends TermsAndConditionsState{}

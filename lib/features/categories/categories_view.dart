@@ -17,104 +17,112 @@ class CategoriesPage extends StatelessWidget {
         create: (BuildContext context) => CategoriesCubit(),
         child: Scaffold(
           body: SafeArea(
-            child: ListView(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: BlocBuilder<CategoriesCubit, CategoriesState>(
+              builder: (context, state) {
+                final controller = BlocProvider.of<CategoriesCubit>(context);
+                return state is CategoriesLoadingState
+                    ? Center(child: CircularProgressIndicator())
+                    : state is CategoriesErrorState
+                    ? Text("error")
+                    : ListView(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 20.w, vertical: 10.h),
                   children: [
-                    Container(
-                      height: 45.h,
-                      width: 45.w,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        image: const DecorationImage(
-                          image: AssetImage(
-                              'assets/images/girl_photo_in_home.png'),
-                          fit: BoxFit.cover,
+                    Row(
+                      mainAxisAlignment:
+                      MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          height: 45.h,
+                          width: 45.w,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            image: const DecorationImage(
+                              image: AssetImage(
+                                  'assets/images/girl_photo_in_home.png'),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
-                      ),
+                        SvgPicture.asset(
+                          "assets/svgs/logo.svg",
+                          width: 45.w,
+                          height: 45.h,
+                        ),
+                        badges.Badge(
+                          position: badges.BadgePosition.topEnd(
+                              top: -4, end: 1),
+                          child: SvgPicture.asset(
+                            "assets/svgs/notify.svg",
+                            width: 45.w,
+                            height: 45.h,
+                          ),
+                        ),
+                      ],
                     ),
-                    SvgPicture.asset(
-                      "assets/svgs/logo.svg",
-                      width: 45.w,
-                      height: 45.h,
+                    SizedBox(
+                      height: 20.h,
                     ),
-                    badges.Badge(
-                      position: badges.BadgePosition.topEnd(top: -4, end: 1),
-                      child: SvgPicture.asset(
-                        "assets/svgs/notify.svg",
-                        width: 45.w,
-                        height: 45.h,
-                      ),
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Categories",
+                            style: TextStyles.font20black700Weight,
+                          ),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          Text(
+                            "Shop By Category",
+                            style:
+                            TextStyles.font15Thirdgrey300Weight,
+                          ),
+                          const Divider(
+                            thickness: 1,
+                            color: ColorsManager.mainblue,
+                          ),
+                        ]),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Column(
+                          mainAxisAlignment:
+                          MainAxisAlignment.spaceBetween,
+                          children: List.generate(
+                              controller.categoriesModel?.data
+                                  ?.length ??
+                                  3, (index) {
+                            return Column(children: [
+                              CustomCategoryInHorizontal(
+                                categoryCount: controller
+                                    .categoriesModel
+                                    ?.data?[index]
+                                    .products ??
+                                    3,
+                                imageUrl: controller.categoriesModel
+                                    ?.data?[index].image ??
+                                    '',
+                                categoryName: controller
+                                    .categoriesModel
+                                    ?.data?[index]
+                                    .name ??
+                                    '',
+                              ),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              const Divider(
+                                  thickness: 1,
+                                  color: ColorsManager.bordergrey)
+                            ]);
+                          })),
                     ),
                   ],
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text(
-                    "Categories",
-                    style: TextStyles.font20black700Weight,
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Text(
-                    "Shop By Category",
-                    style: TextStyles.font15Thirdgrey300Weight,
-                  ),
-                  const Divider(
-                    thickness: 1,
-                    color: ColorsManager.mainblue,
-                  ),
-                ]),
-                SizedBox(
-                  height: 20.h,
-                ),
-                const CustomCategoryInHorizontal(
-                  imageUrl: "assets/images/hair_care.png",
-                  categoryName: 'Hair Care',
-                  categoryCount: '489 Product',
-                ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                const Divider(
-                  thickness: 1,
-                  color: ColorsManager.bordergrey,
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                const CustomCategoryInHorizontal(
-                  categoryCount: '489 Product',
-                  imageUrl: 'assets/images/body_care.png',
-                  categoryName: 'Body Care',
-                ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                const Divider(
-                  thickness: 1,
-                  color: ColorsManager.bordergrey,
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                const CustomCategoryInHorizontal(
-                    imageUrl: "assets/images/skin_care.png",
-                    categoryName: "Skin Care",
-                    categoryCount: '489 Product'),
-                SizedBox(
-                  height: 5.h,
-                ),
-                const Divider(
-                  thickness: 1,
-                  color: ColorsManager.bordergrey,
-                ),
-              ],
+                );
+              },
             ),
           ),
         ));

@@ -14,4 +14,10 @@ class YukistoreCubit extends Cubit<YukistoreState> {
     activeIndex = index;
     emit(ClickOnCategoryContainer());
   }
+  fetchProducts()async{
+    
+
+
+
+  }
 }

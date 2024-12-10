@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
 
@@ -20,7 +21,7 @@ class AboutTheAppPage extends StatelessWidget {
               final controller = BlocProvider.of<AboutTheAppCubit>(context);
 
               return state is AboutUsLoadingState
-                  ? Center(child: const CircularProgressIndicator())
+                  ? const Center(child: CircularProgressIndicator())
                   : state is AboutUsErrorState
                       ? const Text("error")
                       : ListView(
@@ -59,9 +60,42 @@ class AboutTheAppPage extends StatelessWidget {
                             SizedBox(
                               height: 15.h,
                             ),
-                            Text(controller
-                                    .aboutUsModel?.section1?.description ??
-                                '')
+                            Text(
+                              Bidi.stripHtmlIfNeeded(
+                                  controller.section1?.description ?? ''),
+                              textAlign: TextAlign.end,
+                            ),
+                            SizedBox(height: 10.h),
+                            SizedBox(
+                              height: 200.h,
+                              child: ListView.separated(
+                                  shrinkWrap: true,
+                                  itemBuilder: ((context, index) {
+                                    return Text(
+                                        Bidi.stripHtmlIfNeeded(controller
+                                                .section2?[index].description ??
+                                            ''),
+                                        textAlign: TextAlign.end);
+                                  }),
+                                  separatorBuilder:
+                                      ((BuildContext context, int index) {
+                                    return SizedBox(
+                                      height: 10.h,
+                                    );
+                                  }),
+                                  itemCount: 3),
+                            ),
+                            Text(
+                                Bidi.stripHtmlIfNeeded(
+                                    controller.section3?[0].description ?? ''),
+                                textAlign: TextAlign.end),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Text(
+                                Bidi.stripHtmlIfNeeded(
+                                    controller.section5?.description ?? ''),
+                                textAlign: TextAlign.end),
                           ],
                         );
             },

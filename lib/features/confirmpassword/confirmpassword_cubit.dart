@@ -11,13 +11,18 @@ import 'confirmpassword_state.dart';
 
 class ConfirmpasswordCubit extends Cubit<ConfirmpasswordState> {
   ConfirmpasswordCubit() : super(ConfirmpasswordStateInit());
-  String email ='';
-  String otpCode='';
-final GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  TextEditingController passwordController =TextEditingController();
-  TextEditingController confirmPasswordController =TextEditingController();
-  confirmPassword()async{
-    final body = {'email': email, 'code': otpCode,'password':passwordController.text.toString()};
+  String email = '';
+  String otpCode = '';
+  final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+
+  confirmPassword() async {
+    final body = {
+      'email': email,
+      'code': otpCode,
+      'password': passwordController.text.toString()
+    };
     print('email $email');
 
     print('body ${body}');
@@ -32,14 +37,12 @@ final GlobalKey<FormState> formkey = GlobalKey<FormState>();
         showDialog(
             context: MagicRouter.currentContext,
             builder: (context) => ResetPasswordDialog(
-       defaultText: 'Congratulations',
-              mainText: "Reset Code has been sent to your Email at ",
-            ));
+                  defaultText: 'Congratulations',
+                  mainText: "Reset Code has been sent to your Email at ",
+                ));
         MagicRouter.navigateTo(LoginPage());
         print('data ${data['data']}');
         //Utils.showSnackBar(MagicRouter.currentContext,data['data']as bool,);
-
-
       } else {
         emit(LoadingError());
         Utils.showSnackBar(
@@ -49,13 +52,4 @@ final GlobalKey<FormState> formkey = GlobalKey<FormState>();
       }
     });
   }
-
-
-
-
-
-
-  }
-
-
-
+}

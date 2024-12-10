@@ -1,9 +1,5 @@
-class CategoriesState {
-  CategoriesState init() {
-    return CategoriesState();
-  }
-
-  CategoriesState clone() {
-    return CategoriesState();
-  }
-}
+abstract class CategoriesState {}
+class CategoriesStateInit extends   CategoriesState{}
+class CategoriesLoadingState extends CategoriesState{}
+class CategoriesSuccessState extends CategoriesState{}
+class CategoriesErrorState extends CategoriesState{}

@@ -77,6 +77,7 @@ class HomeCubit extends Cubit<HomeState> {
   List<Category>? categories = [];
   Products? featured;
   Products? products;
+
   //String name;
   void fetchHome() async {
     emit(HomeLoadingState());
@@ -88,7 +89,7 @@ class HomeCubit extends Cubit<HomeState> {
       banners = homeModel?.data?.banners;
       categories = homeModel?.data?.categories;
       featured = homeModel?.data?.featured;
-products =homeModel?.data?.products;
+      products = homeModel?.data?.products;
       // name=homeModel?.data?.categories?[0].name??'';
       emit(HomeSuccessState());
     } else {
