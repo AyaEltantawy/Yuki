@@ -13,7 +13,6 @@ import 'package:yuki/core/utils/utils.dart';
 class DioHelper {
   static const _baseUrl = 'https://yuki.technoraft.com/api/';
 
-  // final box = GetStorage();
   static Dio dioSingleton = Dio()..options.baseUrl = _baseUrl;
 
   static Future<Response<dynamic>> post(String path, bool isAuh,

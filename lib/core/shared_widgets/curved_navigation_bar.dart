@@ -53,7 +53,7 @@ class _CustomCurvedNavigationBarState extends State<CustomCurvedNavigationBar> {
 
   final List screens = [
     HomePage(index: 1),
-    CategoriesPage(),
+    CategoriesPage(id: 0),
     CartPage(),
     MorePage(),
   ];
@@ -76,8 +76,6 @@ class _CustomCurvedNavigationBarState extends State<CustomCurvedNavigationBar> {
         buttonBackgroundColor: ColorsManager.mainblue,
         animationCurve: Curves.decelerate,
         color: Colors.white,
-
-
       ),
     );
   }

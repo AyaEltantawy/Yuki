@@ -9,13 +9,13 @@ class CustomCategoryInHorizontal extends StatelessWidget {
       {super.key,
       required this.imageUrl,
       required this.categoryName,
-      required this.categoryCount});
+      required this.categoryCount, this.onTap});
 
   final String imageUrl;
   final String categoryName;
 
   final int categoryCount;
-
+final   VoidCallback? onTap;
   @override
   Widget build(BuildContext context) {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,14 +49,16 @@ class CustomCategoryInHorizontal extends StatelessWidget {
         ), ],
         ),
 
-        Container(
-            width: 45.w,
-            height: 45.w,
-            decoration: BoxDecoration(
-                color: ColorsManager.grey,
-                borderRadius: BorderRadius.circular(40)),
-            child: const Icon(Icons.arrow_forward_outlined,
-                color: ColorsManager.mainblue)),
+        InkWell(onTap: onTap,
+          child: Container(
+              width: 45.w,
+              height: 45.w,
+              decoration: BoxDecoration(
+                  color: ColorsManager.grey,
+                  borderRadius: BorderRadius.circular(40)),
+              child: const Icon(Icons.arrow_forward_outlined,
+                  color: ColorsManager.mainblue)),
+        ),
       ],
     );
   }

@@ -39,8 +39,8 @@ class CustomProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      
       child: Container(
+        width: 175.w,
         decoration: BoxDecoration(
             border: Border.all(width: 1, color: ColorsManager.grey),
             borderRadius: const BorderRadius.only(
@@ -48,8 +48,14 @@ class CustomProduct extends StatelessWidget {
         child: Column(
           children: [
             Stack(children: [
-              CachedNetworkImage(
-                  width: 122.w, height: 122.w, imageUrl: imageUrl),
+              Padding(
+                padding:  EdgeInsets.symmetric(vertical: 10.0.h),
+                child: CachedNetworkImage(
+                  width: 135.w,
+                  height: 122.w,
+                  imageUrl: imageUrl,
+                ),
+              ),
               Positioned(
                 right: 0.w,
                 bottom: 0.h,
@@ -70,9 +76,7 @@ class CustomProduct extends StatelessWidget {
                 ),
               ),
             ]),
-            SizedBox(
-              height: 10.h,
-            ),
+            SizedBox(height: 10.h),
             Container(
               decoration: const BoxDecoration(
                   color: ColorsManager.grey,
@@ -80,21 +84,16 @@ class CustomProduct extends StatelessWidget {
                       topRight: Radius.circular(20),
                       topLeft: Radius.circular(20))),
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
+                padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 10.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
+                      mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Flexible(
-                          child: Text(productName,
-                              style: TextStyles.font14Black700Weight),
-                        ),
-                        SizedBox(
-                          width: 50.w,
-                        ),
-                        
+                        Text(productName,
+                            style: TextStyles.font14Black700Weight),
                         StatefulBuilder(
                           builder: (BuildContext context,
                               void Function(void Function()) setState) {
@@ -138,10 +137,9 @@ class CustomProduct extends StatelessWidget {
                                 style: TextStyles.font13Mainblue700Weight)
                           ]),
                     ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
+                    SizedBox(height: 10.h),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
                           height: 32,
@@ -151,42 +149,49 @@ class CustomProduct extends StatelessWidget {
                           child: StatefulBuilder(
                             builder: (BuildContext context,
                                 void Function(void Function()) setState) {
-                              return Row(
-                                children: [
-                                  IconButton(
-                                    icon: const Icon(
-                                      Icons.remove,
-                                      size: 17,
+                              return Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 15.w),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    InkWell(
+                                      child: const Icon(
+                                        Icons.remove,
+                                        size: 17,
+                                        color: ColorsManager.textgrey,
+                                      ),
+                                      onTap: () {
+                                        setState(() {
+                                          decreament();
+                                        });
+                                      },
                                     ),
-                                    color: ColorsManager.textgrey,
-                                    onPressed: () {
-                                      setState(() {
-                                        decreament();
-                                      });
-                                    },
-                                  ),
 
-                                  Text("$count"),
-                                  IconButton(
-                                    icon: const Icon(
-                                      Icons.add,
-                                      size: 17,
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.w),
+                                      child: Text("$count"),
                                     ),
-                                    color: ColorsManager.mainblue,
-                                    onPressed: () {
-                                      setState(() {
-                                        increament();
-                                      });
-                                    },
-                                  ),
-                                  //SizedBox(width: 5,),
-                                ],
+
+                                    InkWell(
+                                      child: const Icon(
+                                        Icons.add,
+                                        size: 17,
+                                        color: ColorsManager.mainblue,
+                                      ),
+                                      onTap: () {
+                                        setState(() {
+                                          increament();
+                                        });
+                                      },
+                                    ),
+                                    //SizedBox(width: 5,),
+                                  ],
+                                ),
                               );
                             },
                           ),
-                        ),
-                        SizedBox(
-                          width: 5.w,
                         ),
                         Image.asset("assets/images/market_icon.png",
                             width: 45.w, height: 45.h)

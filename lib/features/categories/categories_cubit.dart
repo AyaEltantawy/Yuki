@@ -9,7 +9,14 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     fetchCategories();
   }
 
+  int index = 0;
   CategoriesModel? categoriesModel;
+
+  categoryOntap(int index) {
+    this.index = index;
+  }
+
+  int id = 0;
 
   fetchCategories() async {
     emit(CategoriesLoadingState());
@@ -17,6 +24,8 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     final data = response!.data as Map<String, dynamic>;
     if (data['status'] == true) {
       categoriesModel = CategoriesModel.fromJson(data);
+      for (int i = 0; i < (categoriesModel?.data?.length ?? 3); i++)
+        id = categoriesModel?.data?[i].id ?? 3;
       emit(CategoriesSuccessState());
     } else {
       emit(CategoriesErrorState());

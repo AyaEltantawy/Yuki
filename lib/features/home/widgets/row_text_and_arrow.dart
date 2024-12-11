@@ -6,7 +6,8 @@ import 'package:yuki/core/theming/styles.dart';
 class RowTextAndArrow extends StatelessWidget {
  final String title;
  final String description;
- RowTextAndArrow({super.key, required this.title, required this.description});
+ final VoidCallback? onTap;
+ RowTextAndArrow({super.key, required this.title, required this.description, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -30,16 +31,18 @@ class RowTextAndArrow extends StatelessWidget {
                     .font12Textgrey400Weight)
           ],
         ),
-        Container(
-            width: 45.w,
-            height: 45.h,
-            decoration: BoxDecoration(
-                color: ColorsManager.grey,
-                borderRadius:
-                BorderRadius.circular(40)),
-            child: const Icon(
-                Icons.arrow_forward_outlined,
-                color: ColorsManager.mainblue)),
+        InkWell(onTap: onTap,
+          child: Container(
+              width: 45.w,
+              height: 45.h,
+              decoration: BoxDecoration(
+                  color: ColorsManager.grey,
+                  borderRadius:
+                  BorderRadius.circular(40)),
+              child: const Icon(
+                  Icons.arrow_forward_outlined,
+                  color: ColorsManager.mainblue)),
+        ),
       ],
     );
   }

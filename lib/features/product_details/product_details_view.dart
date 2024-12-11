@@ -12,6 +12,7 @@ import 'package:yuki/core/shared_widgets/set_review_bottom_sheet.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
 import 'package:yuki/features/product_details/widgets/custom_page_view_product_details.dart';
+import 'package:yuki/features/yuki_store/yukistore_view.dart';
 import 'product_details_cubit.dart';
 import 'product_details_state.dart';
 
@@ -41,7 +42,11 @@ class ProductdetailsPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Image.asset("assets/images/back_arow.png"),
+                      InkWell(
+                          onTap:(){MagicRouter.navigateTo(YukistorePage(category_id: 0));},
+
+
+                          child: Image.asset("assets/images/back_arow.png")),
                       SvgPicture.asset(
                         "assets/svgs/logo.svg",
                         width: 50.w,
