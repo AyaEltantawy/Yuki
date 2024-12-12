@@ -41,7 +41,8 @@ class YukistorePage extends StatelessWidget {
 
           final cubit = context.read<YukistoreCubit>();
 
-          return state is ProductsLoadingState ||state is SubCategoriesLoadingState
+          return state is ProductsLoadingState ||
+                  state is SubCategoriesLoadingState
               ? const Center(child: CircularProgressIndicator())
               : state is ProductsErrorState
                   ? const Text("error")
@@ -184,13 +185,17 @@ class YukistorePage extends StatelessWidget {
                                             3);
                                     i++)
                                   CustomProduct(
-                                      onTap: () {controller.OnTapProduct(controller.productsModel?.data?.items?[i].id);
+                                      onTap: () {
+                                        controller.onTapProduct(controller
+                                            .productsModel?.data?.items?[i].id);
 
-                                        MagicRouter.navigateTo(ProductdetailsPage(rateAmount: 0, reviewText: '',));
+                                        MagicRouter.navigateTo(
+                                            ProductDetailsPage(
 
-
-
-                                        },
+                                                rateAmount: 0,
+                                                reviewText: '',
+                                                id: controller.productId??0));
+                                      },
                                       // previosPrice: 180.00,
 
                                       productName: controller.productsModel

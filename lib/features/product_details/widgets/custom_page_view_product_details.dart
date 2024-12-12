@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,36 +9,22 @@ class CustomPageViewProductDetails extends StatelessWidget {
   CustomPageViewProductDetails({
     super.key,
     required this.onPageChanged,
-    required this.items,
+    required this.imageUrl,
    required this. currentPage,
     required this.onTapRight, required this.onTapLeft, required this.pageController,
+    this.
+  item
   });
 
   final void Function(int)? onPageChanged;
-  final List<Widget> items;
+  final String imageUrl;
   final int currentPage;
 final PageController pageController;
 final VoidCallback onTapRight;
 final VoidCallback onTapLeft;
 
-  List<Widget> item = [
-    Image.network(
-      "https://s3-alpha-sig.figma.com/img/04a4/c2e3/0012e3b75ed7e59393eba31e16846530?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Vi6vVNhyp0ntOvArdii11tqMvlb~fvoMDszkqUSsR2Le~1tqIW-xLg9seIZIYIZtxf3dEBBoTJYKUE2KCRhVbgYB9fCXLbF3QxN5Xinjc13cIIGgChkncIIjpnEt9hXM3A~uDrzg6HyTPbcJ~2PmDb0N2pK5Fi-yXh6J4rQkNWh3JHRstodFdPaQAZ43xW1fwfPTC~J3G7u~f5RKDqI6n3IMm3fP9YMM9BEpn9mNOx2gT0k3qbFIsCS00aRz3g-hDQL8TflWkb-7GM5wMHM7dkqA1OnSoD0YM5WC~DWIua1S1IURJtFw78Ygjs~A4YFNVqZxpRNyOMQ~LQldRCqaCQ__",
-      fit: BoxFit.fill,
-    ),
-    Image.network(
-      "https://s3-alpha-sig.figma.com/img/236e/b780/769eca1a5c4de842955b119656de90bb?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Ic~aum9x5JFcOVdHnONHLJ7260HNgQeLBmd4gyMC9BeOGnf7LqEgBXRr0YYPqOuVAunu2SodL5jcLXLB9ItVjrvL0i4NczP7~tAU~22580cmff0SUZdvsPCj5qprruOfzLsCUg9APCP4lLkiWXSmcHUzocXwgKxISR9icF7S0cpfdOj2kwKc~fTMldKCKLGoMZDrzJ-xy1gdtg52qlwrUBM8aGDLJbOoaoMiu3Pxk-qe9tK8IgBY0O8NWLLuMOPAC8Lyp7o8LyQ-g3DdTb7TLt63bSlAyckXJtb31B-gLKeA4WeU6gNJN7Ja0dUELPOyimVkJUKdlRkqM4lGA6cQ9w__",
-      fit: BoxFit.fill,
-    ),
-    Image.network(
-      "https://s3-alpha-sig.figma.com/img/236e/b780/769eca1a5c4de842955b119656de90bb?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Ic~aum9x5JFcOVdHnONHLJ7260HNgQeLBmd4gyMC9BeOGnf7LqEgBXRr0YYPqOuVAunu2SodL5jcLXLB9ItVjrvL0i4NczP7~tAU~22580cmff0SUZdvsPCj5qprruOfzLsCUg9APCP4lLkiWXSmcHUzocXwgKxISR9icF7S0cpfdOj2kwKc~fTMldKCKLGoMZDrzJ-xy1gdtg52qlwrUBM8aGDLJbOoaoMiu3Pxk-qe9tK8IgBY0O8NWLLuMOPAC8Lyp7o8LyQ-g3DdTb7TLt63bSlAyckXJtb31B-gLKeA4WeU6gNJN7Ja0dUELPOyimVkJUKdlRkqM4lGA6cQ9w__",
-      fit: BoxFit.fill,
-    ),
-    Image.network(
-      "https://s3-alpha-sig.figma.com/img/236e/b780/769eca1a5c4de842955b119656de90bb?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Ic~aum9x5JFcOVdHnONHLJ7260HNgQeLBmd4gyMC9BeOGnf7LqEgBXRr0YYPqOuVAunu2SodL5jcLXLB9ItVjrvL0i4NczP7~tAU~22580cmff0SUZdvsPCj5qprruOfzLsCUg9APCP4lLkiWXSmcHUzocXwgKxISR9icF7S0cpfdOj2kwKc~fTMldKCKLGoMZDrzJ-xy1gdtg52qlwrUBM8aGDLJbOoaoMiu3Pxk-qe9tK8IgBY0O8NWLLuMOPAC8Lyp7o8LyQ-g3DdTb7TLt63bSlAyckXJtb31B-gLKeA4WeU6gNJN7Ja0dUELPOyimVkJUKdlRkqM4lGA6cQ9w__",
-      fit: BoxFit.fill,
-    ),
-  ];
+  List<Widget>? item ;
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +35,12 @@ final VoidCallback onTapLeft;
           child: PageView.builder(
             reverse: true,
             scrollDirection: Axis.horizontal,
-            itemCount:items.length,
+            itemCount:imageUrl.length,
             controller: pageController,
 
             onPageChanged: onPageChanged,
             itemBuilder: (context, index) {
-              var item = items[index];
+
               return Container(
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
@@ -61,8 +48,10 @@ final VoidCallback onTapLeft;
                         horizontal: BorderSide(width: 1, color: Color(0xff031780))
                     ),
                     borderRadius: BorderRadius.circular(30)
+
                 ),
-                child: item,
+                child: CachedNetworkImage(imageUrl: imageUrl,fit: BoxFit.contain,)
+
               );
             },
           ),
@@ -75,7 +64,7 @@ final VoidCallback onTapLeft;
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              for (int i = 0; i < items.length; i++)
+              for (int i = 0; i <( item?.length??4); i++)
                 Container(
                     width: 45.w,
                     height: 45.w,
@@ -86,7 +75,7 @@ final VoidCallback onTapLeft;
                             color: currentPage == i
                                 ? ColorsManager.mainblue
                                 : ColorsManager.bordergrey)),
-                    child: item[i]),
+                    child: item?[i]),
             ],
           ),
         ),
@@ -114,7 +103,7 @@ final VoidCallback onTapLeft;
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          for (int i = 0; i < items.length; i++)
+          for (int i = 0; i <( item?.length??4); i++)
             Container(
               margin: const EdgeInsets.all(5),
               height: 8.w,

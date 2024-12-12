@@ -19,17 +19,17 @@ class YukistoreCubit extends Cubit<YukistoreState> {
     fetchProducts();
     emit(ClickOnCategoryContainer());
   }
-  OnTapProduct(int? id){
 
-productId=id;
-emit(OnTapProductState());
+  onTapProduct(int? id) {
+    productId = id;
 
-
+    emit(OnTapProductState());
   }
+
   ProductsModel? productsModel;
 
   int categoryId = 0;
-  int? subCategoryId=0;
+  int? subCategoryId = 0;
   int? productId;
 
   fetchProducts() async {

@@ -102,9 +102,10 @@ class _SetReviewBottomSheetState extends State<SetReviewBottomSheet> {
                       child: Text( "Rate",style: TextStyles.font16White700Weight,),
                       onPressed: () {
                         setState(() {
-                          MagicRouter.navigateTo(ProductdetailsPage(
+                          MagicRouter.navigateTo(ProductDetailsPage(
                             rateAmount: widget.rateAmount,
                             reviewText: reviewController.text.toString(),
+                            id: 3,
                           ));
                         });
                       },

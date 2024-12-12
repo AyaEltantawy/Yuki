@@ -1,20 +1,25 @@
-abstract class ProductdetailsState {}
+abstract class ProductDetailsState {}
 
-class ProductdetailsStateInit extends ProductdetailsState {}
+class ProductDetailsStateInit extends ProductDetailsState {}
 
-class BuildCarouselIndicator extends ProductdetailsState {}
+class BuildCarouselIndicator extends ProductDetailsState {}
 
-class UpdateArrivalsAndFeatured extends ProductdetailsState {}
+class UpdateArrivalsAndFeatured extends ProductDetailsState {}
 
-class UdatContainerOnStack extends ProductdetailsState {}
+class UpdateContainerOnStack extends ProductDetailsState {}
 
-class UpdateArrowRight extends ProductdetailsState {}
+class UpdateArrowRight extends ProductDetailsState {}
 
-class UpdateIncrement extends ProductdetailsState {}
+class UpdateIncrement extends ProductDetailsState {}
 
-class UpdateDecrement extends ProductdetailsState {}
+class UpdateDecrement extends ProductDetailsState {}
 
-class UpdateRating extends ProductdetailsState {}
-class ProductDetailsLoadingState extends ProductdetailsState{}
-class ProductDetailsSuccessState extends ProductdetailsState{}
-class ProductDetailsErrorState extends ProductdetailsState{}
+class UpdateRating extends ProductDetailsState {}
+
+class ProductDetailsLoadingState extends ProductDetailsState {}
+
+class ProductDetailsSuccessState extends ProductDetailsState {}
+
+class ProductDetailsErrorState extends ProductDetailsState {}
+class GetProductDetailsState extends ProductDetailsErrorState{}
+class UpdateIngredientsAndUseTo extends ProductDetailsState{}

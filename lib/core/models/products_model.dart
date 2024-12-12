@@ -76,20 +76,20 @@ class Items {
 
   Items(
       {this.id,
-        this.name,
-        this.image,
-        this.statusKey,
-        this.status,
-        this.isAvailable,
-        this.rate,
-        this.offer,
-        this.priceWithoutDiscount,
-        this.price,
-        this.priceAfterDiscount,
-        this.priceDiscount,
-        this.currency,
-        this.isFavoured,
-        this.productQuantity});
+      this.name,
+      this.image,
+      this.statusKey,
+      this.status,
+      this.isAvailable,
+      this.rate,
+      this.offer,
+      this.priceWithoutDiscount,
+      this.price,
+      this.priceAfterDiscount,
+      this.priceDiscount,
+      this.currency,
+      this.isFavoured,
+      this.productQuantity});
 
   Items.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -141,12 +141,12 @@ class Paginate {
 
   Paginate(
       {this.total,
-        this.count,
-        this.perPage,
-        this.nextPageUrl,
-        this.prevPageUrl,
-        this.currentPage,
-        this.totalPages});
+      this.count,
+      this.perPage,
+      this.nextPageUrl,
+      this.prevPageUrl,
+      this.currentPage,
+      this.totalPages});
 
   Paginate.fromJson(Map<String, dynamic> json) {
     total = json['total'];

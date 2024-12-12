@@ -9,53 +9,30 @@ import 'package:yuki/core/theming/colors.dart';
 
 import 'package:yuki/features/product_details/product_details_state.dart';
 
-class ProductdetailsCubit extends Cubit<ProductdetailsState> {
-  ProductdetailsCubit() : super(ProductdetailsStateInit());
+class ProductDetailsCubit extends Cubit<ProductDetailsState> {
+  ProductDetailsCubit() : super(ProductDetailsStateInit()) {
+    fetchProductDetails(id ?? 0);
+    // getProductDetails(id??0);
+  }
+
   double rateAmount = 0;
   bool onPress = false;
   int currentPage = 0;
-  List<Widget> items = [
-    Image.network(
-      "https://s3-alpha-sig.figma.com/img/04a4/c2e3/0012e3b75ed7e59393eba31e16846530?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Vi6vVNhyp0ntOvArdii11tqMvlb~fvoMDszkqUSsR2Le~1tqIW-xLg9seIZIYIZtxf3dEBBoTJYKUE2KCRhVbgYB9fCXLbF3QxN5Xinjc13cIIGgChkncIIjpnEt9hXM3A~uDrzg6HyTPbcJ~2PmDb0N2pK5Fi-yXh6J4rQkNWh3JHRstodFdPaQAZ43xW1fwfPTC~J3G7u~f5RKDqI6n3IMm3fP9YMM9BEpn9mNOx2gT0k3qbFIsCS00aRz3g-hDQL8TflWkb-7GM5wMHM7dkqA1OnSoD0YM5WC~DWIua1S1IURJtFw78Ygjs~A4YFNVqZxpRNyOMQ~LQldRCqaCQ__",
-      fit: BoxFit.fill,
-    ),
-    Image.network(
-      "https://s3-alpha-sig.figma.com/img/236e/b780/769eca1a5c4de842955b119656de90bb?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Ic~aum9x5JFcOVdHnONHLJ7260HNgQeLBmd4gyMC9BeOGnf7LqEgBXRr0YYPqOuVAunu2SodL5jcLXLB9ItVjrvL0i4NczP7~tAU~22580cmff0SUZdvsPCj5qprruOfzLsCUg9APCP4lLkiWXSmcHUzocXwgKxISR9icF7S0cpfdOj2kwKc~fTMldKCKLGoMZDrzJ-xy1gdtg52qlwrUBM8aGDLJbOoaoMiu3Pxk-qe9tK8IgBY0O8NWLLuMOPAC8Lyp7o8LyQ-g3DdTb7TLt63bSlAyckXJtb31B-gLKeA4WeU6gNJN7Ja0dUELPOyimVkJUKdlRkqM4lGA6cQ9w__",
-      fit: BoxFit.fill,
-    ),
-    Image.network(
-      "https://s3-alpha-sig.figma.com/img/236e/b780/769eca1a5c4de842955b119656de90bb?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Ic~aum9x5JFcOVdHnONHLJ7260HNgQeLBmd4gyMC9BeOGnf7LqEgBXRr0YYPqOuVAunu2SodL5jcLXLB9ItVjrvL0i4NczP7~tAU~22580cmff0SUZdvsPCj5qprruOfzLsCUg9APCP4lLkiWXSmcHUzocXwgKxISR9icF7S0cpfdOj2kwKc~fTMldKCKLGoMZDrzJ-xy1gdtg52qlwrUBM8aGDLJbOoaoMiu3Pxk-qe9tK8IgBY0O8NWLLuMOPAC8Lyp7o8LyQ-g3DdTb7TLt63bSlAyckXJtb31B-gLKeA4WeU6gNJN7Ja0dUELPOyimVkJUKdlRkqM4lGA6cQ9w__",
-      fit: BoxFit.fill,
-    ),
-    Image.network(
-      "https://s3-alpha-sig.figma.com/img/236e/b780/769eca1a5c4de842955b119656de90bb?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Ic~aum9x5JFcOVdHnONHLJ7260HNgQeLBmd4gyMC9BeOGnf7LqEgBXRr0YYPqOuVAunu2SodL5jcLXLB9ItVjrvL0i4NczP7~tAU~22580cmff0SUZdvsPCj5qprruOfzLsCUg9APCP4lLkiWXSmcHUzocXwgKxISR9icF7S0cpfdOj2kwKc~fTMldKCKLGoMZDrzJ-xy1gdtg52qlwrUBM8aGDLJbOoaoMiu3Pxk-qe9tK8IgBY0O8NWLLuMOPAC8Lyp7o8LyQ-g3DdTb7TLt63bSlAyckXJtb31B-gLKeA4WeU6gNJN7Ja0dUELPOyimVkJUKdlRkqM4lGA6cQ9w__",
-      fit: BoxFit.fill,
-    ),
-  ];
 
-  /*buildCarouselIndicator() {
-    return Positioned(
-      bottom: 7.h,
-      right: 10.w,
-      left: 10.w,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          for (int i = 0; i < items.length; i++)
-            Container(
-              margin: const EdgeInsets.all(5),
-              height: 8.w,
-              width: 8.h,
-              decoration: BoxDecoration(
-                  color: i == currentPage
-                      ? ColorsManager.mainblue
-                      : ColorsManager.black.withOpacity(.3),
-                  shape: BoxShape.circle),
-            ),
-        ],
-      ),
-    );
-  }*/
+  List text = ["Ingredients", "How to Use"];
+  int index = 0;
+
+  updateIngredientsAndUseTo(index) {
+    this.index = index;
+    emit(UpdateIngredientsAndUseTo());
+  }
+
+  void getProductDetails(int productId) {
+    id = productId;
+    fetchProductDetails(productId);
+    emit(GetProductDetailsState());
+  }
+
   void updateIndicator(value) {
     currentPage = value;
 
@@ -66,7 +43,7 @@ class ProductdetailsCubit extends Cubit<ProductdetailsState> {
 
   updatContainerOnStack(value) {
     currentPage = value;
-    emit(UdatContainerOnStack());
+    emit(UpdateContainerOnStack());
   }
 
   int value = 0;
@@ -99,18 +76,28 @@ class ProductdetailsCubit extends Cubit<ProductdetailsState> {
   }
 
   ProductDetailsResponse? productDetailsResponse;
-
-  fetchProductDetails() async {
+  Product? product;
+  List<dynamic>? images ;
+  String? imageUrl;
+  fetchProductDetails(int id) async {
     emit(ProductDetailsLoadingState());
-    final response = await DioHelper.get("products/:id");
+    final response = await DioHelper.get("products/$id");
     final data = response!.data as Map<String, dynamic>;
+    print("asdcdcdcddedededddc $data");
     if (data['status'] == true) {
+      print(id);
       productDetailsResponse = ProductDetailsResponse.fromJson(data);
+      product=productDetailsResponse?.data?.product;
+     images =productDetailsResponse?.data?.product?.images;
+      if ((images?.isNotEmpty)??true ) {
+       imageUrl  = images?[0]['url'];
+        print("Image URL: $imageUrl");
+      } else {
+        print("No images found.");
+      }
       emit(ProductDetailsSuccessState());
-    }else{
+    } else {
       emit(ProductDetailsErrorState());
-
-
     }
   }
 }

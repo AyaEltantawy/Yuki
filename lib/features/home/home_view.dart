@@ -181,9 +181,10 @@ class HomePage extends StatelessWidget {
                                       CustomProduct(
                                         onTap: () {
                                           MagicRouter.navigateTo(
-                                              ProductdetailsPage(
+                                              ProductDetailsPage(
                                             rateAmount: 0,
                                             reviewText: '',
+                                                id:controller.featured?.items?[index].id??3
                                           ));
                                         },
                                         productName: controller
@@ -222,9 +223,11 @@ class HomePage extends StatelessWidget {
                                         CustomProduct(
                                           onTap: () {
                                             MagicRouter.navigateTo(
-                                                ProductdetailsPage(
+                                                ProductDetailsPage(
                                               rateAmount: 0,
                                               reviewText: '',
+
+                                                  id:controller.products?.items?[index].id??3
                                             ));
                                           },
                                           productName: controller.products
