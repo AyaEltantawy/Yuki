@@ -1,9 +1,9 @@
-class FavoriteProductsState {
-  FavoriteProductsState init() {
-    return FavoriteProductsState();
-  }
+abstract class FavoriteProductsState {}
 
-  FavoriteProductsState clone() {
-    return FavoriteProductsState();
-  }
-}
+class FavoriteProductsStateInit extends FavoriteProductsState {}
+
+class FavoriteProductsLoadingState extends FavoriteProductsState {}
+
+class FavoriteProductsSuccessState extends FavoriteProductsState {}
+
+class FavoriteProductsErrorState extends FavoriteProductsState {}
