@@ -29,7 +29,7 @@ class DioHelper {
     dioSingleton.options.headers =
         isAuh ? {'Authorization': 'Bearer ${AppStorage.getToken}'} : null;
     final response = dioSingleton.post(path,
-        data: formData ?? FormData.fromMap(body!),
+        data: formData,
         options: Options(
             requestEncoder: encoding,
             headers: {

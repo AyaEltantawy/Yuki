@@ -164,7 +164,8 @@ class HomePage extends StatelessWidget {
                               text: text[index],
                               radius: radius[index],
                               svgUrl: svgUrl[index],
-                              isArrival: controller.indexArriveAndFeatured == index,
+                              isArrival:
+                                  controller.indexArriveAndFeatured == index,
                               updateArrivalsAndFeatured: () =>
                                   controller.updateArrivalsAndFeatured(index),
                             );
@@ -181,10 +182,11 @@ class HomePage extends StatelessWidget {
                                   itemBuilder: (context, index) =>
                                       CustomProduct(
                                         onTapFavorite: () {
-                                          controller.updateFavorite(index);
+                                          return controller
+                                              .toggleFavorite(index);
                                         },
-
-                                        isFavourite: controller.index == index,
+                                        isFavourite: controller.favoriteIndices
+                                            .contains(index),
                                         onTap: () {
                                           MagicRouter.navigateTo(
                                               ProductDetailsPage(
@@ -229,10 +231,12 @@ class HomePage extends StatelessWidget {
                                       children: [
                                         CustomProduct(
                                           onTapFavorite: () {
-                                            controller.updateFavorite(index);
+                                            return controller
+                                                .toggleFavorite(index);
                                           },
-                                          isFavourite:
-                                              controller.indexArriveAndFeatured == index,
+                                          isFavourite: controller
+                                              .favoriteIndices
+                                              .contains(index),
                                           onTap: () {
                                             MagicRouter.navigateTo(
                                                 ProductDetailsPage(

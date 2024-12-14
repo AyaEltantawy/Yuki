@@ -1,10 +1,9 @@
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-
 import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:yuki/core/routing/page_router.dart';
 import 'package:yuki/core/shared_widgets/category_container.dart';
 import 'package:yuki/core/shared_widgets/custom_product.dart';
@@ -17,7 +16,6 @@ import 'package:yuki/features/product_details/product_details_view.dart';
 
 import 'yukistore_cubit.dart';
 import 'yukistore_state.dart';
-import 'package:badges/badges.dart' as badges;
 
 class YukistorePage extends StatelessWidget {
   final int category_id;
@@ -185,9 +183,12 @@ class YukistorePage extends StatelessWidget {
                                             3);
                                     i++)
                                   CustomProduct(
-                                    onTapFavorite: (){cubit.updateFavorite(i);    controller.onTapProduct(controller
-                                        .productsModel?.data?.items?[i].id);},
-                                      isFavourite: cubit.index==i,
+                                      onTapFavorite: () {
+                                        return controller
+                                            .toggleFavorite(i);
+                                      },
+                                      isFavourite: controller.favoriteIndices
+                                          .contains(i),
                                       onTap: () {
                                         controller.onTapProduct(controller
                                             .productsModel?.data?.items?[i].id);

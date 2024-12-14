@@ -67,7 +67,14 @@ class YukistoreCubit extends Cubit<YukistoreState> {
 
 
   }
+  Set<int> favoriteIndices = {};
 
+  void toggleFavorite(int index) {
+    if (!favoriteIndices.contains(index)) {
+      favoriteIndices.add(index);
+      emit(UpdateFavorite());
+    }
+  }
 
   updateFavorite(int index){
 

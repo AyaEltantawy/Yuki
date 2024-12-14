@@ -71,13 +71,26 @@ class HomeCubit extends Cubit<HomeState> {
     this.indexArriveAndFeatured = index;
     emit(UpdateArrivalsAndFeatured());
   }
-int index =0;
-  updateFavorite(int index){
 
-    this.index != index;
-    emit(UpdateFavorite());
 
+
+// int index =0;
+//   bool isFavorite =false;
+//   updateFavorite(int index){
+// //isFavorite = ! isFavorite;
+//     this.index = index;
+//     emit(UpdateFavorite());
+//
+//   }
+  Set<int> favoriteIndices = {};
+
+  void toggleFavorite(int index) {
+    if (!favoriteIndices.contains(index)) {
+      favoriteIndices.add(index);
+      emit(UpdateFavorite());
+    }
   }
+
 
   HomeModel? homeModel;
   List<Banners>? banners;

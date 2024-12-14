@@ -10,7 +10,7 @@ import 'favoriteproducts_state.dart';
 class FavoriteProductsCubit extends Cubit<FavoriteProductsState> {
   FavoriteProductsCubit() : super(FavoriteProductsStateInit()) {
     fetchFavoriteProducts();
-    addFavoriteProducts(productId);
+    addFavoriteProducts(productId ?? 0);
   }
 
   FavoriteProductsResponse? favoriteProductsResponse;
@@ -23,6 +23,12 @@ class FavoriteProductsCubit extends Cubit<FavoriteProductsState> {
     if (data['status'] == true) {
       favoriteProductsResponse = FavoriteProductsResponse.fromJson(data);
       products = favoriteProductsResponse?.data?.products;
+      // for (var item in data['data']) {
+      //
+      //   var newProduct = Product.fromJson(item);
+      //   if (!products.any((product) => product.id == newProduct.id)) {
+      //     products?.add(newProduct);
+      //    }
       emit(FavoriteProductsSuccessState());
     } else {
       emit(FavoriteProductsErrorState());
@@ -40,7 +46,7 @@ class FavoriteProductsCubit extends Cubit<FavoriteProductsState> {
   addFavoriteProducts(productId) async {
     emit(AddFavoriteProductsLoadingState());
 
-    DioHelper.post("favourite/$productId", false, body: null).then((response) {
+    DioHelper.post("favourite/$productId", false,).then((response) {
       final data = response.data as Map<String, dynamic>;
       print("dataaa $data");
       print(' jdshjhfdsjbdsj${data['message']}');
@@ -49,8 +55,10 @@ class FavoriteProductsCubit extends Cubit<FavoriteProductsState> {
         Utils.showSnackBar(
           MagicRouter.currentContext,
           data['message'],
-        );
 
+
+        );
+        print("bhnkm${productId}");
         emit(AddFavoriteProductsSuccessState());
       } else {
         Utils.showSnackBar(
