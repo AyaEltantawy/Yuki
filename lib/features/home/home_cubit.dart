@@ -13,7 +13,7 @@ class HomeCubit extends Cubit<HomeState> {
     fetchHome();
   }
 
-  int index = 0;
+  int indexArriveAndFeatured = 0;
   int currentPage = 0;
   List<Widget> items = [
     Image.asset(
@@ -68,8 +68,15 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   updateArrivalsAndFeatured(index) {
-    this.index = index;
+    this.indexArriveAndFeatured = index;
     emit(UpdateArrivalsAndFeatured());
+  }
+int index =0;
+  updateFavorite(int index){
+
+    this.index != index;
+    emit(UpdateFavorite());
+
   }
 
   HomeModel? homeModel;

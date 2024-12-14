@@ -119,7 +119,8 @@ class HomePage extends StatelessWidget {
                                     (index) {
                                   return GestureDetector(
                                     onTap: () {
-                                      MagicRouter.navigateTo(const YukistorePage(
+                                      MagicRouter.navigateTo(
+                                          const YukistorePage(
                                         category_id: 0,
                                       ));
                                     },
@@ -163,7 +164,7 @@ class HomePage extends StatelessWidget {
                               text: text[index],
                               radius: radius[index],
                               svgUrl: svgUrl[index],
-                              isArrival: controller.index == index,
+                              isArrival: controller.indexArriveAndFeatured == index,
                               updateArrivalsAndFeatured: () =>
                                   controller.updateArrivalsAndFeatured(index),
                             );
@@ -171,7 +172,7 @@ class HomePage extends StatelessWidget {
                           SizedBox(
                             height: 20.h,
                           ),
-                          if (controller.index == 1)
+                          if (controller.indexArriveAndFeatured == 1)
                             SizedBox(
                               height: 276.5.h,
                               child: ListView.separated(
@@ -179,13 +180,19 @@ class HomePage extends StatelessWidget {
                                   //shrinkWrap: true,
                                   itemBuilder: (context, index) =>
                                       CustomProduct(
+                                        onTapFavorite: () {
+                                          controller.updateFavorite(index);
+                                        },
+
+                                        isFavourite: controller.index == index,
                                         onTap: () {
                                           MagicRouter.navigateTo(
                                               ProductDetailsPage(
-                                            rateAmount: 0,
-                                            reviewText: '',
-                                                id:controller.featured?.items?[index].id??3
-                                          ));
+                                                  rateAmount: 0,
+                                                  reviewText: '',
+                                                  id: controller.featured
+                                                          ?.items?[index].id ??
+                                                      3));
                                         },
                                         productName: controller
                                                 .featured?.items?[index].name ??
@@ -209,7 +216,7 @@ class HomePage extends StatelessWidget {
                                   itemCount:
                                       controller.featured?.items?.length ?? 3),
                             ),
-                          if (controller.index == 0)
+                          if (controller.indexArriveAndFeatured == 0)
                             SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
                               child: Row(
@@ -221,14 +228,21 @@ class HomePage extends StatelessWidget {
                                     return Row(
                                       children: [
                                         CustomProduct(
+                                          onTapFavorite: () {
+                                            controller.updateFavorite(index);
+                                          },
+                                          isFavourite:
+                                              controller.indexArriveAndFeatured == index,
                                           onTap: () {
                                             MagicRouter.navigateTo(
                                                 ProductDetailsPage(
-                                              rateAmount: 0,
-                                              reviewText: '',
-
-                                                  id:controller.products?.items?[index].id??3
-                                            ));
+                                                    rateAmount: 0,
+                                                    reviewText: '',
+                                                    id: controller
+                                                            .products
+                                                            ?.items?[index]
+                                                            .id ??
+                                                        3));
                                           },
                                           productName: controller.products
                                                   ?.items?[index].name ??

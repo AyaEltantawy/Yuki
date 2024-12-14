@@ -19,3 +19,5 @@ class HomeStateWithBanners extends HomeState {}
 class HomeStateError extends HomeState {
   HomeStateError(String message);
 }
+
+class UpdateFavorite extends HomeState {}

@@ -16,3 +16,4 @@ class SubCategoriesSuccessState extends YukistoreState {}
 
 class SubCategoriesErrorState extends YukistoreState {}
 class  OnTapProductState extends YukistoreState{}
+class UpdateFavorite extends YukistoreState{}

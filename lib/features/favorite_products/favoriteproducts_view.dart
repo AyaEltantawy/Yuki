@@ -12,12 +12,13 @@ import 'favoriteproducts_state.dart';
 import 'package:badges/badges.dart' as badges;
 
 class FavoriteProductsPage extends StatelessWidget {
-  const FavoriteProductsPage({super.key});
+  const FavoriteProductsPage({super.key,  this.id});
 
+  final int? id;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (BuildContext context) => FavoriteProductsCubit(),
+        create: (BuildContext context) => FavoriteProductsCubit()..addFavoriteProductsById(id),
         child: Scaffold(
             body: SafeArea(
               child: BlocBuilder<FavoriteProductsCubit, FavoriteProductsState>(
@@ -83,7 +84,7 @@ class FavoriteProductsPage extends StatelessWidget {
                             for (int i = 0; i < (controller.products?.length??1); i++)
 
                               CustomProduct(onTap: () {},
-
+onTapFavorite: (){},
                                   productName: controller.products?[i].name??'',
                                   imageUrl: controller.products?[i]?.image??'',
                                   currentPrice: controller.products?[i]?.price??0,

@@ -185,6 +185,9 @@ class YukistorePage extends StatelessWidget {
                                             3);
                                     i++)
                                   CustomProduct(
+                                    onTapFavorite: (){cubit.updateFavorite(i);    controller.onTapProduct(controller
+                                        .productsModel?.data?.items?[i].id);},
+                                      isFavourite: cubit.index==i,
                                       onTap: () {
                                         controller.onTapProduct(controller
                                             .productsModel?.data?.items?[i].id);

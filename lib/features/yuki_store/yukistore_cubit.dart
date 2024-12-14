@@ -48,7 +48,7 @@ class YukistoreCubit extends Cubit<YukistoreState> {
       emit(ProductsErrorState());
     }
   }
-
+  int index=0;
   List<SubCategoryItem> subcategories = [];
 
   fetchSubCategories() async {
@@ -64,5 +64,18 @@ class YukistoreCubit extends Cubit<YukistoreState> {
     } else {
       emit(SubCategoriesErrorState());
     }
+
+
   }
+
+
+  updateFavorite(int index){
+
+    this.index!=index;
+    emit(UpdateFavorite());
+
+  }
+
+
+
 }

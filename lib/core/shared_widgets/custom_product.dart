@@ -13,10 +13,12 @@ class CustomProduct extends StatelessWidget {
       this.previosPrice,
       required this.currentPrice,
       required this.offerState,
-      required this.onTap});
+      required this.onTap,
+      required this.onTapFavorite,this .isFavourite});
 
-  bool isFavourite = false;
+  bool? isFavourite ;
   int count = 1;
+  final VoidCallback onTapFavorite;
 
   void increament() {
     count++;
@@ -49,7 +51,7 @@ class CustomProduct extends StatelessWidget {
           children: [
             Stack(children: [
               Padding(
-                padding:  EdgeInsets.symmetric(vertical: 10.0.h),
+                padding: EdgeInsets.symmetric(vertical: 10.0.h),
                 child: CachedNetworkImage(
                   width: 135.w,
                   height: 122.w,
@@ -98,20 +100,13 @@ class CustomProduct extends StatelessWidget {
                           builder: (BuildContext context,
                               void Function(void Function()) setState) {
                             return InkWell(
-                              child: Icon(
-                                isFavourite == false
-                                    ? Icons.favorite_border
-                                    : Icons.favorite,
-                                color: ColorsManager.secondred,
-                              ),
-                              onTap: () {
-                                setState(
-                                  () {
-                                    isFavourite = !isFavourite;
-                                  },
-                                );
-                              },
-                            );
+                                child: Icon(
+                                  isFavourite == false
+                                      ? Icons.favorite_border
+                                      : Icons.favorite,
+                                  color: ColorsManager.secondred,
+                                ),
+                                onTap: onTapFavorite);
                           },
                         ),
                       ],
