@@ -5,7 +5,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:yuki/core/app_storage/app_storage.dart';
 import 'package:yuki/core/routing/page_router.dart';
 import 'package:yuki/core/theming/colors.dart';
-import 'package:yuki/features/register/register_view.dart';
 import 'package:yuki/features/splash/splash_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 

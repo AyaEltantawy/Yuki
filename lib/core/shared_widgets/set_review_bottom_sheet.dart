@@ -8,12 +8,13 @@ import 'package:yuki/core/shared_widgets/custom_button.dart';
 import 'package:yuki/core/shared_widgets/custom_text_form_feild.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
-import 'package:yuki/features/product_details/product_details_view.dart';
+
+import '../../features/bottom_nav_bar/product_details/product_details_view.dart';
 
 class SetReviewBottomSheet extends StatefulWidget {
   SetReviewBottomSheet({
     super.key,
-   required  this.rateAmount,
+    required this.rateAmount,
     this.reviewText,
   });
 
@@ -30,9 +31,11 @@ class _SetReviewBottomSheetState extends State<SetReviewBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color:Colors.white,borderRadius: BorderRadius.circular(20)),
+      decoration: BoxDecoration(
+          color: Colors.white, borderRadius: BorderRadius.circular(20)),
       child: SafeArea(
-        child: ListView(shrinkWrap:true ,
+        child: ListView(
+          shrinkWrap: true,
           padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
           scrollDirection: Axis.vertical,
           children: [
@@ -76,10 +79,11 @@ class _SetReviewBottomSheetState extends State<SetReviewBottomSheet> {
                 },
               ),
             ),
-            CustomTextFormFeild(maxLines: 2,
+            CustomTextFormFeild(
+              maxLines: 2,
               upperText: "Share Your Experience",
               prefixIcon: Padding(
-                padding: EdgeInsets.only(bottom:25.h),
+                padding: EdgeInsets.only(bottom: 25.h),
                 child: Image.asset("assets/images/Pen 2.png"),
               ),
               hint: "Share your experince with us",
@@ -99,13 +103,17 @@ class _SetReviewBottomSheetState extends State<SetReviewBottomSheet> {
                 children: [
                   Expanded(
                     child: CustomButton(
-                      child: Text( "Rate",style: TextStyles.font16White700Weight,),
+                      child: Text(
+                        "Rate",
+                        style: TextStyles.font16White700Weight,
+                      ),
                       onPressed: () {
                         setState(() {
                           MagicRouter.navigateTo(ProductDetailsPage(
                             rateAmount: widget.rateAmount,
                             reviewText: reviewController.text.toString(),
                             id: 3,
+
                           ));
                         });
                       },

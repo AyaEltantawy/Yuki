@@ -2,8 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:yuki/core/app_storage/app_storage.dart';
 import 'package:yuki/core/routing/page_router.dart';
-import 'package:yuki/core/shared_widgets/curved_navigation_bar.dart';
-import 'package:yuki/features/login/login_view.dart';
+import 'package:yuki/features/auth/login/login_view.dart';
+import 'package:yuki/features/bottom_nav_bar/bottom_nav_bar_view.dart';
 
 import 'splash_state.dart';
 
@@ -12,10 +12,10 @@ class SplashCubit extends Cubit<SplashState> {
   String? token = AppStorage.getToken;
 
   navigate() {
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 3), () {
       token != null && token != ""
-          ? MagicRouter.navigateTo(CustomCurvedNavigationBar())
-          : MagicRouter.navigateTo(LoginPage());
+          ? MagicRouter.navigateTo(const BottomNavBarPage())
+          : MagicRouter.navigateTo(const LoginPage());
     });
   }
 }

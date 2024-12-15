@@ -12,7 +12,7 @@ class MagicRouter {
       {Object? arguments}) =>
       navigatorKey.currentState?.pushNamed(pageName, arguments: arguments);
 
-  static Future<dynamic>? navigateTo(Widget page) =>
+  static Future<dynamic>? navigateTo(Widget page, {Object? arguments}) =>
       navigatorKey.currentState?.push(_materialPageRoute(page));
 
   static Future<dynamic>? navigateToWithSlideEffect(Widget page,
