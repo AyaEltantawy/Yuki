@@ -106,17 +106,65 @@ class EntryAddressPage extends StatelessWidget {
                     Row(
                       children: [
                         Expanded(
-                            child: DropDownButton(
-                          upperText: "Country",
-                          hintText: ' Select your country ...',
-                        )),
+                            child: state is CountriesLoaingState
+                                ? const Center(
+                                    child: CircularProgressIndicator())
+                                : state is CountryErrorState
+                                    ? const Text("Error")
+                                    : DropDownButton(
+                                        dropDownItems: List.generate(
+                                            controller.countriesResponse?.data
+                                                    ?.length ??
+                                                0, (index) {
+                                          return controller.countriesResponse
+                                                  ?.data?[index].name ??
+                                              '';
+
+                                        }),
+                                        onChanged: (value) {
+                                          controller
+                                              .updateCountry(value.toString());
+                                          for (int i = 1;
+                                          i <
+                                              (controller
+                                                  .countriesResponse?.data?.length ??
+                                                  0);
+                                          i++) {
+                                            controller.updateEachCountryCities(
+                                                controller.countriesResponse?.data?[i].id);
+                                          }
+                                        },
+                                        selectedItem:
+                                            controller.selectedCountryItem,
+                                        upperText: "Country",
+                                        hintText: ' Select your country ...',
+                                      )),
                         SizedBox(
                           width: 5.w,
                         ),
                         Expanded(
-                          child: DropDownButton(
+                          child:
+                          state is CitiesLoaingState
+                              ? const Center(
+                              child: CircularProgressIndicator())
+                              : state is CitiesErrorState
+                              ? const Text("Error")
+                              :
+                          DropDownButton(
                             upperText: "City",
                             hintText: ' Select your City ...',
+                            selectedItem: controller.selectedCityItem,
+                            onChanged: (value) {
+                              controller.updateCity(value.toString());
+
+                            },
+                            dropDownItems: List.generate(
+                                controller.citiesResponse?.data?.length ?? 0,
+                                (index) {
+                              return controller
+                                      .citiesResponse?.data?[index].name ??
+                                  "";
+                            }),
                           ),
                         ),
                       ],

@@ -1,9 +1,9 @@
-class ContactusState {
-  ContactusState init() {
-    return ContactusState();
-  }
+abstract class ContactusState {}
 
-  ContactusState clone() {
-    return ContactusState();
-  }
-}
+class ContactusStateInit extends ContactusState {}
+
+class ContactUsLoadingState extends ContactusState {}
+
+class ContactUsSuccessState extends ContactusState {}
+
+class ContactUsErrorState extends ContactusState {}

@@ -6,11 +6,13 @@ import 'package:yuki/core/theming/styles.dart';
 class DropDownButton extends StatelessWidget {
   final String upperText;
   bool dropdownValue = true;
-  String? _selectedItem;
+  String? selectedItem;
 final String hintText;
-  DropDownButton({super.key, required this.upperText, required this.hintText});
+  void Function(Object?)? onChanged;
+  final List<String> dropDownItems;
+  DropDownButton({super.key, required this.upperText, required this.hintText ,required this.dropDownItems,this.onChanged,this.selectedItem});
 
-  List<String> _dropDownItems = ['Egypt', "Saudi", "Oman"];
+
 
   @override
   Widget build(BuildContext context) {
@@ -26,18 +28,23 @@ final String hintText;
               color: ColorsManager.lightgrey,
               borderRadius: BorderRadius.circular(5)),
           child: DropdownButton(
+
             hint: Text(
               hintText,
               style: TextStyles.font13Icongrey400Weight,
             ),
-            underline: SizedBox(),
+            underline: const SizedBox(),
             isExpanded: true,
-            value: _selectedItem,
-            items: _dropDownItems.map((String item) {
-              return DropdownMenuItem(value: item, child: Text(item));
+            value: selectedItem,
+            items: dropDownItems.map((item) {
+              return DropdownMenuItem<String>(
+                value: item,
+                child: Text(item),
+              );
             }).toList(),
-            onChanged: (Object? value) {},
-            icon: Icon(Icons.arrow_drop_down,color:ColorsManager.black),
+            onChanged: onChanged,
+
+            icon: const Icon(Icons.arrow_drop_down,color:ColorsManager.black),
           ),
         )
       ],

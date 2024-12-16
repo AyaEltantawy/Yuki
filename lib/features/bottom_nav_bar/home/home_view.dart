@@ -44,7 +44,9 @@ class HomePage extends StatelessWidget {
                       children: [
                           ImageAndLogoAndNotification(
                             onTapOnNotification: () {
-                              MagicRouter.navigateTo(NotificationsPage());
+                              // MagicRouter.navigateTo(NotificationsPage());
+                              controller.notificationService.sendNotifications(
+                                  title: 'Flutter', body: 'Hello');
                             },
                           ),
                           SizedBox(

@@ -4,8 +4,11 @@ import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
 
 class ShoppingCart extends StatelessWidget {
- final bool isDelete ;
-  ShoppingCart({super.key,required this.isDelete});
+  final bool isDelete;
+  final String? name;
+  final num? price;
+
+  ShoppingCart({super.key, required this.isDelete, this.name, this.price});
 
   int count = 1;
 
@@ -51,9 +54,9 @@ class ShoppingCart extends StatelessWidget {
 
                 Text(
                   "$count",
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ),
-               IconButton(
+                IconButton(
                   icon: const Icon(
                     Icons.add,
                     size: 17,
@@ -78,7 +81,7 @@ class ShoppingCart extends StatelessWidget {
             decoration: BoxDecoration(
                 color: ColorsManager.grey,
                 borderRadius: BorderRadius.circular(5),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     blurRadius: 48,
                     spreadRadius: 0,
@@ -101,7 +104,7 @@ class ShoppingCart extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("rosemairy shaghgsh",
+                        Text(name ?? '',
                             style: TextStyles.font16Black700Weight),
                         SizedBox(
                           height: 10.h,
@@ -112,7 +115,7 @@ class ShoppingCart extends StatelessWidget {
                                 style: TextStyles.font13Black400Weight,
                                 children: [
                               TextSpan(
-                                  text: " 360.00",
+                                  text: "$price",
                                   style: TextStyles.font13Mainblue700Weight),
                             ])),
                       ],
@@ -120,12 +123,14 @@ class ShoppingCart extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.only(bottom: 53.h),
-                    child: isDelete ?IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.delete,
-                          color: ColorsManager.red,
-                        )):null,
+                    child: isDelete
+                        ? IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.delete,
+                              color: ColorsManager.red,
+                            ))
+                        : null,
                   )
                 ],
               ),

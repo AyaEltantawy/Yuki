@@ -5,14 +5,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:yuki/core/app_storage/app_storage.dart';
 import 'package:yuki/core/dio_helper/dio_helper.dart';
 import 'package:yuki/core/models/home_model.dart';
+import 'package:yuki/core/services/notification_service.dart';
 
 import 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeStateInit()) {
     fetchHome();
+    notificationService.initializeNotification();
   }
-
+NotificationService notificationService =NotificationService();
   int indexArriveAndFeatured = 0;
   int currentPage = 0;
   List<Widget> items = [

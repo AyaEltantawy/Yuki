@@ -103,7 +103,7 @@ class ProductsPage extends StatelessWidget {
                               onTap: () {
                                 showModalBottomSheet(
                                   context: context,
-                                  builder: (context) => FilterButtomSheet(),
+                                  builder: (context) => const FilterButtomSheet(),
                                 );
                               },
                               child: Image.asset(

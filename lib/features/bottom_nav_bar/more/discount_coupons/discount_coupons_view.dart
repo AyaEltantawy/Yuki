@@ -8,6 +8,8 @@ import 'package:yuki/features/bottom_nav_bar/more/discount_coupons/widgets/custo
 import 'discount_coupons_cubit.dart';
 
 class DiscountCouponsPage extends StatelessWidget {
+  const DiscountCouponsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

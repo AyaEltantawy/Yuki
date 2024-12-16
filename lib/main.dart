@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:yuki/core/app_storage/app_storage.dart';
@@ -7,6 +8,9 @@ import 'package:yuki/core/routing/page_router.dart';
 import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/features/splash/splash_view.dart';
 import 'package:firebase_core/firebase_core.dart';
+
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
 
 main() async {
   await GetStorage.init();
@@ -34,9 +38,8 @@ class MyApp extends StatelessWidget {
             scaffoldBackgroundColor: Colors.white,
             primaryColor: ColorsManager.mainblue),
         initialRoute: '/',
-
         navigatorKey: navigatorKey,
-        home: SplashPage(),
+        home: const SplashPage(),
       ),
     );
   }

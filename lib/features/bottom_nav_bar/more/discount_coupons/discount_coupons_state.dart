@@ -1,9 +1,4 @@
-class DiscountCouponsState {
-  DiscountCouponsState init() {
-    return DiscountCouponsState();
-  }
-
-  DiscountCouponsState clone() {
-    return DiscountCouponsState();
-  }
-}
+abstract class DiscountCouponsState {}
+class DisountCouponsStateInit extends DiscountCouponsState{}
+class FetchCouponsLoadingState extends DiscountCouponsState{}
+class FetchCouponsSuccessState extends DiscountCouponsState{}

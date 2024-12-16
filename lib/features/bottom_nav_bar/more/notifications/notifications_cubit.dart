@@ -1,17 +1,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
-
-//import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:yuki/core/dio_helper/dio_helper.dart';
 import 'package:yuki/core/models/notifications_response.dart';
 import 'package:yuki/core/routing/page_router.dart';
-import 'package:yuki/core/routing/page_router.dart';
-import 'package:yuki/core/routing/page_router.dart';
 import 'package:yuki/features/bottom_nav_bar/more/notifications/notifications_view.dart';
-
 import 'notifications_state.dart';
-
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/data/latest_all.dart' as tz;
 class NotificationsCubit extends Cubit<NotificationsState> {
   NotificationsCubit() : super(NotificationsStateInit()) {
     fetchNotifications();
@@ -53,7 +50,10 @@ class NotificationsCubit extends Cubit<NotificationsState> {
   Future? handleBackgroundMessage() {
     FirebaseMessaging.instance.getInitialMessage().then(handleMessage);
   }
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+  FlutterLocalNotificationsPlugin();
 
+}
 // final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin=FlutterLocalNotificationsPlugin();
 // static Future initialize (FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin )async{
 //
@@ -62,4 +62,51 @@ class NotificationsCubit extends Cubit<NotificationsState> {
 // var initializationsSettings = new InitializationSettings(android: androidInitialize,iOS:iOSInitialize);
 // await flutterLocalNotificationsPlugin.initialize(initializationsSettings);
 //
-}
+
+
+
+
+  // static final _notification = FlutterLocalNotificationsPlugin();
+  //
+  // static init() async {
+  // await _notification.initialize(
+  // const InitializationSettings(
+  // android: AndroidInitializationSettings("@mipmap/ic_launcher"),
+  // ));
+  // tz.initializeTimeZones();
+  // }
+  //
+  // static scheduleNotification(
+  // String title,
+  // String body,
+  // int userDayInput,
+  // ) async {
+  // var androidDetails = const AndroidNotificationDetails(
+  // "important_notification",
+  // "My Channel",
+  // importance: Importance.max,
+  // priority: Priority.high,
+  // );
+  // var notificationDetails = NotificationDetails(android: androidDetails);
+  // await _notification.zonedSchedule(
+  // 0,
+  // title,
+  // body,
+  // tz.TZDateTime.now(tz.local).add(Duration(
+  // seconds: userDayInput,
+  // )
+  //
+  // ),
+  // notificationDetails,
+  // uiLocalNotificationDateInterpretation:
+  // UILocalNotificationDateInterpretation.absoluteTime,
+  // androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+  // );
+  // }
+  //
+  // cancelAllNotifications() {
+  // _notification.cancelAll();
+  // }
+  //
+  // }
+

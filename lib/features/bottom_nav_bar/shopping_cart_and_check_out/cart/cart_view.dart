@@ -28,6 +28,7 @@ class CartPage extends StatelessWidget {
               builder: (context, state) {
                 final controller = BlocProvider.of<CartCubit>(context);
                 return ListView(
+                  shrinkWrap: true,
                     padding:
                         EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
                     children: [
@@ -87,15 +88,26 @@ class CartPage extends StatelessWidget {
                       SizedBox(
                         height: 10.h,
                       ),
-                      ShoppingCart(isDelete: true,),
                       SizedBox(
-                        height: 20.h,
+                        height: 300.h,
+                        child: ListView.separated(
+                          physics: const NeverScrollableScrollPhysics(),
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) =>
+                                ShoppingCart(isDelete: true,
+                                name: controller.cartResponse?.data?.order?.items?[index].productName,
+                                price:  controller.cartResponse?.data?.order?.items?[index].price,
+                                ),
+                            separatorBuilder: (context, index) =>
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+                            itemCount:
+                            controller.cartResponse?.data?.order?.items?.length ?? 3),
                       ),
-                      ShoppingCart(isDelete: true,),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Divider(thickness: 1, color: ColorsManager.bordergrey),
+
+                      const Divider(thickness: 1, color: ColorsManager.bordergrey),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
