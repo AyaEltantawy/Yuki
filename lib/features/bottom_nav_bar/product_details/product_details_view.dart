@@ -41,7 +41,7 @@ class ProductDetailsPage extends StatelessWidget {
             return state is ProductDetailsLoadingState
                 ? const Center(child: CircularProgressIndicator())
                 : state is ProductDetailsStateInit
-                    ? Text("Error")
+                    ? const Text("Error")
                     : ListView(
                         children: [
                           Padding(
@@ -52,8 +52,7 @@ class ProductDetailsPage extends StatelessWidget {
                               children: [
                                 InkWell(
                                     onTap: () {
-                                      MagicRouter.navigateTo(
-                                          const ProductsPage(
+                                      MagicRouter.navigateTo(const ProductsPage(
                                         categoryId: 0,
                                       ));
                                     },

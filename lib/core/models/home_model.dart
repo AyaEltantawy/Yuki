@@ -47,27 +47,27 @@ class Data {
 
   Data(
       {this.addresses,
-        this.banners,
-        this.brands,
-        this.categories,
-        this.products,
-        this.offers,
-        this.featured,
-        this.profile,
-        this.facebook,
-        this.whatsapp,
-        this.instegram,
-        this.twitter,
-        this.linkedIn,
-        this.website,
-        this.tikTok,
-        this.youTube,
-        this.email,
-        this.address,
-        this.numbers,
-        this.androidStoreLink,
-        this.appleStoreLink,
-        this.footer});
+      this.banners,
+      this.brands,
+      this.categories,
+      this.products,
+      this.offers,
+      this.featured,
+      this.profile,
+      this.facebook,
+      this.whatsapp,
+      this.instegram,
+      this.twitter,
+      this.linkedIn,
+      this.website,
+      this.tikTok,
+      this.youTube,
+      this.email,
+      this.address,
+      this.numbers,
+      this.androidStoreLink,
+      this.appleStoreLink,
+      this.footer});
 
   Data.fromJson(Map<String, dynamic> json) {
     if (json['addresses'] != null) {
@@ -85,7 +85,7 @@ class Data {
     if (json['brands'] != null) {
       brands = <String>[];
       json['brands'].forEach((v) {
-       //brands!.add(new Null.fromJson(v));
+        //brands!.add(new Null.fromJson(v));
       });
     }
     if (json['categories'] != null) {
@@ -98,12 +98,12 @@ class Data {
         ? new Products.fromJson(json['products'])
         : null;
     offers =
-    json['offers'] != null ? new Offers.fromJson(json['offers']) : null;
+        json['offers'] != null ? new Offers.fromJson(json['offers']) : null;
     featured = json['featured'] != null
         ? new Products.fromJson(json['featured'])
         : null;
     profile =
-    json['profile'] != null ? new Profile.fromJson(json['profile']) : null;
+        json['profile'] != null ? new Profile.fromJson(json['profile']) : null;
     facebook = json['facebook'];
     whatsapp = json['Whatsapp'];
     instegram = json['instegram'];
@@ -129,7 +129,7 @@ class Data {
       data['banners'] = this.banners!.map((v) => v.toJson()).toList();
     }
     if (this.brands != null) {
-     // data['brands'] = this.brands!.map((v) => v.toJson()).toList();
+      // data['brands'] = this.brands!.map((v) => v.toJson()).toList();
     }
     if (this.categories != null) {
       data['categories'] = this.categories!.map((v) => v.toJson()).toList();
@@ -169,7 +169,7 @@ class Addresses {
   String? name;
   String? postal;
   int? isDefault;
-    String? nearestPlace;
+  String? nearestPlace;
   String? address;
   String? kind;
   String? kindKey;
@@ -183,20 +183,20 @@ class Addresses {
 
   Addresses(
       {this.id,
-        this.name,
-        this.postal,
-        this.isDefault,
-        this.nearestPlace,
-        this.address,
-        this.kind,
-        this.kindKey,
-        this.country,
-        this.countryId,
-        this.city,
-        this.cityId,
-        this.shippingFees,
-        this.lat,
-        this.lng});
+      this.name,
+      this.postal,
+      this.isDefault,
+      this.nearestPlace,
+      this.address,
+      this.kind,
+      this.kindKey,
+      this.country,
+      this.countryId,
+      this.city,
+      this.cityId,
+      this.shippingFees,
+      this.lat,
+      this.lng});
 
   Addresses.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -280,11 +280,11 @@ class Banners {
 
   Banners(
       {this.id,
-        this.title,
-        this.category,
-        this.image,
-        this.description,
-        this.subTitle});
+      this.title,
+      this.category,
+      this.image,
+      this.description,
+      this.subTitle});
 
   Banners.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -321,11 +321,11 @@ class Category {
 
   Category(
       {this.id,
-        this.name,
-        this.image,
-        this.description,
-        this.products,
-        this.subCategories});
+      this.name,
+      this.image,
+      this.description,
+      this.products,
+      this.subCategories});
 
   Category.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -433,20 +433,20 @@ class Items {
 
   Items(
       {this.id,
-        this.name,
-        this.image,
-        this.statusKey,
-        this.status,
-        this.isAvailable,
-        this.rate,
-        this.offer,
-        this.priceWithoutDiscount,
-        this.price,
-        this.priceAfterDiscount,
-        this.priceDiscount,
-        this.currency,
-        this.isFavoured,
-        this.productQuantity});
+      this.name,
+      this.image,
+      this.statusKey,
+      this.status,
+      this.isAvailable,
+      this.rate,
+      this.offer,
+      this.priceWithoutDiscount,
+      this.price,
+      this.priceAfterDiscount,
+      this.priceDiscount,
+      this.currency,
+      this.isFavoured,
+      this.productQuantity});
 
   Items.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -498,12 +498,12 @@ class Paginate {
 
   Paginate(
       {this.total,
-        this.count,
-        this.perPage,
-        this.nextPageUrl,
-        this.prevPageUrl,
-        this.currentPage,
-        this.totalPages});
+      this.count,
+      this.perPage,
+      this.nextPageUrl,
+      this.prevPageUrl,
+      this.currentPage,
+      this.totalPages});
 
   Paginate.fromJson(Map<String, dynamic> json) {
     total = json['total'];
@@ -539,7 +539,7 @@ class Offers {
     if (json['items'] != null) {
       items = <Null>[];
       json['items'].forEach((v) {
-    //    items!.add(new Null.fromJson(v));
+        //    items!.add(new Null.fromJson(v));
       });
     }
     paginate = json['paginate'] != null
@@ -551,7 +551,7 @@ class Offers {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.items != null) {
-   //   data['items'] = this.items!.map((v) => v.toJson()).toList();
+      //   data['items'] = this.items!.map((v) => v.toJson()).toList();
     }
     if (this.paginate != null) {
       data['paginate'] = this.paginate!.toJson();
@@ -583,23 +583,23 @@ class Profile {
 
   Profile(
       {this.id,
-        this.name,
-        this.userType,
-        this.phone,
-        this.phonecode,
-        this.gender,
-        this.avatar,
-        this.point,
-        this.valPoint,
-        this.isActive,
-        this.isVerified,
-        this.notificationCount,
-        this.email,
-        this.wallet,
-        this.googleId,
-        this.branchId,
-        this.tax,
-        this.notifications});
+      this.name,
+      this.userType,
+      this.phone,
+      this.phonecode,
+      this.gender,
+      this.avatar,
+      this.point,
+      this.valPoint,
+      this.isActive,
+      this.isVerified,
+      this.notificationCount,
+      this.email,
+      this.wallet,
+      this.googleId,
+      this.branchId,
+      this.tax,
+      this.notifications});
 
   Profile.fromJson(Map<String, dynamic> json) {
     id = json['id'];

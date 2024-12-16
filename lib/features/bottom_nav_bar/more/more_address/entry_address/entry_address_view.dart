@@ -13,6 +13,8 @@ import 'entry_address_cubit.dart';
 import 'entry_address_state.dart';
 
 class EntryAddressPage extends StatelessWidget {
+  const EntryAddressPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -112,6 +114,7 @@ class EntryAddressPage extends StatelessWidget {
                                 : state is CountryErrorState
                                     ? const Text("Error")
                                     : DropDownButton(
+
                                         dropDownItems: List.generate(
                                             controller.countriesResponse?.data
                                                     ?.length ??
@@ -119,19 +122,19 @@ class EntryAddressPage extends StatelessWidget {
                                           return controller.countriesResponse
                                                   ?.data?[index].name ??
                                               '';
-
                                         }),
                                         onChanged: (value) {
                                           controller
                                               .updateCountry(value.toString());
                                           for (int i = 1;
-                                          i <
-                                              (controller
-                                                  .countriesResponse?.data?.length ??
-                                                  0);
-                                          i++) {
+                                              i <
+                                                  (controller.countriesResponse
+                                                          ?.data?.length ??
+                                                      0);
+                                              i++) {
                                             controller.updateEachCountryCities(
-                                                controller.countriesResponse?.data?[i].id);
+                                                controller.countriesResponse
+                                                    ?.data?[i].id);
                                           }
                                         },
                                         selectedItem:
@@ -143,29 +146,26 @@ class EntryAddressPage extends StatelessWidget {
                           width: 5.w,
                         ),
                         Expanded(
-                          child:
-                          state is CitiesLoaingState
-                              ? const Center(
-                              child: CircularProgressIndicator())
+                          child: state is CitiesLoaingState
+                              ? const Center(child: CircularProgressIndicator())
                               : state is CitiesErrorState
-                              ? const Text("Error")
-                              :
-                          DropDownButton(
-                            upperText: "City",
-                            hintText: ' Select your City ...',
-                            selectedItem: controller.selectedCityItem,
-                            onChanged: (value) {
-                              controller.updateCity(value.toString());
-
-                            },
-                            dropDownItems: List.generate(
-                                controller.citiesResponse?.data?.length ?? 0,
-                                (index) {
-                              return controller
-                                      .citiesResponse?.data?[index].name ??
-                                  "";
-                            }),
-                          ),
+                                  ? const Text("Error")
+                                  : DropDownButton(
+                                      upperText: "City",
+                                      hintText: ' Select your City ...',
+                                      selectedItem: controller.selectedCityItem,
+                                      onChanged: (value) {
+                                        controller.updateCity(value.toString());
+                                      },
+                                      dropDownItems: List.generate(
+                                          controller.citiesResponse?.data
+                                                  ?.length ??
+                                              0, (index) {
+                                        return controller.citiesResponse
+                                                ?.data?[index].name ??
+                                            "";
+                                      }),
+                                    ),
                         ),
                       ],
                     ),

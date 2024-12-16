@@ -18,12 +18,12 @@ import 'products_state.dart';
 
 class ProductsPage extends StatelessWidget {
   final int? categoryId;
-  final int? sub_category_id;
+  final int? subCategoryId;
 
   const ProductsPage({
     super.key,
     this.categoryId,
-    this.sub_category_id,
+    this.subCategoryId,
   });
 
   @override

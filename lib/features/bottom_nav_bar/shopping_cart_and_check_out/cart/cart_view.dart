@@ -10,7 +10,6 @@ import 'package:yuki/core/theming/colors.dart';
 import 'package:yuki/core/theming/styles.dart';
 import 'package:yuki/features/bottom_nav_bar/shopping_cart_and_check_out/selectdeliveryaddress/select_delivery_address_view.dart';
 
-
 import 'cart_cubit.dart';
 import 'cart_state.dart';
 import 'package:badges/badges.dart' as badges;
@@ -28,7 +27,7 @@ class CartPage extends StatelessWidget {
               builder: (context, state) {
                 final controller = BlocProvider.of<CartCubit>(context);
                 return ListView(
-                  shrinkWrap: true,
+                    shrinkWrap: true,
                     padding:
                         EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
                     children: [
@@ -88,26 +87,41 @@ class CartPage extends StatelessWidget {
                       SizedBox(
                         height: 10.h,
                       ),
-                      SizedBox(
-                        height: 300.h,
-                        child: ListView.separated(
-                          physics: const NeverScrollableScrollPhysics(),
-                            scrollDirection: Axis.vertical,
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) =>
-                                ShoppingCart(isDelete: true,
-                                name: controller.cartResponse?.data?.order?.items?[index].productName,
-                                price:  controller.cartResponse?.data?.order?.items?[index].price,
+                      state is FetchCartLoadingState
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : state is FetchCartErrorState
+                              ? const Text("error")
+                              : SizedBox(
+                                  height: 300.h,
+                                  child: ListView.separated(
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      scrollDirection: Axis.vertical,
+                                      shrinkWrap: true,
+                                      itemBuilder: (context, index) =>
+                                          ShoppingCart(
+                                            isDelete: true,
+                                            name: controller
+                                                .cartResponse
+                                                ?.data
+                                                ?.order
+                                                ?.items?[index]
+                                                .productName,
+                                            price: controller.cartResponse?.data
+                                                ?.order?.items?[index].price,
+                                          ),
+                                      separatorBuilder: (context, index) =>
+                                          SizedBox(
+                                            height: 20.h,
+                                          ),
+                                      itemCount: controller.cartResponse?.data
+                                              ?.order?.items?.length ??
+                                          3),
                                 ),
-                            separatorBuilder: (context, index) =>
-                                SizedBox(
-                                  width: 5.w,
-                                ),
-                            itemCount:
-                            controller.cartResponse?.data?.order?.items?.length ?? 3),
-                      ),
-
-                      const Divider(thickness: 1, color: ColorsManager.bordergrey),
+                      const Divider(
+                          thickness: 1, color: ColorsManager.bordergrey),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -185,7 +199,8 @@ class CartPage extends StatelessWidget {
                         height: 20.h,
                       ),
                       CustomButton(
-                        child:Text("Continue to checkout",style:TextStyles.font16White700Weight),
+                        child: Text("Continue to checkout",
+                            style: TextStyles.font16White700Weight),
                         onPressed: () {
                           MagicRouter.navigateTo(SelectdeliveryaddressPage());
                         },

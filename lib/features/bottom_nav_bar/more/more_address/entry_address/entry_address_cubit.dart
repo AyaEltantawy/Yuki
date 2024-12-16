@@ -59,7 +59,7 @@ class EntryAddressCubit extends Cubit<EntryAddressState> {
 
   updateEachCountryCities(int? id) {
     countryId = id;
-    fetchCountries();
+    fetchCities();
     emit(UpdateEachCountryCities());
   }
 
