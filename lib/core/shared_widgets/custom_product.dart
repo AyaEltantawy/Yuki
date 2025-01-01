@@ -14,9 +14,11 @@ class CustomProduct extends StatelessWidget {
       required this.currentPrice,
       required this.offerState,
       required this.onTap,
-      required this.onTapFavorite,this .isFavourite});
+      required this.onTapFavorite,
+      this.isFavourite});
 
-  bool? isFavourite ;
+  bool? isFavourite;
+
   int count = 1;
   final VoidCallback onTapFavorite;
 
@@ -100,13 +102,13 @@ class CustomProduct extends StatelessWidget {
                           builder: (BuildContext context,
                               void Function(void Function()) setState) {
                             return InkWell(
+                                onTap: onTapFavorite,
                                 child: Icon(
                                   isFavourite == false
                                       ? Icons.favorite_border
                                       : Icons.favorite,
                                   color: ColorsManager.secondred,
-                                ),
-                                onTap: onTapFavorite);
+                                ));
                           },
                         ),
                       ],
