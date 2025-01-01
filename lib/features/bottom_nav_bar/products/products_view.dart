@@ -206,7 +206,9 @@ class ProductsPage extends StatelessWidget {
                                     3,
                                 offerState: controller.productsModel?.data
                                         ?.items?[index].statusKey ??
-                                    "",
+                                    "", count: controller.count,
+                                increament: controller.increament,
+                                decreament: controller.decreament,
                               );
                             }),
                         SizedBox(

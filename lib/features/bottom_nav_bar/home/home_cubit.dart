@@ -5,7 +5,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:yuki/core/app_storage/app_storage.dart';
 import 'package:yuki/core/dio_helper/dio_helper.dart';
 import 'package:yuki/core/models/home_model.dart';
+import 'package:yuki/core/routing/page_router.dart';
 import 'package:yuki/core/services/notification_service.dart';
+import 'package:yuki/core/utils/utils.dart';
 
 import 'home_state.dart';
 
@@ -14,7 +16,8 @@ class HomeCubit extends Cubit<HomeState> {
     fetchHome();
     notificationService.initializeNotification();
   }
-NotificationService notificationService =NotificationService();
+
+  NotificationService notificationService = NotificationService();
   int indexArriveAndFeatured = 0;
   int currentPage = 0;
   List<Widget> items = [
@@ -91,6 +94,13 @@ NotificationService notificationService =NotificationService();
     }
   }
 
+  fetchProductId(int? productId) {
+    this.productId = productId;
+    addCartProduct();
+  }
+
+  int? productId;
+
   HomeModel? homeModel;
   List<Banners>? banners;
   List<Category>? categories = [];
@@ -110,10 +120,36 @@ NotificationService notificationService =NotificationService();
       featured = homeModel?.data?.featured;
       products = homeModel?.data?.products;
       // name=homeModel?.data?.categories?[0].name??'';
+
       emit(HomeSuccessState());
     } else {
       debugPrint("errorr ${data['message']}");
       emit(HomeErrorState());
+    }
+  }
+
+  addCartProduct() async {
+    final body = {'id': productId, 'quantity': count, 'all_quantity': '0'};
+    final response =
+        await DioHelper.post('add-to-cart', false, body: body).then((response) {
+      final data = response.data as Map<String, dynamic>;
+
+      if (data['status'] == true) {
+        Utils.showSnackBar(MagicRouter.currentContext, data['message']);
+        print(productId);
+      }
+    });
+  }
+
+  int count = 1;
+
+  void increament() {
+    count++;
+  }
+
+  void decreament() {
+    if (count > 1) {
+      count--;
     }
   }
 }

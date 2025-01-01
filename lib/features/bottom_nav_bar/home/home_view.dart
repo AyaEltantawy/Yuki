@@ -184,6 +184,14 @@ class HomePage extends StatelessWidget {
                                   //shrinkWrap: true,
                                   itemBuilder: (context, index) =>
                                       CustomProduct(
+                                        count: controller.count,
+                                        decreament: controller.decreament,
+                                        increament: controller.increament,
+                                        onTapMarket: () {
+                                          controller.fetchProductId(controller
+                                              .featured?.items?[index].id);
+                                          controller.addCartProduct();
+                                        },
                                         onTapFavorite: () {
                                           return controller
                                               .toggleFavorite(index);
@@ -233,6 +241,19 @@ class HomePage extends StatelessWidget {
                                     return Row(
                                       children: [
                                         CustomProduct(
+                                          count: controller.count,
+                                          increament: controller.increament,
+                                          decreament: controller.decreament,
+                                          onTapMarket: () {
+                                            controller.fetchProductId(controller
+                                                .homeModel
+                                                ?.data
+
+                                                ?.products
+                                                ?.items?[index]
+                                                .id);
+                                            controller.addCartProduct();
+                                          },
                                           onTapFavorite: () {
                                             return controller
                                                 .toggleFavorite(index);

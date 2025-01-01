@@ -15,22 +15,18 @@ class CustomProduct extends StatelessWidget {
       required this.offerState,
       required this.onTap,
       required this.onTapFavorite,
-      this.isFavourite});
+      this.isFavourite,required this.count,required this.increament,required this.decreament,this.onTapMarket });
 
   bool? isFavourite;
 
-  int count = 1;
+ int count ;
+ void Function() increament ;
+ void Function( )decreament;
   final VoidCallback onTapFavorite;
+  final VoidCallback? onTapMarket;
 
-  void increament() {
-    count++;
-  }
 
-  void decreament() {
-    if (count > 1) {
-      count--;
-    }
-  }
+
 
   final String productName;
   final String imageUrl;
@@ -190,8 +186,11 @@ class CustomProduct extends StatelessWidget {
                             },
                           ),
                         ),
-                        Image.asset("assets/images/market_icon.png",
-                            width: 45.w, height: 45.h)
+                       InkWell(
+                         onTap: onTapMarket,
+                          child: Image.asset("assets/images/market_icon.png",
+                              width: 45.w, height: 45.h),
+                        )
                       ],
                     )
                   ],

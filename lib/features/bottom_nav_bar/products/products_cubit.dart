@@ -11,7 +11,15 @@ class ProductsCubit extends Cubit<ProductsState> {
   ProductsCubit() : super(ProductsStateInit()) {
     fetchSubCategories();
   }
+  int count=1;
+  void increament() {
+    count++;
+  }
 
+  void decreament() {
+    if (count > 1) {
+      count--;
+    }}
   bool change = true;
 
   updateActiveIndex(int? id) {

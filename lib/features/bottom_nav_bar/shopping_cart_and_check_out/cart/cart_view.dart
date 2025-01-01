@@ -94,14 +94,20 @@ class CartPage extends StatelessWidget {
                           : state is FetchCartErrorState
                               ? const Text("error")
                               : SizedBox(
-                                  height: 300.h,
+                                  width: double.infinity,
                                   child: ListView.separated(
+                                      shrinkWrap: true,
                                       physics:
                                           const NeverScrollableScrollPhysics(),
                                       scrollDirection: Axis.vertical,
-                                      shrinkWrap: true,
                                       itemBuilder: (context, index) =>
                                           ShoppingCart(
+                                            imageUrl: controller
+                                                .cartResponse
+                                                ?.data
+                                                ?.order
+                                                ?.items?[index]
+                                                .images?[index],
                                             isDelete: true,
                                             name: controller
                                                 .cartResponse

@@ -7,8 +7,8 @@ class ShoppingCart extends StatelessWidget {
   final bool isDelete;
   final String? name;
   final num? price;
-
-  ShoppingCart({super.key, required this.isDelete, this.name, this.price});
+final String? imageUrl;
+  ShoppingCart({super.key, required this.isDelete, this.name, this.price,this.imageUrl});
 
   int count = 1;
 
@@ -95,7 +95,7 @@ class ShoppingCart extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Image.asset("assets/images/spray_card.png"),
+                  Image.asset(imageUrl??''),
                   SizedBox(
                     width: 10.w,
                   ),

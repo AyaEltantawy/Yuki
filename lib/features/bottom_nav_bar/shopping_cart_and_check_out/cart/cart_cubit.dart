@@ -29,4 +29,5 @@ class CartCubit extends Cubit<CartState> {
       emit(FetchCartErrorState());
     }
   }
+
 }

@@ -89,6 +89,9 @@ class FavoriteProductsPage extends StatelessWidget {
                                 crossAxisSpacing: 10,
                                 itemBuilder: (BuildContext context, int index) {
                                   return CustomProduct(
+                                    count: controller.count,
+                                    decreament: controller.decreament,
+                                    increament: controller.increament,
                                     onTap: () {},
                                     onTapFavorite: () {
                                       // return controller.addFavoriteProducts(

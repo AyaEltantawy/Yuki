@@ -12,7 +12,15 @@ class FavoriteProductsCubit extends Cubit<FavoriteProductsState> {
     fetchFavoriteProducts();
     // addFavoriteProducts(productId ?? 0);
   }
+  int count=1;
+  void increament() {
+    count++;
+  }
 
+  void decreament() {
+    if (count > 1) {
+      count--;
+    }}
   FavoriteProductsResponse? favoriteProductsResponse;
   List<Products>? products;
   List favorites = [];

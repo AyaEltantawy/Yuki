@@ -427,12 +427,12 @@ class User {
 
 class Addresses {
   int? id;
-  Null? placeName;
+  String? placeName;
   String? kind;
-  Null? nearestPlace;
+  String? nearestPlace;
   String? address;
-  Null? lat;
-  Null? lng;
+  String? lat;
+  String? lng;
   int? isDefault;
   Country? country;
   Country? city;

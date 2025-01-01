@@ -178,8 +178,8 @@ class Addresses {
   String? city;
   int? cityId;
   List<ShippingFees>? shippingFees;
-  Double? lat;
-  Double? lng;
+ String? lat;
+  String? lng;
 
   Addresses(
       {this.id,
