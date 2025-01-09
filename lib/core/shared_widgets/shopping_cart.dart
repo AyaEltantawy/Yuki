@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yuki/core/theming/colors.dart';
@@ -7,20 +8,25 @@ class ShoppingCart extends StatelessWidget {
   final bool isDelete;
   final String? name;
   final num? price;
-final String? imageUrl;
-  ShoppingCart({super.key, required this.isDelete, this.name, this.price,this.imageUrl});
+  final String? imageUrl;
+  final VoidCallback? onPressedDelete;
 
-  int count = 1;
+  ShoppingCart(
+      {super.key,
+      required this.isDelete,
+      this.name,
+      this.price,
+      this.imageUrl,
+      this.onPressedDelete,
+        required this.count,
+      required this.increament,
+      required this.decreament});
 
-  void increament() {
-    count++;
-  }
+  int count;
 
-  void decreament() {
-    if (count > 1) {
-      count--;
-    }
-  }
+   Function() increament;
+
+ Function() decreament;
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +46,11 @@ final String? imageUrl;
               mainAxisSize: MainAxisSize.min,
               children: [
                 IconButton(
+
                   icon: const Icon(
                     Icons.remove,
                     size: 17,
+
                   ),
                   color: Colors.white,
                   onPressed: () {
@@ -95,11 +103,15 @@ final String? imageUrl;
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Image.asset(imageUrl??''),
+                  CachedNetworkImage(
+                    imageUrl: imageUrl ?? '',
+                    width: 100.w,
+                    height: 100.w,
+                  ),
                   SizedBox(
                     width: 10.w,
                   ),
-                  Flexible(
+                  Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -125,7 +137,7 @@ final String? imageUrl;
                     padding: EdgeInsets.only(bottom: 53.h),
                     child: isDelete
                         ? IconButton(
-                            onPressed: () {},
+                            onPressed: onPressedDelete,
                             icon: const Icon(
                               Icons.delete,
                               color: ColorsManager.red,

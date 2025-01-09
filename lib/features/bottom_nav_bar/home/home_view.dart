@@ -252,7 +252,7 @@ class HomePage extends StatelessWidget {
                                                 ?.products
                                                 ?.items?[index]
                                                 .id);
-                                            controller.addCartProduct();
+                                           // controller.addCartProduct();
                                           },
                                           onTapFavorite: () {
                                             return controller

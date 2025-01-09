@@ -9,3 +9,13 @@ class FetchCartLoadingState extends CartState {}
 class FetchCartSuccessState extends CartState {}
 
 class FetchCartErrorState extends CartState {}
+
+class DeleteProductLoadingState extends CartState {}
+
+class DeleteProductSuccessState extends CartState {}
+
+class DeleteProductErrorState extends CartState {}
+
+class Increment extends CartState {}
+
+class Decrement extends CartState {}

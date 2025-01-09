@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yuki/core/routing/page_router.dart';
+import 'package:yuki/core/shared_widgets/circular_indicator.dart';
 import 'package:yuki/core/shared_widgets/custom_button.dart';
 import 'package:yuki/core/shared_widgets/custom_text_form_feild.dart';
 import 'package:yuki/core/shared_widgets/shopping_cart.dart';
@@ -102,12 +103,24 @@ class CartPage extends StatelessWidget {
                                       scrollDirection: Axis.vertical,
                                       itemBuilder: (context, index) =>
                                           ShoppingCart(
+                                            decreament: () =>
+                                                controller.decreament(index),
+                                            increament: () =>
+                                                controller.increament(index),
+                                            count: controller.count[index],
+                                            onPressedDelete: () {
+                                              controller.fetchProductId(
+                                                controller.cartResponse?.data
+                                                    ?.order?.items?[index].id,
+                                              );
+                                              controller.deleteCartProduct();
+                                            },
                                             imageUrl: controller
                                                 .cartResponse
                                                 ?.data
                                                 ?.order
                                                 ?.items?[index]
-                                                .images?[index],
+                                                .productImage,
                                             isDelete: true,
                                             name: controller
                                                 .cartResponse
@@ -164,23 +177,7 @@ class CartPage extends StatelessWidget {
                             style: TextStyles.font15Icongrey400Weight,
                           ),
                           Text(
-                            "7",
-                            style: TextStyles.font15Black400Weight,
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Price",
-                            style: TextStyles.font15Icongrey400Weight,
-                          ),
-                          Text(
-                            "810.00",
+                            "${controller.count}",
                             style: TextStyles.font15Black400Weight,
                           )
                         ],
@@ -196,7 +193,7 @@ class CartPage extends StatelessWidget {
                             style: TextStyles.font15Mainblue700Weight,
                           ),
                           Text(
-                            "710.00",
+                            "${controller.cartResponse?.data?.order?.subTotal}",
                             style: TextStyles.font15Mainblue700Weight,
                           )
                         ],
@@ -208,7 +205,8 @@ class CartPage extends StatelessWidget {
                         child: Text("Continue to checkout",
                             style: TextStyles.font16White700Weight),
                         onPressed: () {
-                          MagicRouter.navigateTo(SelectdeliveryaddressPage());
+                          MagicRouter.navigateTo(
+                              const SelectdeliveryaddressPage());
                         },
                       )
                     ]);

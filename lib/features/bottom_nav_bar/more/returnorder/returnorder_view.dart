@@ -129,10 +129,16 @@ class ReturnorderPage extends StatelessWidget {
                   height: 15.h,
                 ),
                 ShoppingCart(
+count: controller.count,
+                  increament: controller.increament,
+              decreament: controller.decreament,
                   isDelete: false,
                 ),
                 SizedBox(height: 10.h),
                 ShoppingCart(
+                  count: controller.count,
+                  increament: controller.increament,
+                  decreament: controller.decreament,
                   isDelete: false,
                 ),
                 SizedBox(
@@ -178,7 +184,8 @@ class ReturnorderPage extends StatelessWidget {
                             color: Color(0xff0000000D))
                       ]),
                   child: Padding(
-                    padding:  EdgeInsets.symmetric(horizontal:30.w,vertical: 20.h),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 30.w, vertical: 20.h),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -191,21 +198,26 @@ class ReturnorderPage extends StatelessWidget {
                             text: TextSpan(
                                 text: "Attach image or more\n",
                                 style: TextStyles.font13Black400Weight,
-                                children: [TextSpan(text: "Pdf , Png , Jpg , Jpeg",style:TextStyles.font12Icongrey400Weight)]))
+                                children: [
+                              TextSpan(
+                                  text: "Pdf , Png , Jpg , Jpeg",
+                                  style: TextStyles.font12Icongrey400Weight)
+                            ]))
                       ],
                     ),
                   ),
                 ),
-                SizedBox(height:10.h),
-
+                SizedBox(height: 10.h),
                 CustomButton(
-                    onPressed:(){  showDialog(
-                        context: context,
-                        builder: (context) => const ResetPasswordDialog(
-                      mainText: 'تم ارسال طلب الارجاع بنجاح',
-                    ));},
-
-                    child:Text("Return",style:TextStyles.font16White700Weight))
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) => const ResetPasswordDialog(
+                                mainText: 'تم ارسال طلب الارجاع بنجاح',
+                              ));
+                    },
+                    child:
+                        Text("Return", style: TextStyles.font16White700Weight))
               ]);
         }))));
   }
